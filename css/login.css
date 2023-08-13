@@ -1,0 +1,97 @@
+body {
+	color: white;
+}
+
+#welcome {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	justify-content: center;
+	display: flex;
+	word-break: break-word;
+}
+
+#welcome>#terminal {
+	width: min(550px, calc(100vw - 48.8px*2));
+	margin: 24px;
+	padding: 24px;
+	border: 0.8px solid #202637;
+	border-radius: 6px;
+	background-color: #0c162d;
+	transition: .3s;
+}
+
+#welcome>#terminal>* {
+	display: none;
+}
+
+#welcome>#terminal>h2 {
+	color: white;
+}
+
+#welcome>#terminal>#login-username {
+	color: white;
+}
+
+#typing-welcome {
+	color: #8193b2;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+	line-height: 1.5;
+}
+
+input.login {
+	background-color: #111827;
+	border: 0;
+	margin: 10px;
+	font-size: 1rem;
+	color: white;
+	box-sizing: border-box;
+	width: calc(100% - 130px);
+}
+
+input.login:focus {
+	outline: none;
+	border: solid 1px #0969da;
+}
+
+button.login[disabled] {
+	color: #627597;
+	background: none;
+	border-color: #627597;
+}
+
+button.login {
+	color: #1f883d;
+	background: none;
+	border-color: #1f883d;
+	box-shadow: none;
+	margin-top: 0;
+	width: auto;
+	padding: 5px 1rem;
+	font-size: 14px;
+	line-height: 20px;
+	border: 1px solid #1f883d;
+	border-radius: 6px;
+	transition: .1s;
+}
+
+span.formtitle {
+	color: #00cfc8;
+	font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+span.inputhint {
+	color: #ea4aaa;
+	font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.flex {
+	display: flex;
+}
