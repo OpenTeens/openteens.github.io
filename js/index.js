@@ -30,19 +30,11 @@ function typing_effect(div, text) {
 }
 
 function redirect(name) {
-	const r_list = {
-		"About": "/about",
-		"Museum": "/museum",
-		"Login": "/login",
-	}
-	if (r_list[name])
-		window.location.href = r_list[name];
-	else
-		throw Error("Invalid Redirect Name.");
+	window.location.href = `/${name}`;
 }
 
 function btn_redirect(e) {
-	var name = e.target.innerText.trim();
+	var name = e.target.innerText.trim().toLowerCase();
 	redirect(name);
 }
 

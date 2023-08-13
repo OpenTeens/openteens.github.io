@@ -112,6 +112,7 @@ nav#navigator>ul>li>button:hover {
 
 a {
 	color: #4b9de0;
+	text-decoration:underline;
 }
 
 a:hover {
