@@ -5,6 +5,8 @@
         background-color: #fff3;
         padding: 20px;
         border-radius: 6px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .card>h1 {
@@ -16,6 +18,7 @@
         border-radius: 0 10px 0 10px;
         padding: 3px;
         color: black;
+        text-transform: capitalize;
     }
 
     .card>lang::before {
@@ -28,6 +31,7 @@
         border-radius: 0 10px 0 10px;
         padding: 3px;
         color: black;
+        text-transform: capitalize;
     }
 
     .card>state::before {
@@ -63,7 +67,7 @@
         background-color: #fff;
     }
 
-    .deving {
+    .developing {
         background-color: #e9d6ac;
     }
 
@@ -73,14 +77,32 @@
 </style>
 
 <div id="content">
-    <div class="card">
-        <h1><a href="https://github.com/earthno1/scratch2py">scratch2py</a></h1>
-        <lang class="python">Python</lang>
-        <state class="deving">Developing</state>
-        <p>
-            ScGame is a compiler which compiles Scratch File (.sb3) to Python Script (.py).
-            <br>
-            It is still in developing. Compiler part completed, scgame lib incompleted.
-        </p>
-    </div>
 </div>
+
+<script>
+    function addProj(url, state, desc) {
+        var card = document.createElement("div");
+        var urls = url.split('/');
+        card.className = "card";
+        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a></h1> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
+        document.getElementById("content").appendChild(card);
+        HTTP_GET(`https://api.github.com/repos/${urls[3]}/${urls[4]}/languages`, function (res) {
+            var lang = JSON.parse(res);
+            var mainLang = "others";
+            var mainLangNum = 0;
+            for (var i in lang) {
+                if (lang[i] > mainLangNum) {
+                    mainLang = i;
+                    mainLangNum = lang[i];
+                }
+            }
+            card.querySelector("lang").innerHTML = mainLang;
+            card.querySelector("lang").classList = mainLang.toLowerCase();
+        })
+    }
+
+    addProj("https://github.com/earthno1/scratch2py", "developing", `
+    ScGame is a compiler which compiles Scratch File (.sb3) to Python Script (.py).
+    <br>
+    It is still in developing. Compiler part completed, scgame lib incompleted.`)
+</script>
