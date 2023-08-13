@@ -1,0 +1,76 @@
+<style>
+	body {
+		margin: 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.collection {
+		background-color: #374151;
+		padding: 10px;
+		font-family: 'Times New Roman', Times, serif;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+	}
+
+	.collection>* {
+		margin: auto;
+	}
+
+	.collection>span.time {
+		display: block;
+		color: grey;
+		font-size: 0.7ch;
+	}
+
+	.collection>img {
+		max-height: 50vh;
+		max-width: min(100%, 700px);
+		border: solid 1px black;
+		margin: 10px;
+	}
+</style>
+
+<div id="content">
+	<div id="museum"></div>
+</div>
+
+<script>
+	const museum = [{
+		time: "2023/8/11  (11:35)",
+		img: "img/logo_v1.png",
+		desc: "The first version of OpenTeens' logo, designed by @BernieHuang.\n\n There's an Open-Source-Community Ring with a teenager inside.",
+	},
+	{
+		time: "2023/8/11  (11:47)",
+		img: "img/logo_v1.1.jpg",
+		desc: "Logo v1.1, improved by @Carmen."
+	}
+	].reverse();
+
+	museum.forEach(collection => {
+		var div = document.createElement("div");
+		div.classList.add("collection");
+
+		if (collection.time) {
+			var time = document.createElement("span");
+			time.classList.add("time");
+			time.innerText = collection.time;
+			div.appendChild(time);
+		}
+		if (collection.img) {
+			var img = document.createElement("img");
+			img.src = "/museum_assets/" + collection.img;
+			div.appendChild(img);
+		}
+		if (collection.desc) {
+			var desc = document.createElement("p");
+			desc.classList.add("desc");
+			desc.innerText = collection.desc;
+			div.appendChild(desc);
+		}
+
+		$("#museum").appendChild(div);
+	})
+</script>

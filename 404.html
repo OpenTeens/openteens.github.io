@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Redirecting ...</title>
+</head>
+
+<script>
+	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
+	// pageName = "museum";	// DEV
+	const pages = ["about", "404.html", "index", "museum"];
+	var i = pages.indexOf(pageName);
+
+	if (i == -1) {
+		// not found
+		window.location.href = "404.html";
+	}
+	else {
+		// found.
+		const page_title = {
+			"about": "About OpenTeens",
+			"404.html": "404 - Page Not Found",
+			"index": "OpenTeens",
+			"museum": "OpenTeens Museum"
+		}
+		document.querySelector("title").innerText = page_title[pages[i]];
+
+		// load.
+		window.loaders = [];
+		window.loaders.push(function () {
+			HTTP_GET("/pages/" + pages[i] + ".html", res => {
+				// extract scripts
+				var scripts = "";
+				res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
+					scripts += "\n" + match;
+					return "";
+				});
+
+				// load page
+				$("#container").innerHTML = res;
+
+				// run scripts
+				eval(scripts)
+			});
+		})
+	}
+
+</script>
+
+
+<!-- Main HTML-->
+
+
+<link rel="stylesheet" href="css/index.css" />
+
+<body>
+	<div id="toolbar">
+		<nav id="navigator">
+			<a href="/" style="display: flex;align-items: center"><img src="img/logo_4.png" class="logo"
+					height="28"></a>
+
+			<div id="search">
+				<input placeholder="Search ...">
+				<svg fill="rgb(209 213 219)" viewBox="0 0 512 512" height="18" width="18" onclick="search()">
+					<path
+						d="M443.5 420.2L336.7 312.4c20.9-26.2 33.5-59.4 33.5-95.5 0-84.5-68.5-153-153.1-153S64 132.5 64 217s68.5 153 153.1 153c36.6 0 70.1-12.8 96.5-34.2l106.1 107.1c3.2 3.4 7.6 5.1 11.9 5.1 4.1 0 8.2-1.5 11.3-4.5 6.6-6.3 6.8-16.7.6-23.3zm-226.4-83.1c-32.1 0-62.3-12.5-85-35.2-22.7-22.7-35.2-52.9-35.2-84.9 0-32.1 12.5-62.3 35.2-84.9 22.7-22.7 52.9-35.2 85-35.2s62.3 12.5 85 35.2c22.7 22.7 35.2 52.9 35.2 84.9 0 32.1-12.5 62.3-35.2 84.9-22.7 22.7-52.9 35.2-85 35.2z">
+					</path>
+				</svg>
+			</div>
+
+			<ul>
+				<li>
+					<button>About</button>
+				</li>
+				<li>
+					<button>Museum</button>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div id="container"></div>
+
+	<script src="js/sel.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		window.onload = function () {
+			// custom loaders.
+			window.loaders.forEach(loader => {
+				loader();
+			})
+
+			// highlight nav bar
+			$("#navigator").querySelectorAll("li").forEach(li => {
+				var btn = li.children[0];
+				btn.onclick = btn_redirect;
+				if (btn.innerText.toLowerCase() == pageName) {
+					li.classList.add("focus");
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>

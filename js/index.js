@@ -5,7 +5,7 @@ function search() {
 	}
 }
 
-$("#search>input").onkeydown = function(e) {
+$("#search>input").onkeydown = function (e) {
 	if (e.key == 'Enter')
 		search();
 }
@@ -30,10 +30,10 @@ function typing_effect(div, text) {
 }
 
 function redirect(name) {
-	r_list = {
-		"About": "/about.html",
-		"Museum": "/museum/index.html",
-		"Login": "/login.html",
+	const r_list = {
+		"About": "/about",
+		"Museum": "/museum",
+		"Login": "/login",
 	}
 	if (r_list[name])
 		window.location.href = r_list[name];
@@ -42,11 +42,20 @@ function redirect(name) {
 }
 
 function btn_redirect(e) {
-	name = e.target.innerText.trim();
+	var name = e.target.innerText.trim();
 	redirect(name);
 }
 
 
-$$("nav#navigator>ul>li>button").forEach(btn => {
-	btn.onclick = btn_redirect;
-})
+function HTTP_GET(aUrl, aCallback) {
+	var anHttpRequest = new XMLHttpRequest();
+	anHttpRequest.onreadystatechange = function () {
+		if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+			aCallback(anHttpRequest.responseText);
+	}
+
+	anHttpRequest.open("GET", aUrl, true);
+	anHttpRequest.send(null);
+}
+
+
