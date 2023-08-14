@@ -117,7 +117,7 @@
         var card = document.createElement("div");
         var urls = url.split('/');
         card.className = "card";
-        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a> <star></star></h1> <owner><a href="https://github.com/${urls[3]}"><i>@${urls[3]}</i></a></owner> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
+        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a> <star>--</star></h1> <owner><a href="https://github.com/${urls[3]}"><i>@${urls[3]}</i></a></owner> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
         document.getElementById("content").appendChild(card);
 
         // github api
