@@ -39,6 +39,15 @@
         opacity: 0.6;
     }
 
+    .card>owner {
+        display: block;
+    }
+
+    .card>owner::before {
+        content: "Owner: ";
+        opacity: 0.6;
+    }
+
     .python {
         background-color: #3572a5;
     }
@@ -84,7 +93,7 @@
         var card = document.createElement("div");
         var urls = url.split('/');
         card.className = "card";
-        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a></h1> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
+        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a></h1> <owner><a href="https://github.com/${urls[3]}">${urls[3]}</a></owner> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
         document.getElementById("content").appendChild(card);
         HTTP_GET(`https://api.github.com/repos/${urls[3]}/${urls[4]}/languages`, function (res) {
             var lang = JSON.parse(res);
@@ -101,8 +110,9 @@
         })
     }
 
-    addProj("https://github.com/earthno1/scratch2py", "developing", `
+    addProj("https://github.com/BernieHuang2008/scratch2py", "developing", `
     ScGame is a compiler which compiles Scratch File (.sb3) to Python Script (.py).
     <br>
-    It is still in developing. Compiler part completed, scgame lib incompleted.`)
+    <br>
+    `)
 </script>
