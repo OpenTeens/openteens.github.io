@@ -15,9 +15,10 @@
 
     .card>lang {
         font-size: 0.7rem;
-        border-radius: 0 10px 0 10px;
+        border-radius: 0 7px 0 7px;
         padding: 3px;
-        color: black;
+        color: var(--lang-color);
+        background-color: #fff;
         text-transform: capitalize;
     }
 
@@ -28,9 +29,10 @@
 
     .card>state {
         font-size: 0.7rem;
-        border-radius: 0 10px 0 10px;
+        border-radius: 5px;
         padding: 3px;
         color: black;
+        background-color: var(--state-color);
         text-transform: capitalize;
     }
 
@@ -48,40 +50,44 @@
         opacity: 0.6;
     }
 
+    .others {
+        --lang-color: #555;
+    }
+
     .python {
-        background-color: #3572a5;
+        --lang-color: #3572a5;
     }
 
     .cpp {
-        background-color: #f34b7d;
+        --lang-color: #f34b7d;
     }
 
     .cp {
-        background-color: #178600;
+        --lang-color: #178600;
     }
 
     .c {
-        background-color: #555555;
+        --lang-color: #555555;
     }
 
     .go {
-        background-color: #00add8;
+        --lang-color: #00add8;
     }
 
     .html {
-        background-color: #e34c26;
+        --lang-color: #e34c26;
     }
 
     .idea {
-        background-color: #fff;
+        --state-color: #fff;
     }
 
     .developing {
-        background-color: #e9d6ac;
+        --state-color: #e9d6ac;
     }
 
     .complete {
-        background-color: #cfac74;
+        --state-color: #cfac74;
     }
 </style>
 
@@ -114,5 +120,5 @@
     ScGame is a compiler which compiles Scratch File (.sb3) to Python Script (.py).
     <br>
     <br>
-    `)
+    Currently, the compiler part is completed, but the runtime part is still under development.`)
 </script>
