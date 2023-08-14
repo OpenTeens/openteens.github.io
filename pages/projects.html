@@ -17,8 +17,7 @@
         font-size: 0.7rem;
         border-radius: 0 7px 0 7px;
         padding: 3px;
-        color: var(--lang-color);
-        background-color: #fff;
+        background-color: var(--lang-color);
         text-transform: capitalize;
     }
 
@@ -107,7 +106,7 @@
             var mainLangNum = 0;
             for (var i in lang) {
                 if (lang[i] > mainLangNum) {
-                    mainLang = i;
+                    mainLang = i.replace('C#', 'cp');
                     mainLangNum = lang[i];
                 }
             }
