@@ -28,7 +28,7 @@
 
     .card>state {
         font-size: 0.7rem;
-        border-radius: 5px;
+        border-radius: 2px;
         padding: 3px;
         color: black;
         background-color: var(--state-color);
@@ -44,9 +44,28 @@
         display: block;
     }
 
+    .card>owner>a {
+        font-family: times;
+    }
+
     .card>owner::before {
         content: "Owner: ";
         opacity: 0.6;
+    }
+
+    .card>h1>star {
+        font-size: 0.7rem;
+        background-color: #1082c3;
+        padding: 3px 1ch;
+        border-radius: 3px;
+    }
+
+    .card>h1>star::before {
+        content: "⭐";
+        position: relative;
+        left: -3px;
+        zoom: 0.9;
+        top: -1px;
     }
 
     .others {
@@ -98,20 +117,17 @@
         var card = document.createElement("div");
         var urls = url.split('/');
         card.className = "card";
-        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a></h1> <owner><a href="https://github.com/${urls[3]}">${urls[3]}</a></owner> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
+        card.innerHTML = `<h1><a href="${url}">${urls[4]}</a> <star></star></h1> <owner><a href="https://github.com/${urls[3]}"><i>@${urls[3]}</i></a></owner> <lang class="others">Unknown</lang> <state class="${state.toLowerCase()}">${state}</state> <p>${desc}</p>`;
         document.getElementById("content").appendChild(card);
-        HTTP_GET(`https://api.github.com/repos/${urls[3]}/${urls[4]}/languages`, function (res) {
-            var lang = JSON.parse(res);
-            var mainLang = "others";
-            var mainLangNum = 0;
-            for (var i in lang) {
-                if (lang[i] > mainLangNum) {
-                    mainLang = i.replace('C#', 'cp');
-                    mainLangNum = lang[i];
-                }
-            }
-            card.querySelector("lang").innerHTML = mainLang;
-            card.querySelector("lang").classList = mainLang.toLowerCase();
+
+        // github api
+        HTTP_GET(`https://api.github.com/repos/${urls[3]}/${urls[4]}`, function (res) {
+            var res = JSON.parse(res);
+            console.log(res)
+
+            card.querySelector("lang").innerHTML = res.language;
+            card.querySelector("lang").classList = res.language.toLowerCase();
+            card.querySelector("star").innerText = res.stargazers_count;
         })
     }
 
