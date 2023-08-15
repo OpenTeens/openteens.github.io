@@ -41,6 +41,7 @@
     }
 
     .card>owner {
+        font-weight: 700;
         display: block;
     }
 
@@ -72,7 +73,8 @@
         --lang-color: #555;
     }
 
-    .python {
+    .python,
+    .jupyter_notebook {
         --lang-color: #3572a5;
     }
 
@@ -104,7 +106,7 @@
         --state-color: #e9d6ac;
     }
 
-    .complete {
+    .completed {
         --state-color: #cfac74;
     }
 </style>
@@ -126,20 +128,22 @@
             console.log(res)
 
             card.querySelector("lang").innerHTML = res.language;
-            card.querySelector("lang").classList = res.language.toLowerCase();
+            card.querySelector("lang").classList = res.language.toLowerCase().replaceAll(' ', '_');
             card.querySelector("star").innerText = res.stargazers_count;
         })
     }
+
+    addProj("https://github.com/OpenTeens/gestureX", "completed", `
+    gestureX is a python project that use your gesture to control everything.
+    You can use mouse, keyboard, blackboard and stable-diffusion plugins currently.
+    <br>
+    <br>
+    The project is already done, enjoy it!`)
 
     addProj("https://github.com/BernieHuang2008/scratch2py", "developing", `
     ScGame is a compiler which compiles Scratch File (.sb3) to Python Script (.py).
     <br>
     <br>
     Currently, the compiler part is completed, but the runtime part is still under development.`)
-    addProj("https://github.com/OpenTeens/gestureX", "complete", `
-    gestureX is a python project that use your gesture to control everything.
-    You can use mouse, keyboard, blackboard and stable-diffusion plugins currently.
-    <br>
-    <br>
-    The project is already done, enjoy it!`)
+
 </script>
