@@ -2,3 +2,5 @@
 /_tmp/
 .upload_ignor
 *.bat
+*.ignor.txt
+/.ignor/
