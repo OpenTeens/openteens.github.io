@@ -12,7 +12,7 @@ body {
 	width: 100vw;
 	overflow: hidden;
 	background-color: #111827AA;
-	backdrop-filter: blur(8px);
+	backdrop-filter: blur(16px);
 	border: 0.8px solid rgba(249, 250, 251, .06);
 }
 
@@ -38,6 +38,7 @@ nav#navigator>ul>li {
 	height: 3rem;
 	margin-left: .5rem;
 	box-sizing: border-box;
+	transition: .2s;
 }
 
 nav#navigator>ul>li:hover,
@@ -56,6 +57,7 @@ nav#navigator>ul>li>button {
 	font-family: inherit;
 	line-height: inherit;
 	background-color: transparent;
+	transition: .2s;
 }
 
 nav#navigator>ul>li>button:hover {
@@ -99,7 +101,7 @@ nav#navigator>ul>li>button:hover {
 	bottom: 0;
 }
 
-#container{
+#container {
 	padding: 10px;
 }
 
@@ -112,7 +114,7 @@ nav#navigator>ul>li>button:hover {
 
 a {
 	color: #4b9de0;
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 a:hover {
