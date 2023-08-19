@@ -10,7 +10,7 @@ body {
 	top: 0;
 	left: 0;
 	width: 100vw;
-	overflow: hidden;
+	/* overflow: hidden; */
 	background-color: #111827AA;
 	backdrop-filter: blur(16px);
 	border: 0.8px solid rgba(249, 250, 251, .06);
@@ -25,7 +25,7 @@ nav#navigator {
 	align-items: center;
 }
 
-nav#navigator>ul {
+.menu {
 	padding-top: .5rem;
 	display: flex;
 	list-style: none;
@@ -34,20 +34,70 @@ nav#navigator>ul {
 	padding-top: .5rem;
 }
 
-nav#navigator>ul>li {
+.menu-before {
+	display: none;
+}
+
+.mobile .menu-before {
+	display: block !important;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	margin-right: 10px;
+	border: max(1px, 0.0625rem) solid #30363d;
+	border-radius: 6px;
+	background-color: #010409;
+	transition: .2s;
+}
+
+.mobile .menu-before:hover {
+	border-color: #ffffff88;
+}
+
+.mobile .menu {
+	display: none;
+	position: absolute;
+    right: 0;
+    top: 2.5rem;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 6px;
+	padding: 10px;
+}
+
+.mobile .menu>li{
+	text-align: left;
+	margin-right: .5rem;
+	height: 2rem;
+}
+.mobile .menu>li:hover,
+.mobile .menu>li.focus {
+	font-weight: 700;
+	border: none !important;
+}
+.mobile .menu>li>button{
+	padding: 1px;
+}
+.mobile .menu>li>button:hover {
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+.menu>li {
 	height: 3rem;
 	margin-left: .5rem;
 	box-sizing: border-box;
 	transition: .2s;
 }
 
-nav#navigator>ul>li:hover,
-nav#navigator>ul>li.focus {
+.menu>li:hover,
+.menu>li.focus {
 	font-weight: 700;
 	border-bottom: solid 2px rgb(59 130 246);
 }
 
-nav#navigator>ul>li>button {
+.menu>li>button {
 	color: rgb(156 163 175);
 	transition: .1s;
 	padding: .5rem;
@@ -60,7 +110,7 @@ nav#navigator>ul>li>button {
 	transition: .2s;
 }
 
-nav#navigator>ul>li>button:hover {
+.menu>li>button:hover {
 	background-color: rgb(55 65 81);
 }
 
