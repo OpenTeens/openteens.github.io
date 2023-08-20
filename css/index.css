@@ -38,54 +38,6 @@ nav#navigator {
 	display: none;
 }
 
-.mobile .menu-before {
-	display: block !important;
-	position: relative;
-	width: 30px;
-	height: 30px;
-	padding: 0;
-	margin-right: 10px;
-	border: max(1px, 0.0625rem) solid #30363d;
-	border-radius: 6px;
-	background-color: #010409;
-	transition: .2s;
-}
-
-.mobile .menu-before:hover {
-	border-color: #ffffff88;
-}
-
-.mobile .menu {
-	display: none;
-	position: absolute;
-    right: 0;
-    top: 2.5rem;
-    background: #111827;
-    border: 1px solid #374151;
-    border-radius: 6px;
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.mobile .menu>li{
-	text-align: left;
-	margin-right: .5rem;
-	height: 2rem;
-}
-.mobile .menu>li:hover,
-.mobile .menu>li.focus {
-	font-weight: 700;
-	border: none !important;
-}
-.mobile .menu>li>button{
-	padding: 1px;
-}
-.mobile .menu>li>button:hover {
-	background-color: transparent;
-	text-decoration: underline;
-}
-
 .menu>li {
 	height: 3rem;
 	margin-left: .5rem;
@@ -171,4 +123,55 @@ a {
 
 a:hover {
 	color: #7dbae9;
+}
+
+
+/* ===== Mobile Style ===== */
+
+.mobile .menu-before {
+	display: block !important;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	margin-right: 10px;
+	border: max(1px, 0.0625rem) solid #30363d;
+	border-radius: 6px;
+	background-color: #010409;
+	transition: .2s;
+}
+
+.mobile .menu-before:hover {
+	border-color: #ffffff88;
+}
+
+.mobile .menu {
+	display: none;
+	position: absolute;
+    right: 0;
+    top: 2.5rem;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 6px;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+.mobile .menu>li{
+	text-align: left;
+	margin-right: .5rem;
+	height: 2rem;
+}
+.mobile .menu>li:hover,
+.mobile .menu>li.focus {
+	font-weight: 700;
+	border: none !important;
+}
+.mobile .menu>li>button{
+	padding: 1px;
+}
+.mobile .menu>li>button:hover {
+	background-color: transparent;
+	text-decoration: underline;
 }
