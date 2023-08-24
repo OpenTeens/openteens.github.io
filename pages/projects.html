@@ -127,7 +127,7 @@
             var res = JSON.parse(res);
             console.log(res)
 
-            card.querySelector("lang").innerHTML = res.language;
+            card.querySelector("lang").innerHTML = res.language || "Unknown";
             card.querySelector("lang").classList = res.language.toLowerCase().replaceAll(' ', '_');
             card.querySelector("star").innerText = res.stargazers_count;
         })
