@@ -1,6 +1,21 @@
+body{
+	--bg-color: #111827;
+	--toolbar-bg-color: #111827AA;
+	--toolbar-bd-color: #f9fafb0f;
+	--menu-hover-underline: #3b82f6;
+	--menu-text-color: #9ca3af;
+	--menu-hv-bg-color: #374151;
+}
+
+@media (prefers-color-scheme: light){
+	body{
+		--bg-color: #f5f5f5;
+	}
+}
+
 body {
 	margin: 0;
-	background-color: #111827;
+	background-color: var(--bg-color);
 	font-size: 1rem;
 	line-height: 1.5rem;
 }
@@ -11,9 +26,9 @@ body {
 	left: 0;
 	width: 100vw;
 	/* overflow: hidden; */
-	background-color: #111827AA;
+	background-color: var(--toolbar-bg-color);
 	backdrop-filter: blur(16px);
-	border: 0.8px solid rgba(249, 250, 251, .06);
+	border: 0.8px solid var(--toolbar-bd-color);
 }
 
 nav#navigator {
@@ -48,11 +63,11 @@ nav#navigator {
 .menu>li:hover,
 .menu>li.focus {
 	font-weight: 700;
-	border-bottom: solid 2px rgb(59 130 246);
+	border-bottom: solid 2px var(--menu-hover-underline)
 }
 
 .menu>li>button {
-	color: rgb(156 163 175);
+	color: var(--menu-text-color);
 	transition: .1s;
 	padding: .5rem;
 	border: 0;
@@ -65,7 +80,7 @@ nav#navigator {
 }
 
 .menu>li>button:hover {
-	background-color: rgb(55 65 81);
+	background-color: var(--menu-hv-bg-color);
 }
 
 #search {
