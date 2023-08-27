@@ -2,9 +2,17 @@ body{
 	--bg-color: #111827;
 	--toolbar-bg-color: #111827AA;
 	--toolbar-bd-color: #f9fafb0f;
-	--menu-hover-underline: #3b82f6;
+	--menu-hover-outline: #3b82f6;
 	--menu-text-color: #9ca3af;
-	--menu-hv-bg-color: #374151;
+	--bd-color: #374151;
+	--text-color: white;
+	--a-color: #4b9de0;
+	--a-hv-color: #7dbae9;
+	--btn-bd-color: #30363d;
+	--bg2-color: #010409;
+	--btn-bd-hv-color: #ffffff88;
+	--hr-side-color: #808080;
+	--hr-center-color: #909090;
 }
 
 @media (prefers-color-scheme: light){
@@ -63,7 +71,7 @@ nav#navigator {
 .menu>li:hover,
 .menu>li.focus {
 	font-weight: 700;
-	border-bottom: solid 2px var(--menu-hover-underline)
+	border-bottom: solid 2px var(--menu-hover-outline)
 }
 
 .menu>li>button {
@@ -80,7 +88,7 @@ nav#navigator {
 }
 
 .menu>li>button:hover {
-	background-color: var(--menu-hv-bg-color);
+	background-color: var(--bd-color);
 }
 
 #search {
@@ -100,15 +108,15 @@ nav#navigator {
 	font-size: 0.9rem;
 	line-height: 1.5rem;
 	height: 1.3rem;
-	border: solid 0.8px rgb(55 65 81);
+	border: solid 0.8px var(--bd-color);
 	padding: 8px;
-	background-color: #111827;
-	color: white;
+	background-color: var(--bg-color);
+	color: var(--text-color);
 	padding-right: 56px;
 }
 
 #search>input:focus {
-	outline: solid 1.5px #3b82f6;
+	outline: solid 1.5px var(--menu-hover-outline);
 }
 
 #search>svg {
@@ -127,17 +135,17 @@ nav#navigator {
 #content {
 	margin: auto;
 	margin-top: 5rem;
-	color: white;
+	color: var(--text-color);
 	max-width: 64rem;
 }
 
 a {
-	color: #4b9de0;
+	color: var(--a-color);
 	text-decoration: underline;
 }
 
 a:hover {
-	color: #7dbae9;
+	color: var(--a-hv-color);
 }
 
 
@@ -150,14 +158,14 @@ a:hover {
 	height: 30px;
 	padding: 0;
 	margin-right: 10px;
-	border: max(1px, 0.0625rem) solid #30363d;
+	border: max(1px, 0.0625rem) solid var(--btn-bd-color);
 	border-radius: 6px;
-	background-color: #010409;
+	background-color: var(--bg2-color);
 	transition: .2s;
 }
 
 .mobile .menu-before:hover {
-	border-color: #ffffff88;
+	border-color: var(--btn-bd-hv-color);
 }
 
 .mobile .menu {
@@ -165,8 +173,8 @@ a:hover {
 	position: absolute;
     right: 0;
     top: 2.5rem;
-    background: #111827;
-    border: 1px solid #374151;
+    background: var(--bg-color);
+    border: 1px solid var(--bd-color);
     border-radius: 6px;
 	padding: 10px;
 	padding-left: 20px;
@@ -195,6 +203,6 @@ hr{
 	border: 0;
 	border-radius: 1px;
 	height: 2px;
-	background: linear-gradient(90deg, #808080, #909090, #808080);
+	background: linear-gradient(90deg, var(--hr-side-color), var(--hr-center-color), var(--hr-side-color));
 	/* max-width: 600px; */
 }
