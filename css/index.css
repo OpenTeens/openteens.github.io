@@ -25,7 +25,7 @@ body {
 	top: 0;
 	left: 0;
 	width: 100vw;
-	/* overflow: hidden; */
+	z-index: 99999999999;
 	background-color: var(--toolbar-bg-color);
 	backdrop-filter: blur(16px);
 	border: 0.8px solid var(--toolbar-bd-color);
