@@ -223,7 +223,6 @@ a:hover {
 hr {
 	border: 0;
 	border-radius: 1px;
-	height: 2px;
+	height: 1px;
 	background: linear-gradient(90deg, var(--hr-side-color), var(--hr-center-color), var(--hr-side-color));
-	/* max-width: 600px; */
 }

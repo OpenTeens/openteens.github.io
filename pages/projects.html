@@ -1,11 +1,14 @@
 <style>
-    @media (prefer-color-scheme: light) {
+    @media (prefers-color-scheme: light) {
         .card {
             /* Card Shadow Effect */
-            background-color: white;
+            background-color: white !important;
             padding: 20px;
             border-radius: 4px;
             box-shadow: rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px, rgba(0, 0, 0, 0.11) 0px 0px 2.9px;
+        }
+        .card>state {
+            color: white;
         }
     }
 
@@ -27,12 +30,11 @@
         font-size: 0.7rem;
         border-radius: 0 7px 0 7px;
         padding: 3px;
-        background-color: var(--lang-color);
         text-transform: capitalize;
     }
 
     .card>lang::before {
-        content: "Language: ";
+        content: "Lang: ";
         opacity: 0.6;
     }
 
@@ -46,7 +48,7 @@
     }
 
     .card>state::before {
-        content: "State: ";
+        content: "Status: ";
         opacity: 0.6;
     }
 
@@ -80,36 +82,6 @@
         top: -1px;
     }
 
-    .others {
-        --lang-color: #555;
-    }
-
-    .python,
-    .jupyter_notebook {
-        --lang-color: #3572a5;
-        color: white;
-    }
-
-    .cpp {
-        --lang-color: #f34b7d;
-    }
-
-    .cp {
-        --lang-color: #178600;
-    }
-
-    .c {
-        --lang-color: #555555;
-    }
-
-    .go {
-        --lang-color: #00add8;
-    }
-
-    .html {
-        --lang-color: #e34c26;
-    }
-
     .idea {
         --state-color: #fff;
     }
@@ -127,7 +99,7 @@
 </div>
 
 <script>
-    function addProj(url, state, desc) {
+    window.addProj = function (url, state, desc) {
         var card = document.createElement("div");
         var urls = url.split('/');
         card.className = "card";
@@ -139,13 +111,19 @@
             var res = JSON.parse(res);
             console.log(res)
 
-            card.querySelector("lang").innerHTML = res.language || "Unknown";
-            card.querySelector("lang").classList = (res.language || "Unknown").toLowerCase().replaceAll(' ', '_');
+            res.lang = card.querySelector("lang").innerHTML = res.language || "Unknown";
+            card.querySelector("lang").style.backgroundColor = lang_colors[res.lang.toLowerCase()];
             card.querySelector("star").innerText = res.stargazers_count;
         })
     }
 
-    addProj("https://github.com/BernieHuang2008/404-redirect", "completed", `
+
+window.loadProjects = function(){
+
+addProj("https://github.com/BernieHuang2008/variablefiy", "completed", `
+variablefiy is a web app that can extract color from css and define them as variables. Try it on my <a href="https://berniehuang2008.github.io/variablefiy/main.html">github pages!</a>
+`)
+ addProj("https://github.com/BernieHuang2008/404-redirect", "completed", `
     404-redirect is a new technique developed by Bernie Huang.
 
     It is used to build your own short URL service and build website.  <i>This website (<a>openteens.org</a>) is built by 404-redirect.</i>
@@ -166,5 +144,14 @@
     <br>
     <br>
     Currently, the compiler part is completed, but the runtime part is still under development.`)
+}
+
+
+// import lang-color.js
+
+var script = document.createElement('script');
+script.src="js/lang-color.js";
+document.body.append(script);
+script.onload=function(){window.loadProjects();}
 
 </script>
