@@ -1,9 +1,11 @@
-body{
+body {
 	--bg-color: #111827;
 	--toolbar-bg-color: #111827AA;
 	--toolbar-bd-color: #f9fafb0f;
-	--menu-hover-outline: #3b82f6;
+	--menu-hv-color: #374151;
+	--menu-hv-outline: #3b82f6;
 	--menu-text-color: #9ca3af;
+	--menu-text-hv: #9ca3af;
 	--bd-color: #374151;
 	--text-color: white;
 	--a-color: #4b9de0;
@@ -11,13 +13,28 @@ body{
 	--btn-bd-color: #30363d;
 	--bg2-color: #010409;
 	--btn-bd-hv-color: #ffffff88;
-	--hr-side-color: #808080;
+	--hr-side-color: var(--bg-color);
 	--hr-center-color: #909090;
 }
 
-@media (prefers-color-scheme: light){
-	body{
-		--bg-color: #f5f5f5;
+@media (prefers-color-scheme: light) {
+	body {
+		--bg-color: #f3f4f6;
+		--toolbar-bg-color: #fff;
+		--toolbar-bd-color: #e9eaec;
+		--menu-hv-color: white;
+		--menu-hv-outline: #3b82f6;
+		--menu-text-color: #6b7280;
+		--menu-text-hv: #1f2937;
+		--bd-color: #e5e7eb;
+		--text-color: black;
+		--a-color: #4b9de0;
+		--a-hv-color: #7dbae9;
+		--btn-bd-color: #d0d7de;
+		--bg2-color: #fff;
+		--btn-bd-hv-color: #d6d8db;
+		--hr-side-color: #fff0;
+		--hr-center-color: #A0A0A0;
 	}
 }
 
@@ -65,13 +82,13 @@ nav#navigator {
 	height: 3rem;
 	margin-left: .5rem;
 	box-sizing: border-box;
-	transition: .2s;
+	transition: .1s;
 }
 
 .menu>li:hover,
 .menu>li.focus {
 	font-weight: 700;
-	border-bottom: solid 2px var(--menu-hover-outline)
+	border-bottom: solid 2px var(--menu-hv-outline)
 }
 
 .menu>li>button {
@@ -88,7 +105,8 @@ nav#navigator {
 }
 
 .menu>li>button:hover {
-	background-color: var(--bd-color);
+	color: var(--menu-text-hv);
+	background-color: var(--menu-hv-color);
 }
 
 #search {
@@ -116,7 +134,7 @@ nav#navigator {
 }
 
 #search>input:focus {
-	outline: solid 1.5px var(--menu-hover-outline);
+	outline: solid 1.5px var(--menu-hv-outline);
 }
 
 #search>svg {
@@ -171,35 +189,38 @@ a:hover {
 .mobile .menu {
 	display: none;
 	position: absolute;
-    right: 0;
-    top: 2.5rem;
-    background: var(--bg-color);
-    border: 1px solid var(--bd-color);
-    border-radius: 6px;
+	right: 0;
+	top: 2.5rem;
+	background: var(--bg-color);
+	border: 1px solid var(--bd-color);
+	border-radius: 6px;
 	padding: 10px;
 	padding-left: 20px;
 	padding-right: 10px;
 }
 
-.mobile .menu>li{
+.mobile .menu>li {
 	text-align: left;
 	margin-right: .5rem;
 	height: 2rem;
 }
+
 .mobile .menu>li:hover,
 .mobile .menu>li.focus {
 	font-weight: 700;
 	border: none !important;
 }
-.mobile .menu>li>button{
+
+.mobile .menu>li>button {
 	padding: 1px;
 }
+
 .mobile .menu>li>button:hover {
 	background-color: transparent;
 	text-decoration: underline;
 }
 
-hr{
+hr {
 	border: 0;
 	border-radius: 1px;
 	height: 2px;
