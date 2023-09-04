@@ -1,7 +1,7 @@
 // copied from https://github.com/doda-zz/github-language-colors
 
 lang_colors = { 
-     "unknown": "#555",
+     "unknown": "#000",
      "mercury": "#ff2b2b",  
      "typescript": "#2b7489",  
      "purebasic": "#5a6986",  
