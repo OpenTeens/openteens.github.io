@@ -36,7 +36,7 @@
 				var scripts = "";
 				res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
 					scripts += "\n" + match;
-					return match;
+					return "";
 				});
 
 				// load page
