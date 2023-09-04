@@ -103,7 +103,7 @@
             console.log(res)
 
             card.querySelector("lang").innerHTML = res.language || "Unknown";
-            card.querySelector("lang").style.backgroundColor = lang_color[res.language.toLowerCase()];
+            card.querySelector("lang").style.backgroundColor = lang_colors[res.language.toLowerCase()];
             card.querySelector("star").innerText = res.stargazers_count;
         })
     }
