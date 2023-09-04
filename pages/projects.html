@@ -99,12 +99,6 @@
 </div>
 
 <script>
-// import lang-color.js
-(function () { var script = document.createElement('script'); script.src="js/lang-color.js"; document.body.append(script); script.onload=function(){window.loadProjects();} })();
-</script>
-<script src="js/lang-color.js"></script>
-
-<script>
     window.addProj = function (url, state, desc) {
         var card = document.createElement("div");
         var urls = url.split('/');
@@ -151,4 +145,13 @@ variablefiy is a web app that can extract color from css and define them as vari
     <br>
     Currently, the compiler part is completed, but the runtime part is still under development.`)
 }
+
+
+// import lang-color.js
+
+var script = document.createElement('script');
+script.src="js/lang-color.js";
+document.body.append(script);
+script.onload=function(){window.loadProjects();}
+
 </script>
