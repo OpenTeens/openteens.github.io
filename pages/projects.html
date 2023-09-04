@@ -82,51 +82,12 @@
         zoom: 0.9;
         top: -1px;
     }
-
-    .others {
-        --lang-color: #555;
-    }
-
-    .python,
-    .jupyter_notebook {
-        --lang-color: #3572a5;
-    }
-
-    .cpp {
-        --lang-color: #f34b7d;
-    }
-
-    .cp {
-        --lang-color: #178600;
-    }
-
-    .c {
-        --lang-color: #555555;
-    }
-
-    .go {
-        --lang-color: #00add8;
-    }
-
-    .html {
-        --lang-color: #e34c26;
-    }
-
-    .idea {
-        --state-color: #fff;
-    }
-
-    .developing {
-        --state-color: #e9d6ac;
-    }
-
-    .completed {
-        --state-color: #cfac74;
-    }
 </style>
 
 <div id="content">
 </div>
+
+<script src="lang-color.js"></script>
 
 <script>
     function addProj(url, state, desc) {
@@ -142,7 +103,7 @@
             console.log(res)
 
             card.querySelector("lang").innerHTML = res.language || "Unknown";
-            card.querySelector("lang").classList = (res.language || "Unknown").toLowerCase().replaceAll(' ', '_');
+            card.querySelector("lang").style.backgroundColor = lang_color[res.language.toLowerCase()];
             card.querySelector("star").innerText = res.stargazers_count;
         })
     }
