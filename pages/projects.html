@@ -111,8 +111,8 @@
             var res = JSON.parse(res);
             console.log(res)
 
-            card.querySelector("lang").innerHTML = res.language || "Unknown";
-            card.querySelector("lang").style.backgroundColor = lang_colors[res.language.toLowerCase()];
+            res.lang = card.querySelector("lang").innerHTML = res.language || "Unknown";
+            card.querySelector("lang").style.backgroundColor = lang_colors[res.lang.toLowerCase()];
             card.querySelector("star").innerText = res.stargazers_count;
         })
     }
