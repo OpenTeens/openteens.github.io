@@ -32,18 +32,18 @@
 		window.loaders = [];
 		window.loaders.push(function () {
 			HTTP_GET("/pages/" + pages[i] + ".html", res => {
-				/* // extract scripts
+				// extract scripts
 				var scripts = "";
 				res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
 					scripts += "\n" + match;
 					return match;
-				}); */
+				});
 
 				// load page
 				$("#container").innerHTML = res;
 
 				// run scripts
-				// eval(scripts)
+				eval(scripts)
 			});
 		})
 	}
