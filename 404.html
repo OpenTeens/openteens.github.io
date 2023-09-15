@@ -106,9 +106,9 @@
 	<script>
 		window.onload = function () {
 			// custom loaders.
-			window.loaders.forEach(loader => {
-				loader();
-			})
+			for(var i=0;i<window.loaders.length;i++) {
+				window.loaders[i]();
+			}
 
 			// fit nav bar
 			var navwidth = 0;
