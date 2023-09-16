@@ -121,8 +121,16 @@
 		}
 	}
 
+	.collection.tothefuture {
+		height: 30px;
+		border-left: solid 3px green;
+		background: linear-gradient(to bottom, transparent, var(--bg-dark));
+		border-image: linear-gradient(to bottom, transparent, green) 1;
+	}
+
 	.collection>h3 {
 		font-size: 1.5rem;
+		line-height: 2rem;
 		font-weight: bold;
 		margin: 0;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -159,7 +167,9 @@
 
 <iframe src="/pages/spec/starbg.html" class="sky-bg"></iframe>
 <div id="content">
-	<div id="museum"></div>
+	<div id="museum">
+		<div class="collection tothefuture"></div>
+	</div>
 </div>
 
 <script>
@@ -183,7 +193,7 @@
 
 		// slogan
 		{
-			title: "乾坤未定，一切皆有可能 ... ...",
+			title: "乾坤未定，一切皆有可能 ...",
 		}
 	].reverse();
 
@@ -195,8 +205,8 @@
 			var transition = document.createElement("div");
 			transition.classList.add("collection");
 			transition.classList.add("transition");
-			transition.style.setProperty("--c1", "var(--bg-" + (divClass % 2 ? "light" : "dark") + ")");
-			transition.style.setProperty("--c2", "var(--bg-" + ((divClass + 1) % 2 ? "light" : "dark") + ")");
+			transition.style.setProperty("--c1", "var(--bg-" + ((divClass - 1) % 2 ? "light" : "dark") + ")");
+			transition.style.setProperty("--c2", "var(--bg-" + (divClass % 2 ? "light" : "dark") + ")");
 			transition.setAttribute(divClass % 2 ? "left-to-right" : "right-to-left", "");
 			$("#museum").appendChild(transition);
 		}
