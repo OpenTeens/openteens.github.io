@@ -129,7 +129,7 @@
 	.collection.tothefuture {
 		height: 30px;
 		border-left: solid 3px green;
-		background: linear-gradient(to bottom, transparent, var(--bg-dark));
+		background: linear-gradient(to bottom, transparent, var(--bg-light));
 		border-image: linear-gradient(to bottom, transparent, green) 1;
 	}
 
@@ -211,8 +211,8 @@
 			var transition = document.createElement("div");
 			transition.classList.add("collection");
 			transition.classList.add("transition");
-			transition.style.setProperty("--c1", "var(--bg-" + ((divClass - 1) % 2 ? "light" : "dark") + ")");
-			transition.style.setProperty("--c2", "var(--bg-" + (divClass % 2 ? "light" : "dark") + ")");
+			transition.style.setProperty("--c1", "var(--bg-" + ((divClass - 1) % 2 ? "dark" : "light") + ")");
+			transition.style.setProperty("--c2", "var(--bg-" + (divClass % 2 ? "dark" : "light") + ")");
 			transition.setAttribute(divClass % 2 ? "left-to-right" : "right-to-left", "");
 			$("#museum").appendChild(transition);
 		}
@@ -220,7 +220,7 @@
 			var div = document.createElement("div");
 			div.classList.add("collection");
 			console.log(divNo)
-			div.classList.add(divNo % 2 ? "light" : "dark");
+			div.classList.add(divNo % 2 ? "dark" : "light");
 			div.classList.add(divClass % 2 ? "right" : "left");
 
 			// title
