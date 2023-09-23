@@ -150,28 +150,35 @@
 
 <!-- Footer -->
 <footer>
-	<!-- Social Media Links -->
-    <div class="social-media-links">
-        <a href="https://www.instagram.com/openteens_community/" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-        <!-- Add more icons or images similarly -->
-    </div>
-    
-	<hr>
-	<center>
-		<p id="daily-tricks"></p>
-		<p>Copyright © 2023 OpenTeens</p>
-	</center>
-	<script>
-		$("#daily-tricks").innerText = "Daily Tricks ...";
-		HTTP_GET("https://berniehuang2008.github.io/daily-trick/tricks.json", res => {
-			res = JSON.parse(res).tricks;
-			var trick_id = Math.floor(Math.random() * res.length) || 1; // 0 is the example.
-			var trick = res[trick_id];
-			$("#daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
-		});
-	</script>
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<!-- FontAwesome Lib (mod) -->
+		<link rel="stylesheet" href="css/lib/font-awesome.css">
+
+		<!-- Social Media Links -->
+		<div class="social-media-links">
+			<a href="https://www.instagram.com/openteens_community/">
+				<span class="fa">&#xF16D;</span> <!-- Instagram -->
+			</a>
+			<!-- Add more icons or images similarly -->
+		</div>
+
+		<hr>
+		<center>
+			<p id="daily-tricks"></p>
+			<p>Copyright © 2023 OpenTeens</p>
+		</center>
+		<script>
+			$("#daily-tricks").innerText = "Daily Tricks ...";
+			HTTP_GET("https://berniehuang2008.github.io/daily-trick/tricks.json", res => {
+				res = JSON.parse(res).tricks;
+				var trick_id = Math.floor(Math.random() * res.length) || 1; // 0 is the example.
+				var trick = res[trick_id];
+				$("#daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
+			});
+		</script>
 </footer>
 
 </html>
