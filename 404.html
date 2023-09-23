@@ -101,6 +101,7 @@
 
 	<div id="container"></div>
 
+
 	<!-- Script -->
 	<script src="js/sel.js"></script>
 	<script src="js/index.js"></script>
@@ -146,5 +147,23 @@
 		}
 	</script>
 </body>
+
+<!-- Footer -->
+<footer>
+	<hr>
+	<center>
+		<p id="daily-tricks"></p>
+		<p>Copyright © 2023 OpenTeens</p>
+	</center>
+	<script>
+		$("#daily-tricks").innerText = "Daily Tricks ...";
+		HTTP_GET("https://berniehuang2008.github.io/daily-trick/tricks.json", res => {
+			res = JSON.parse(res).tricks;
+			var trick_id = Math.floor(Math.random() * res.length) || 1; // 0 is the example.
+			var trick = res[trick_id];
+			$("#daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
+		});
+	</script>
+</footer>
 
 </html>

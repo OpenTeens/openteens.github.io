@@ -245,9 +245,17 @@ footer{
 	margin: 0;
 	padding: 1rem;
 	color: white;
-	text-overflow: hidden;
+	overflow: hidden;
 	text-align: left;
 	background-color: black;
+}
+
+#daily-tricks{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	color: gray
 }
 
 
