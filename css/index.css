@@ -241,10 +241,10 @@ hr {
 }
 
 #headline {
-	background-image: linear-gradient(180deg,transparent,var(--bg-color)), url('/img/headline.png');
+	background-image: linear-gradient(180deg, transparent, var(--bg-color)), url('/img/headline.png');
 	background-size: cover;
 
-	&>h1{
+	&>h1 {
 		margin: 0;
 		padding-bottom: 10px;
 		text-align: left;
@@ -260,11 +260,11 @@ hr {
 	}
 }
 
-#about-us{
+#about-us {
 	padding-top: .1rem;
 }
 
-p{
+p {
 	margin: 2rem;
 	text-indent: 4ch;
 	text-align: left;
