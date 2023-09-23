@@ -226,3 +226,55 @@ hr {
 	height: 1px;
 	background: linear-gradient(90deg, var(--hr-side-color), var(--hr-center-color), var(--hr-side-color));
 }
+
+.headline {
+	width: calc(100% - 50px);
+	height: 400px;
+	margin-bottom: 50px;
+
+	@media (max-width: 720px) {
+		height: 200px;
+	}
+
+	background-color: var(--bd-color);
+	border-radius: 6px;
+}
+
+#headline {
+	background-image: linear-gradient(180deg,transparent,var(--bg-color)), url('/img/headline.png');
+	background-size: cover;
+
+	&>h1{
+		margin: 0;
+		padding-bottom: 10px;
+		text-align: left;
+		position: relative;
+		top: calc(100% - 3rem);
+		left: 1rem;
+
+		font-size: 2rem;
+		font-weight: 700;
+		text-decoration: underline;
+		font-size: 2rem;
+		font-weight: 700;
+	}
+}
+
+#about-us{
+	padding-top: .1rem;
+}
+
+p{
+	margin: 2rem;
+	text-indent: 4ch;
+	text-align: left;
+}
+
+.home-news {
+	display: inline-block;
+	margin: 20px;
+	width: 400px;
+	height: 400px;
+	background-color: var(--bd-color);
+	border-radius: 6px;
+}
