@@ -229,7 +229,7 @@ hr {
 
 .headline {
 	width: calc(100% - 50px);
-	height: 400px;
+	min-height: 400px;
 	margin-bottom: 50px;
 
 	@media (max-width: 720px) {
@@ -241,6 +241,7 @@ hr {
 }
 
 #headline {
+	height: 400px;
 	background-image: linear-gradient(180deg, transparent, var(--bg-color)), url('/img/headline.png');
 	background-size: cover;
 
@@ -257,11 +258,13 @@ hr {
 		text-decoration: underline;
 		font-size: 2rem;
 		font-weight: 700;
+		line-height: 2.5rem;
 	}
 }
 
 #about-us {
 	padding-top: .1rem;
+	padding-bottom: 1rem;
 }
 
 p {
@@ -273,8 +276,8 @@ p {
 .home-news {
 	display: inline-block;
 	margin: 20px;
-	width: 400px;
-	height: 400px;
+	max-width: 400px;
+	max-height: 400px;
 	background-color: var(--bd-color);
 	border-radius: 6px;
 }
