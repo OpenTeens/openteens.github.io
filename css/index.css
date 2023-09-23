@@ -311,3 +311,25 @@ footer{
 	background-color: transparent;
 	text-decoration: underline;
 }
+
+.social-media-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.social-media-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-media-links img {
+    width: 32px;
+    height: 32px; 
+}
+
+center p {
+    margin-top: 10px;
+}
