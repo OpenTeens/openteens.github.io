@@ -188,6 +188,7 @@ hr {
 	width: calc(100% - 50px);
 	min-height: 400px;
 	margin-bottom: 50px;
+	padding: 20px;
 
 	background-color: #fff3;
 	backdrop-filter: blur(10px);
@@ -239,7 +240,7 @@ div.p {
 	border-radius: 6px;
 }
 
-footer{
+footer {
 	position: relative;
 	bottom: -20px;
 	margin: 0;
@@ -250,7 +251,7 @@ footer{
 	background-color: black;
 }
 
-#daily-tricks{
+#daily-tricks {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -270,6 +271,18 @@ iframe.bg {
 
 
 /* ===== Mobile Style ===== */
+
+.mobile .pc-only {
+	display: none;
+}
+
+.mobile-only {
+	display: none;
+
+	.mobile & {
+		display: block;
+	}
+}
 
 .mobile .menu-before {
 	display: block !important;
@@ -323,23 +336,19 @@ iframe.bg {
 }
 
 .social-media-links {
-    text-align: center;
-    margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .social-media-links a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: inherit;
-    font-size: 24px;
-    transition: color 0.3s;
+	margin: 0 10px;
+	text-decoration: none;
+	color: inherit;
+	font-size: 24px;
+	transition: color 0.3s;
 }
 
 .social-media-links img {
-    width: 32px;
-    height: 32px; 
-}
-
-center p {
-    margin-top: 10px;
+	width: 32px;
+	height: 32px;
 }
