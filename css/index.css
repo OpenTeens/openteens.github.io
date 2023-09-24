@@ -189,8 +189,8 @@ hr {
 	min-height: 400px;
 	margin-bottom: 50px;
 
-	background-color: #fff2;
-	backdrop-filter: blur(10px);
+	background-color: #fff3;
+	backdrop-filter: blur(10px) brightness(0.5);
 	border-radius: 6px;
 }
 
