@@ -1,192 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team</title>
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            checkVisibility();
-        });
-
-        window.addEventListener('scroll', function () {
-            checkVisibility();
-        });
-
-        function checkVisibility() {
-            var scrollTop = document.documentElement.scrollTop;
-            var windowHeight = window.innerHeight;
-            var founders = document.querySelectorAll('.founder');
-
-            founders.forEach(function (founder) {
-                var top = founder.getBoundingClientRect().top;
-                if (scrollTop + windowHeight - top >= 100) {
-                    founder.style.opacity = '1';
-                }
-            });
-        }
-    </script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/logo_1.jpg" alt="Culius's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>吴宇教授</h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/logo_1.jpg" alt="Mu's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>慕睿涛老师</h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/nathan.png" alt="Nathan's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>Nathan Chen
-                    <a href="https://github.com/Nathancgy">
-                        <span class="fa">&#xF09b;</span>
-                    </a>
-                </h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/bernie.jpg" alt="Bernie's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>Bernie Huang
-                    <a href="https://github.com/BernieHuang2008">
-                        <span class="fa">&#xF09b;</span>
-                    </a>
-                </h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/logo_1.jpg" alt="Carmen's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>Carmen Zhang
-                    <a href="https://github.com/CJWZhang">
-                        <span class="fa">&#xF09b;</span>
-                    </a>
-                </h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/logo_1.jpg" alt="Richard's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>Richard
-                    <a href="https://github.com/Richard-31415">
-                        <span class="fa">&#xF09b;</span>
-                    </a>
-                </h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-
-        <div class="founder">
-            <div class="profile-picture">
-                <img src="/img/logo_1.jpg" alt="Leo's Profile Picture">
-            </div>
-            <div class="description">
-                <h2>Leo Yang
-                    <a href="https://github.com/Potato1145141919810">
-                        <span class="fa">&#xF09b;</span>
-                    </a>
-                </h2>
-                <p>
-                    ...
-                </p>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
-<style>
-    .container {
-        width: 55%;
-        margin: 50px auto;
-        overflow: auto;
+<!-- Generate user cards -->
+<script>
+    users = {
+        "吴宇": {
+            name: ["吴宇教授", "Prof. Wu"],
+            title: "OpenTeens Advisor",
+            cate: ["advisor"],
+            img: "img/profwu.jpg",
+            desc: ""
+        },
+        "慕睿涛": {
+            name: ["慕睿涛老师", "Mr. Mu"],
+            title: "OpenTeens Advisor",
+            cate: ["advisor"],
+            img: "img/mrmu.jpg",
+            desc: ""
+        },
+        "黄锦源": {
+            name: ["黄锦源", "Bernie J. Huang"],
+            title: "OpenTeens Co-founder",
+            cate: ["cofounder"],
+            img: "img/bernie.jpg",
+            desc: "多吃黄瓜，有益健康。这只是一条测试信息，没有任何实际用途。当然，多吃黄瓜对身体很好，这是肯定的。",
+            links: {
+                "&#xF09b;": "//github.com/BernieHuang2008",  // github
+            }
+        },
+        "陈广宇": {
+            name: ["陈广宇", "Nathan Chen"],
+            title: "OpenTeens Co-founder",
+            cate: ["cofounder"],
+            img: "img/nathan.png",
+            desc: "",
+            links: {
+                "&#xF09b;": "//github.com/Nathancgy",  // github
+            }
+        },
+        "Carmen": {
+            name: ["Carmen", "Carmen Zhang"],
+            title: "OpenTeens Co-founder",
+            cate: ["cofounder"],
+            img: "img/logo_1.jpg",
+            desc: "",
+            links: {
+                "&#xF09b;": "//github.com/CJWZhang",  // github
+            }
+        },
+        "Richard": {
+            name: ["Richard", "Richard"],
+            title: "OpenTeens Co-founder",
+            cate: ["cofounder"],
+            img: "img/logo_1.jpg",
+            desc: "",
+            links: {
+                "&#xF09b;": "//github.com/Richard-31415",  // github
+            }
+        },
+        "杨臻": {
+            name: ["杨臻", "Leo Yang"],
+            title: "OpenTeens Co-founder",
+            cate: ["cofounder"],
+            img: "img/logo_1.jpg",
+            desc: "",
+            links: {
+                "&#xF09b;": "//github.com/Potato1145141919810",  // github
+            }
+        },
     }
 
-    .founder {
-        display: flex;
-        align-items: top;
-        background-color: rgba(128, 128, 128, 0.5);
-        color: white;
+    var categories = ["advisor", "cofounder"];
+    var sorted_by_cate = {};
+    for (user_name in users) {
+        var u = users[user_name];
+        var cate = u.cate;
+        cate.forEach(c => {
+            if (sorted_by_cate[c] == undefined) {
+                sorted_by_cate[c] = [];
+            }
+            sorted_by_cate[c].push(u);
+        })
+    }
+
+    categories.forEach(c => {
+        var div = document.createElement("div");
+        div.setAttribute("data-user-type", c);
+        sorted_by_cate[c].forEach(u => {
+            var user_div = document.createElement("div");
+            user_div.classList.add("user-card");
+            // profile
+            var profile = document.createElement("div");
+            profile.classList.add("profile");
+            // profile img
+            var img = document.createElement("img");
+            img.setAttribute("src", u.img);
+            profile.appendChild(img);
+            profile.appendChild(document.createElement("br"));
+            // profile name
+            var name = document.createElement("h3");
+            name.innerText = u.name[0];
+            profile.appendChild(name);
+            profile.appendChild(document.createElement("br"));
+            // profile social-link
+            if (u.links) {
+                var social_link = document.createElement("div");
+                social_link.classList.add("social-media-links");
+                for (l in u.links) {
+                    var a = document.createElement("a");
+                    a.setAttribute("href", u.links[l]);
+                    a.innerHTML = `<span class="fa">${l}</span>`;
+                    social_link.appendChild(a);
+                }
+                profile.appendChild(social_link);
+            }
+            // profile end
+            user_div.appendChild(profile);
+            // role
+            var role = document.createElement("p");
+            role.innerText = u.title;
+            user_div.appendChild(role);
+            // desc
+            var desc = document.createElement("p");
+            desc.innerText = u.desc;
+            user_div.appendChild(desc);
+            // append the user
+            div.appendChild(user_div);
+        })
+        document.querySelector(".content").appendChild(div);
+    })
+</script>
+
+<center>
+    <div class="content"></div>
+</center>
+
+<!-- Auto display -->
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        checkVisibility();
+    });
+
+    window.addEventListener('scroll', function () {
+        checkVisibility();
+    });
+
+    function checkVisibility() {
+        var scrollTop = document.documentElement.scrollTop;
+        var windowHeight = window.innerHeight;
+        var founders = document.querySelectorAll('.founder');
+
+        founders.forEach(function (founder) {
+            var top = founder.getBoundingClientRect().top;
+            if (scrollTop + windowHeight - top >= 100) {
+                founder.style.opacity = '1';
+            }
+        });
+    }
+
+    var boxes = document.querySelectorAll('.user-card');
+    window.addEventListener('scroll', checkBoxes);
+    checkBoxes();
+    function checkBoxes() {
+        var triggerBottom = window.innerHeight * 5 / 6;
+
+        boxes.forEach(box => {
+            var boxTop = box.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom)
+                box.classList.add('show');
+            else
+                box.classList.remove('show');
+        })
+    }
+</script>
+
+<style>
+    .content {
+        margin-top: 60px;
+    }
+
+    .user-card {
+        max-width: 64rem;
         margin: 20px;
         padding: 20px;
         padding-left: 50px;
         padding-right: 50px;
-        border-radius: 10px;
+        border-radius: 6px;
+
+        color: white;
+        background-color: rgba(128, 128, 128, 0.5);
+
         opacity: 0;
         transition: opacity .6s ease;
+
+        &.show {
+            opacity: 1;
+        }
     }
 
-    .founder img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        /* makes the image circular */
-        margin: 10px;
+    .user-card>.profile {
+        user-select: none;
+        text-align: center;
+
+        &>img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 10px;
+        }
+
+        &>h3 {
+            margin: 0;
+            font-size: 24px;
+            display: inline-block;
+        }
+
+        &>.social-media-links {
+            margin: 10px;
+            display: inline-block;
+        }
     }
 
-    .founder:nth-child(odd) .profile-picture {
-        order: 1;
-    }
-
-    .founder:nth-child(-n+4) {
-        opacity: 1;
-    }
-
-    .founder:nth-child(even) .profile-picture {
-        order: 2;
-    }
-
-    .description {
-        flex: 1;
-    }
-
-    .description a {
+    .social-media-links>a {
         margin: 0 10px;
         text-decoration: none;
-        color: inherit;
+        color: var(--text-color);
         font-size: 24px;
         transition: color 0.3s;
     }
