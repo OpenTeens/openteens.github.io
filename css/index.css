@@ -92,11 +92,12 @@ nav#navigator {
 
 .menu>li:hover,
 .menu>li.focus {
-	font-weight: 700;
 	border-bottom: solid 2px var(--menu-hv-outline)
 }
 
-.menu>li>button {
+.menu>li>button,
+.menu>li.menu2>button {
+	user-select: none;
 	color: var(--menu-text-color);
 	transition: .1s;
 	padding: .5rem;
@@ -107,6 +108,59 @@ nav#navigator {
 	line-height: inherit;
 	background-color: transparent;
 	transition: .2s;
+}
+
+.menu>li.menu2 {
+	&>button::after {
+		content: '▼';
+		scale: .9;
+		display: inline-block;
+		color: var(--menu-text-color);
+		--padding-left-right: .5ch;
+		padding-left: var(--padding-left-right);
+		padding-right: var(--padding-left-right);
+		transition: .2s;
+	}
+
+	&:hover>button {
+		background-color: var(--menu-hv-color);
+
+		&::after {
+			rotate: 180deg;
+		}
+	}
+
+	&>ul {
+		display: none;
+		position: absolute;
+		/* escape from document stream */
+		background-color: var(--bg-color);
+		border-radius: 3px;
+		padding: 10px;
+	}
+
+	&>ul>li {
+		padding: 8px;
+		text-align: center;
+		list-style: none;
+
+		&>a {
+			text-decoration: none;
+			color: var(--menu-text-color);
+		}
+
+		&:hover {
+			padding: 8px;
+			border-radius: 5px;
+			transition: .2s;
+			cursor: pointer;
+			background-color: var(--menu-hv-color);
+		}
+	}
+
+	&:hover>ul {
+		display: block;
+	}
 }
 
 .menu>li>button:hover {
@@ -317,13 +371,17 @@ iframe.bg {
 .mobile .menu>li {
 	text-align: left;
 	margin-right: .5rem;
-	height: 2rem;
+	height: max-content;
+	min-height: 2rem;
 }
 
 .mobile .menu>li:hover,
 .mobile .menu>li.focus {
-	font-weight: 700;
 	border: none !important;
+
+	&>button {
+		background-color: transparent;
+	}
 }
 
 .mobile .menu>li>button {
@@ -333,6 +391,21 @@ iframe.bg {
 .mobile .menu>li>button:hover {
 	background-color: transparent;
 	text-decoration: underline;
+}
+
+.mobile .menu>li.menu2>ul {
+	position: relative;
+	border-left: 3px var(--btn-bd-color) solid;
+	box-sizing: border-box;
+	margin-left: 5px;
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	border-radius: 0;
+
+	&>li {
+		text-align: left;
+	}
 }
 
 .social-media-links {

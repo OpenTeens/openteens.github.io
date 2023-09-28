@@ -1,0 +1,12 @@
+<img src="img/screenshot_2023-09-24_165222.jpg" id="img1">
+<script src="js/lib/part-title.js"></script>
+
+<script>
+    window.loaders.push(function () {
+        var img1 = $("#img1");
+        var pt = new PartTitle(img1, [{
+            points: [[0, 0], [100, 100]],
+            text: "Hello World!"
+        }]);
+    })
+</script>

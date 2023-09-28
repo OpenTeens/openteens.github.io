@@ -9,8 +9,7 @@
 
 <script>
 	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
-	// pageName = "museum";	// DEV
-	const pages = ["about", "404.html", "home", "museum", "projects"];
+	const pages = ["about", "404.html", "home", "museum", "projects", "bernie"];
 	var i = pages.indexOf(pageName);
 
 	if (i == -1) {
@@ -24,7 +23,8 @@
 			"404.html": "404 - Page Not Found",
 			"home": "OpenTeens",
 			"museum": "OpenTeens Museum",
-			"projects": "OpenTeens Projects"
+			"projects": "OpenTeens Projects",
+			"bernie": "Bernie Huang"
 		}
 		document.querySelector("title").innerText = page_title[pages[i]];
 
@@ -32,6 +32,8 @@
 		window.loaders = [];
 		window.loaders.push(function () {
 			HTTP_GET("/pages/" + pages[i] + ".html", res => {
+				var backup_loader_length = window.loaders.length;
+
 				// extract scripts
 				var scripts = "";
 				res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
@@ -39,11 +41,23 @@
 					return "";
 				});
 
+				// extract js files
+				res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
+					HTTP_GET(match, s => eval(s));
+				});
+
 				// load page
 				$("#container").innerHTML = res;
 
 				// run scripts
-				eval(scripts)
+				eval(scripts);
+
+				if (backup_loader_length < window.loaders.length) {
+					// have custom loader
+					for (var i = backup_loader_length; i < window.loaders.length; i++) {
+						window.loaders[i]();
+					}
+				}
 			});
 		})
 	}
@@ -72,6 +86,7 @@
 			</div>
 
 			<div class="menu-before">
+				<!-- build for mobile -->
 				<svg class="menu-open" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
 					data-view-component="true" fill="#7d8590" style="margin: 7px;">
 					<path
@@ -86,8 +101,12 @@
 				</svg>
 			</div>
 			<ul class="menu">
-				<li>
+				<li class="menu2">
 					<button>About</button>
+					<ul>
+						<li><a href="/about">About OpenTeens</a></li>
+						<li><a href="/team">Our Team</a></li>
+					</ul>
 				</li>
 				<li>
 					<button>Museum</button>
@@ -138,6 +157,8 @@
 
 			// highlight nav bar
 			$("#navigator").querySelectorAll("li").forEach(li => {
+				if (li.classList.contains("menu2"))
+					return;
 				var btn = li.children[0];
 				btn.onclick = btn_redirect;
 				if (btn.innerText.toLowerCase() == pageName) {
