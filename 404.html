@@ -9,58 +9,55 @@
 
 <script>
 	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
-	const pages = ["about", "404.html", "home", "museum", "projects", "bernie"];
+	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team"];
 	var i = pages.indexOf(pageName);
 
-	if (i == -1) {
-		// not found
-		window.location.href = "/404.html";
+	if (i == -1) { // not found
+		i = 0;	// 404
 	}
-	else {
-		// found.
-		const page_title = {
-			"about": "About OpenTeens",
-			"404.html": "404 - Page Not Found",
-			"home": "OpenTeens",
-			"museum": "OpenTeens Museum",
-			"projects": "OpenTeens Projects",
-			"bernie": "Bernie Huang"
-		}
-		document.querySelector("title").innerText = page_title[pages[i]];
 
-		// load.
-		window.loaders = [];
-		window.loaders.push(function () {
-			HTTP_GET("/pages/" + pages[i] + ".html", res => {
-				var backup_loader_length = window.loaders.length;
+	const page_title = {
+		"about": "About OpenTeens",
+		"404.html": "404 - Page Not Found",
+		"home": "OpenTeens",
+		"museum": "OpenTeens Museum",
+		"projects": "OpenTeens Projects",
+		"bernie": "Bernie Huang"
+	}
+	document.querySelector("title").innerText = page_title[pages[i]];
 
-				// extract scripts
-				var scripts = "";
-				res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
-					scripts += "\n" + match;
-					return "";
-				});
+	// load.
+	window.loaders = [];
+	window.loaders.push(function () {
+		HTTP_GET("/pages/" + pages[i] + ".html", res => {
+			var backup_loader_length = window.loaders.length;
 
-				// extract js files
-				res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
-					HTTP_GET(match, s => eval(s));
-				});
-
-				// load page
-				$("#container").innerHTML = res;
-
-				// run scripts
-				eval(scripts);
-
-				if (backup_loader_length < window.loaders.length) {
-					// have custom loader
-					for (var i = backup_loader_length; i < window.loaders.length; i++) {
-						window.loaders[i]();
-					}
-				}
+			// extract scripts
+			var scripts = "";
+			res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
+				scripts += "\n" + match;
+				return "";
 			});
-		})
-	}
+
+			// extract js files
+			res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
+				HTTP_GET(match, s => eval(s));
+			});
+
+			// load page
+			$("#container").innerHTML = res;
+
+			// run scripts
+			eval(scripts);
+
+			if (backup_loader_length < window.loaders.length) {
+				// have custom loader
+				for (var i = backup_loader_length; i < window.loaders.length; i++) {
+					window.loaders[i]();
+				}
+			}
+		});
+	})
 
 </script>
 

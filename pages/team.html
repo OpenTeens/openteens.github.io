@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            checkVisibility();
+        });
+
+        window.addEventListener('scroll', function () {
+            checkVisibility();
+        });
+
+        function checkVisibility() {
+            var scrollTop = document.documentElement.scrollTop;
+            var windowHeight = window.innerHeight;
+            var founders = document.querySelectorAll('.founder');
+
+            founders.forEach(function (founder) {
+                var top = founder.getBoundingClientRect().top;
+                if (scrollTop + windowHeight - top >= 100) {
+                    founder.style.opacity = '1';
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Culius's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>吴宇教授</h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Mu's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>慕睿涛老师</h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Nathan's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>Nathan Chen
+                    <a href="https://github.com/Nathancgy">
+                        <span class="fa">&#xF09b;</span>
+                    </a>
+                </h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/bernie.jpg" alt="Bernie's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>Bernie Huang
+                    <a href="https://github.com/BernieHuang2008">
+                        <span class="fa">&#xF09b;</span>
+                    </a>
+                </h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Carmen's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>Carmen Zhang
+                    <a href="https://github.com/CJWZhang">
+                        <span class="fa">&#xF09b;</span>
+                    </a>
+                </h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Richard's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>Richard
+                    <a href="https://github.com/Richard-31415">
+                        <span class="fa">&#xF09b;</span>
+                    </a>
+                </h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+
+        <div class="founder">
+            <div class="profile-picture">
+                <img src="/img/logo_1.jpg" alt="Leo's Profile Picture">
+            </div>
+            <div class="description">
+                <h2>Leo Yang
+                    <a href="https://github.com/Potato1145141919810">
+                        <span class="fa">&#xF09b;</span>
+                    </a>
+                </h2>
+                <p>
+                    ...
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    .container {
+        width: 55%;
+        margin: 50px auto;
+        overflow: auto;
+    }
+
+    .founder {
+        display: flex;
+        align-items: top;
+        background-color: rgba(128, 128, 128, 0.5);
+        color: white;
+        margin: 20px;
+        padding: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity .6s ease;
+    }
+
+    .founder img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        /* makes the image circular */
+        margin: 10px;
+    }
+
+    .founder:nth-child(odd) .profile-picture {
+        order: 1;
+    }
+
+    .founder:nth-child(-n+4) {
+        opacity: 1;
+    }
+
+    .founder:nth-child(even) .profile-picture {
+        order: 2;
+    }
+
+    .description {
+        flex: 1;
+    }
+
+    .description a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: inherit;
+        font-size: 24px;
+        transition: color 0.3s;
+    }
+</style>
