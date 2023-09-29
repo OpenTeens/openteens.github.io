@@ -1,0 +1,2 @@
+-e git+https://github.com/niklasb/webkit-server.git#egg=webkit-server
+dryscrape
