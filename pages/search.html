@@ -9,8 +9,8 @@
 
 <style>
     .content b {
-        background-color: yellow;
-        color: black;
+        color: #c00;
+        font-weight: normal;
     }
 
     .content {
@@ -53,7 +53,7 @@
 <script>
     window.jieba_load_worker = new Worker("/search/scripts/data/dictionary.js");
     window.jieba_load_worker.onmessage = function (e) {
-        document.querySelector(".content").innerHTML = e.data;
+        document.querySelector(".content").innerHTML = e.data || "No result was found.";
         window.jieba_load_worker.terminate();
     }
     var query = window.location.href.split('/')[4].trim().toLowerCase();
