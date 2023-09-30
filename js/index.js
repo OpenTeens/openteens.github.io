@@ -1,5 +1,5 @@
 function search() {
-	var url_query = decodeURI(window.location.href.split('/')[4].trim().toLowerCase());
+	var url_query = decodeURI((window.location.href.split('/')[4] || "").trim().toLowerCase());
 	var query = $("#search>input").value.trim();
 	if (query && query != url_query) {
 		window.location.href = "/search/" + query;
