@@ -9,11 +9,14 @@
 
 <script>
 	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
-	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup"];
+	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search"];
 	var i = pages.indexOf(pageName);
 
 	if (i == -1) { // not found
 		i = 0;	// 404
+	}
+	if (pageName == "search") {
+		var query = decodeURI(window.location.href.split('/')[4].trim().toLowerCase());
 	}
 
 	const page_title = {
@@ -25,13 +28,15 @@
 		"team": "About Our Team",
 		"bernie": "Bernie Huang",
 		"signup": "Signup",
+		"search": `"${query}" - OpenTeens Search`,
 	}
 	document.querySelector("title").innerText = page_title[pages[i]];
 
 	// load.
 	window.loaders = [];
 	window.loaders.push(function () {
-		HTTP_GET("/pages/" + pages[i] + ".html", res => {
+		var source_name = "/pages/" + pages[i] + ".html";
+		HTTP_GET(source_name, res => {
 			var backup_loader_length = window.loaders.length;
 
 			// extract scripts
@@ -44,6 +49,7 @@
 			// extract js files
 			res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
 				HTTP_GET(match, s => eval(s));
+				return "";
 			});
 
 			// load page
@@ -60,19 +66,16 @@
 			}
 		});
 	})
-
 </script>
-
 
 <!-- Main HTML -->
 
-
-<link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="/css/index.css" />
 
 <body>
 	<div id="toolbar">
 		<nav id="navigator">
-			<a href="/" style="display: flex;align-items: center"><img src="img/logo_4.png" class="logo"
+			<a href="/" style="display: flex;align-items: center"><img src="/img/logo_4.png" class="logo"
 					height="28"></a>
 
 			<div id="search">
@@ -124,16 +127,10 @@
 
 
 	<!-- Script -->
-	<script src="js/sel.js"></script>
-	<script src="js/index.js"></script>
+	<script src="/js/sel.js"></script>
+	<script src="/js/http.js"></script>
+	<script src="/js/index.js"></script>
 	<script>
-		function search(){
-			var query = $("#search>input").value;
-			if (query.trim() == "")
-				return;
-			window.location.href = "search/search.html?" + query;
-		}
-
 		$("#search>input").onkeydown = function (e) {
 			if (e.key == 'Enter')
 				search();
@@ -188,7 +185,7 @@
 
 <!-- Footer -->
 <footer>
-	<link rel="stylesheet" href="css/lib/font-awesome.css">
+	<link rel="stylesheet" href="/css/lib/font-awesome.css">
 
 	<!-- Social Media -->
 	<div class="social-media-links">

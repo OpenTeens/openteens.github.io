@@ -1,7 +1,8 @@
 function search() {
+	var url_query = decodeURI(window.location.href.split('/')[4].trim().toLowerCase());
 	var query = $("#search>input").value.trim();
-	if (query) {
-		console.log(query)
+	if (query && query != url_query) {
+		window.location.href = "/search/" + query;
 	}
 }
 
@@ -31,35 +32,3 @@ function btn_redirect(e) {
 	var name = e.target.innerText.trim().toLowerCase();
 	redirect(name);
 }
-
-
-function HTTP_GET(aUrl, aCallback) {
-	var anHttpRequest = new XMLHttpRequest();
-	anHttpRequest.onreadystatechange = function () {
-		if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-			aCallback(anHttpRequest.responseText);
-	}
-
-	anHttpRequest.open("GET", aUrl, true);
-	anHttpRequest.send(null);
-}
-
-function HTTP_GET2(aUrl) {
-	// Promise version.
-	return new Promise(function (resolve, reject) {
-		var anHttpRequest = new XMLHttpRequest();
-		anHttpRequest.onreadystatechange = function () {
-			if (anHttpRequest.readyState == 4) {
-				if (anHttpRequest.status == 200) {
-					resolve(anHttpRequest.responseText);
-				} else {
-					reject(new Error('HTTP_GET failed: ' + anHttpRequest.status));
-				}
-			}
-		};
-
-		anHttpRequest.open('GET', aUrl, true);
-		anHttpRequest.send(null);
-	});
-}
-

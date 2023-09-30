@@ -49,10 +49,10 @@
         for (var filename in file) {
             content[filename] = await HTTP_GET2("/search/text/" + filename);
         }
-        console.log(content);
-        console.log(file);
-        console.log(filecnt);
-        console.log(filematch);
+        // console.log(content);
+        // console.log(file);
+        // console.log(filecnt);
+        // console.log(filematch);
 
         result = [];
         for (var filename in filecnt) {
@@ -128,7 +128,7 @@
         */
 
 
-        console.log(result_range)
+        // console.log(result_range)
         var result_content = [];	// each item = [filename, HTML]
         result_range.forEach(r => {
             var [fname, pos_start, pos_end, hl] = r;
@@ -136,9 +136,9 @@
             var c = content[fname].substring(pos_start, pos_end);
             // highlight
             hl.forEach(h => {
-                console.log(1, c);
+                // console.log(1, c);
                 c = c.substring(0, h[0] - pos_start) + "<b>" + c.substring(h[0] - pos_start, h[1] - pos_start) + "</b>" + c.substring(h[1] - pos_start);
-                console.log(2, c);
+                // console.log(2, c);
             })
             result_content.push([fname, c]);
         })
@@ -163,13 +163,13 @@
         query = decodeURI(query);
         query = process(query);
         var result = await revidx(query);
-        console.log(result)
+        // console.log(result)
         var html = "";
         result.forEach(r => {
-            r[0] = r[0].substring(0, r[0].length - 4);	// cut '.txt'
+            r[0] = r[0].substring(0, r[0].length - 9);	// cut '.html.txt'
             html += `
 				<div class="result">
-					<a href="/pages/${r[0]}">${r[0]}</a>
+					<a href="/${r[0]}">${r[0]}</a>
 					<p>${r[1]}</p>
 				</div>
 				`
@@ -177,3 +177,4 @@
         document.body.innerHTML = html;
     }
 </script>
+

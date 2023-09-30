@@ -12,7 +12,7 @@ def fetch_all():
     browser = webdriver.Edge()
     try:
         for filename in os.listdir():
-            if (os.path.isdir(filename)):
+            if (os.path.isdir(filename) or filename == 'search.html'):
                 continue
 
             curr_dir = os.getcwd().replace("\\", "/")
@@ -33,4 +33,3 @@ def fetch_all():
 
 if __name__ == '__main__':
     fetch_all()
-
