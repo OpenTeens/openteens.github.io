@@ -51,7 +51,7 @@
 </style>
 
 <script>
-    window.jieba_load_worker = new Worker("/search/scripts/data/dictionary.js");
+    window.jieba_load_worker = new Worker("/search/search.js");
     window.jieba_load_worker.onmessage = function (e) {
         document.querySelector(".content").innerHTML = e.data || "No result was found.";
         window.jieba_load_worker.terminate();
