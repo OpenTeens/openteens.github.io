@@ -5,12 +5,6 @@ function search() {
 	}
 }
 
-$("#search>input").onkeydown = function (e) {
-	if (e.key == 'Enter')
-		search();
-}
-
-
 function typing_effect(div, text) {
 	function helper(i) {
 		if (i >= text.length) {
@@ -50,4 +44,22 @@ function HTTP_GET(aUrl, aCallback) {
 	anHttpRequest.send(null);
 }
 
+function HTTP_GET2(aUrl) {
+	// Promise version.
+	return new Promise(function (resolve, reject) {
+		var anHttpRequest = new XMLHttpRequest();
+		anHttpRequest.onreadystatechange = function () {
+			if (anHttpRequest.readyState == 4) {
+				if (anHttpRequest.status == 200) {
+					resolve(anHttpRequest.responseText);
+				} else {
+					reject(new Error('HTTP_GET failed: ' + anHttpRequest.status));
+				}
+			}
+		};
+
+		anHttpRequest.open('GET', aUrl, true);
+		anHttpRequest.send(null);
+	});
+}
 

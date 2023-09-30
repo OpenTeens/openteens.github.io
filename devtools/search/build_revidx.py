@@ -25,6 +25,12 @@ def build_index(directory):
                 path = os.path.join(root, file)
                 with open(path, "r") as f:
                     # read the file
+                    """
+                    What to do with a document line:
+                    1. replace all punctuations with spaces
+                    2. split the line into words by spaces
+                    3. use jieba to cut up
+                    """
                     local_index = dict()
                     for line_num, line in enumerate(f):
                         line  = replace_punctuations(line.strip())    # replace punctuations

@@ -127,6 +127,18 @@
 	<script src="js/sel.js"></script>
 	<script src="js/index.js"></script>
 	<script>
+		function search(){
+			var query = $("#search>input").value;
+			if (query.trim() == "")
+				return;
+			window.location.href = "search/search.html?" + query;
+		}
+
+		$("#search>input").onkeydown = function (e) {
+			if (e.key == 'Enter')
+				search();
+		}
+
 		window.onload = function () {
 			// custom loaders.
 			for (var i = 0; i < window.loaders.length; i++) {

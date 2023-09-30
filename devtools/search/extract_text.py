@@ -21,7 +21,7 @@ def fetch_all():
             browser.get(url)
             content = browser.execute_script("return document.body.innerText")
             with open(f"{curr_dir}/../search/text/{filename}.txt", 'w') as f:
-                f.write(content.replace('\n', ' '))
+                f.write(content.strip().replace('\n', ' ').replace('  ', ' '))
             print("Done.")
     finally:
         print("  - Closing browser ... ", end='')
