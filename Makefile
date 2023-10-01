@@ -16,4 +16,5 @@ revidx.extract:
 revidx.build:
 	python devtools/search/build_revidx.py
 	python devtools/search/gen_json.py
+	python devtools/search/build_jieba.py
 
