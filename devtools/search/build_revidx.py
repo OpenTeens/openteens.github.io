@@ -39,7 +39,7 @@ def build_index(directory):
                         i = 0
                         while i < len(words):
                             if contains_chinese(words[i]):
-                                wlist = list(jieba.cut(words[i]))   # use jeiba
+                                wlist = list(jieba.cut_for_search(words[i]))   # use jeiba
                                 if len(wlist) > 1:
                                     words.pop(i)
                                     words.extend(wlist)
