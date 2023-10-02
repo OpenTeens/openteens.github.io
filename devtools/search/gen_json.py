@@ -10,9 +10,7 @@ for line in lines:
     parts = line.strip().split(': ', 1)
     if len(parts) == 2:
         keyword, info = parts
-        if keyword not in index:
-            index[keyword] = []
-        index[keyword].append(eval(info))
+        index[keyword] = eval(info)
 
 # Write the dictionary to a JSON file
 with open('search/index.json', 'w') as f:

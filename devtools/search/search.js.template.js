@@ -1,112 +1,31 @@
 /* require a `jieba_dict` */
 
-function process(query) {
-    // step 1: replace all punctuations with space
-    var punctuations = /[,\.\/\?<>;:\'\"\\\|\[\]\{\}\(\)!@\#\$%\^\&\*~`\-_—=\+，。！？；：‘’“”【】《》〈〉、]/g
-    query = query.replaceAll(punctuations, " ");
-    // step 2: split with space
-    query = query.split(" ");
-    // step 3: split with jieba
-    for (var i = 0; i < query.length; i++) {
-        query[i] = jieba.cut(query[i]);
-    }
-    // step 4: flatten the array
-    query = query.flat();
-    return query;
-}
+/*
+    Modified from https://github.com/BernieHuang2008/mini-search
+    
+    (c) 2023 Bernie J. Huang
+*/
 
-async function revidx(query) {
-    var rev_index = JSON.parse(await HTTP_GET2("/search/index.json"));
-    var content = {};	// 记录每个文件的内容
-    var file = {};		// 记录每个文件里关键词的信息，indexed by filename
-    var filecnt = {};	// 计算每个文件匹配的关键词数量，indexed by filename
-    var filematch = {};	// 记录每个文件匹配的关键词，indexed by filename
-    query.forEach(kw => {
-        if (rev_index[kw]) {
-            rev_index[kw][0].forEach(doc => {
-                var [filename, info] = doc;
-                // 记录到file
-                file[filename] = file[filename] || {};
-                file[filename][kw] = info;
-                // 计算到filecnt
-                filecnt[filename] = filecnt[filename] || 0;
-                filecnt[filename]++;
-                // 记录到filematch
-                filematch[filename] = filematch[filename] || [];
-                filematch[filename].push(kw);
-            })
-        }
-    })
-    // 获取每个文件的内容
-    for (var filename in file) {
-        content[filename] = await HTTP_GET2("/search/text/" + filename);
-    }
-    console.log(JSON.stringify(content));
-    console.log(JSON.stringify(file));
-    console.log(JSON.stringify(filecnt));
-    console.log(JSON.stringify(filematch));
-
-    // 处理连续的关键词
-    var multi_keywords = {};    // indexed by 连续的关键词个数
-    // for each files
-    for(var fname in file){
-        var all_kws = [];   // each = [word, start, end, cnt], where cnt is "合并的关键词个数(merged cnt)"
-        let kws = file[fname];
-        // init list
-        for(let k in kws){
-            let [cnt, pos] = kws[k];
-            pos.forEach(p => {
-                all_kws.push([k, p, p + k.length, 1]);
-            })
-        }
-        // process
-        all_kws.sort((a, b) => a[1] - b[1]);    // sort by `start`, small first.
-        for(var i = 0; i < all_kws.length - 1; i++){
-            var a = all_kws[i], b = all_kws[i+1];
-            if (b[1] - a[2] < MULTIKW_MAX_SPACE){
-                // 挨在一起的两个关键词
-                var merged = [`${a[0]} ${b[0]}`, a[1], b[2], a[3]+b[3]];
-                all_kws.splice(i+1, 1);
-                all_kws[i] = merged;
-                i--;
+function HTTP_GET2(aUrl) {
+    // Promise version.
+    return new Promise(function (resolve, reject) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function () {
+            if (anHttpRequest.readyState == 4) {
+                if (anHttpRequest.status == 200) {
+                    resolve(anHttpRequest.responseText);
+                } else {
+                    reject(new Error('HTTP_GET failed: ' + anHttpRequest.status));
+                }
             }
-        }
-        all_kws.sort((a, b) => b[3] - a[3]);    // sort by `merged cnt`, big first.
-        var most = all_kws[0];
-        multi_keywords[most[3]] = multi_keywords[most[3]] || [];
-        var left_bound = Math.max(most[1]-50, 0);
-        var right_bound = Math.min(most[2]+50, content[fname].length);
-        multi_keywords[most[3]].push([fname, left_bound, right_bound, [[most[1], most[2]]]]);  // format as `result_range`
-    }
-    // merge `multi_keywords` into `result_range`
-    var result_range = [];  // each item = [filename, pos_start, pos_end, [[hl1_s, hl1_e], [hl2_s, hl2_e]]]
-    var kwcnts = Object.keys(multi_keywords).reverse();
-    kwcnts.forEach(kwcnt => {   // 连续的关键词个数
-        multi_keywords[kwcnt].forEach(doc => {
-            result_range.push(doc);
-        })
-    })
-    result_range.flat();    // flatten
-    console.log(JSON.stringify(result_range))
+        };
 
-    // compile to HTML
-    var result_content = [];	// each item = [filename, HTML]
-    result_range.forEach(r => {
-        let [fname, pos_start, pos_end, hl] = r;
-        hl = hl.sort((a, b) => b[0] - a[0]);	// max first
-        var c = content[fname].substring(pos_start, pos_end);
-        // highlight
-        hl.forEach(h => {
-            // console.log(1, c);
-            c = c.substring(0, h[0] - pos_start) + "<b>" + c.substring(h[0] - pos_start, h[1] - pos_start) + "</b>" + c.substring(h[1] - pos_start);
-            // console.log(2, c);
-        })
-        result_content.push([fname, c]);
-    })
-    return result_content;
+        anHttpRequest.open('GET', aUrl, true);
+        anHttpRequest.send(null);
+    });
 }
 
-async function jb(dictionary) {
+function gen_cut() {
     var trie = {}, // to be initialized
         FREQ = {},
         total = 0.0,
@@ -121,8 +40,8 @@ async function jb(dictionary) {
             trie = {},
             ltotal = 0.0;
 
-        for (var i = 0; i < dictionary.length; i++) {
-            var entry = dictionary[i],
+        for (var i = 0; i < jieba_dict.length; i++) {
+            var entry = jieba_dict[i],
                 word = entry[0],
                 freq = entry[1];
             lfreq[word] = freq;
@@ -332,7 +251,7 @@ async function jb(dictionary) {
         return yieldValues;
     }
 
-    var cut = function (sentence) {
+    var jieba_cut = function (sentence) {
         var cut_all = false,
             HMM = false,
             yieldValues = [];
@@ -382,18 +301,155 @@ async function jb(dictionary) {
     // initialize when the file loads (no lazy-loading yet):
     initialize();
 
-    // window.jieba.cut = cut;
-    // window.jieba.ready = true;
-    // console.log("Jieba loaded.");
-    // window.jieba.onload();
+    return jieba_cut;
+}
+var cut = gen_cut();
 
-    jieba = {
-        cut: cut
+function process(query) {
+    // step 1: replace all punctuations with space
+    var punctuations = /[,\.\/\?<>;:\'\"\\\|\[\]\{\}\(\)!@\#\$%\^\&\*~`\-_—=\+，。！？；：‘’“”【】《》〈〉、]/g
+    query = query.replaceAll(punctuations, " ");
+    // step 2: split with space
+    query = query.split(" ");
+    // step 3: split query
+    for (var i = 0; i < query.length; i++) {
+        query[i] = cut(query[i]);
+    }
+    // step 4: flatten the array
+    query = query.flat();
+    return query;
+}
+
+function multiply(str, times) {
+    var res = "";
+    for (var i = 0; i < times; i++) {
+        res += str;
+    }
+    return res;
+}
+
+async function search(query) {
+    var rev_index = JSON.parse(await HTTP_GET2("/search/index.json"));
+    var filekw = {};		// 记录每个文件里关键词的信息，indexed by filename & kw
+
+    query.forEach(kw => {
+        if (rev_index[kw]) {
+            // 待搜索内容中有这个关键词
+            rev_index[kw].forEach(doc => {
+                var [filename, info] = doc;
+                // 记录到 `filekw`
+                filekw[filename] = filekw[filename] || {};
+                filekw[filename][kw] = info;
+            })
+        }
+    })
+
+    // 获取所有文件的内容
+    var content = {};	// indexed by filename
+    for (var filename in filekw) {
+        content[filename] = await HTTP_GET2("/search/text/" + filename);
     }
 
+    // 处理连续的关键词
+    var multi_keywords = {};    // indexed by 连续的关键词个数
+
+    // for each files
+    for (var fname in filekw) {
+        var all_kws = [];   // [word, start pos, end pos, cnt] ......................... (where cnt is "合并的关键词个数, The number of keywords merged")
+        let kws = filekw[fname];
+
+        // init list
+        for (let k in kws) {
+            let [cnt, pos] = kws[k];
+            pos.forEach(p => {
+                all_kws.push([k, p, p + k.length, 1]);
+            })
+        }
+
+        // process
+        all_kws.sort((a, b) => a[1] - b[1]);    // sort by `start pos`, small first.
+        for (var i = 0; i < all_kws.length - 1; i++) {
+            var w1 = all_kws[i], w2 = all_kws[i + 1];
+            if (w2[1] - w1[2] < settings.MULTIKW_MAX_SPACE) {
+                // 挨在一起的两个关键词
+                var merged = [
+                    w1[0] + multiply(' ', w2[1] - w1[2] - 1) + w2[0],   // merged word
+                    w1[1],                                              // use w1's start pos as merged-word's start pos
+                    w2[2],                                              // use w2's end pos as merged-word's end pos
+                    w1[3] + w2[3]                                       // `The number of keywords merged`
+                ];
+
+                all_kws.splice(i + 1, 1);   // remove w2
+                all_kws[i] = merged;    // replace w1 with merged-word
+                i--;    // go back 1 step
+            }
+        }
+
+        // highlight keywords
+        var highlights = [];    // each item = [start pos, end pos]
+        all_kws.forEach(kw => {
+            highlights.push([kw[1], kw[2]]);    // [start pos, end pos]
+        })
+
+        // sort list
+        all_kws.sort((a, b) => b[3] - a[3]);    // sort by `The number of keywords merged`, big first.
+        var most = all_kws[0];  // most matched item = [word, start pos, end pos, cnt]
+
+        var left_bound = Math.max(most[1] - settings.CONTENT_AROUND, 0);    // left bound of content
+        var right_bound = Math.min(most[2] + settings.CONTENT_AROUND, content[fname].length);   // right bound of content
+
+        multi_keywords[most[3]] = multi_keywords[most[3]] || [];    // init `multi_keywords`
+        multi_keywords[most[3]].push([fname, left_bound, right_bound, highlights]);  // format in `result-list format`
+    }
+
+
+    // ranking
+    var result = [];  // each item = [filename, pos_start, pos_end, [[hl1_s, hl1_e], [hl2_s, hl2_e]]]
+    var kwcnts = Object.keys(multi_keywords).reverse(); // big first
+
+    kwcnts.forEach(kwcnt => {   // 连续的关键词个数
+        multi_keywords[kwcnt].forEach(doc => {
+            result.push(doc);
+        })
+    })
+
+    result.flat();    // flatten
+
+    // ===== compile to HTML =====
+    // NOTE: THIS PLUGIN REQUIRES A `content` OBJECT, WHICH IS A MAP OF {filename: content}, STORES ALL CONTENTS OF ALL FILES.
+    // 
+    var result_content = [];	// each item = [filename, HTML]
+    result.forEach(r => {
+        let [fname, pos_start, pos_end, hl] = r;
+        hl = hl.sort((a, b) => b[0] - a[0]);	// max first
+        var c = content[fname].substring(pos_start, pos_end);
+        // highlight
+        hl.forEach(h => {
+            // console.log(1, c);
+            c = c.substring(0, h[0] - pos_start) + "<b>" + c.substring(h[0] - pos_start, h[1] - pos_start) + "</b>" + c.substring(h[1] - pos_start);
+            // console.log(2, c);
+        })
+        result_content.push([fname, c]);
+    })
+
+    return result_content;
+}
+
+
+// settings & vars
+
+var query = "";
+const settings = {
+    MULTIKW_MAX_SPACE: 3,
+    CONTENT_AROUND: 50,
+}
+
+// main
+self.onmessage = async function (e) {
+    query = e.data;
     query = decodeURI(query);
     query = process(query); // split query
-    var result = await revidx(query);
+    var result = await search(query);
     // console.log(result)
     var html = [];
     result.forEach(r => {
@@ -408,52 +464,3 @@ async function jb(dictionary) {
     self.postMessage(html.join('<hr>'));
 }
 
-
-function HTTP_GET2(aUrl) {
-    // Promise version.
-    return new Promise(function (resolve, reject) {
-        var anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function () {
-            if (anHttpRequest.readyState == 4) {
-                if (anHttpRequest.status == 200) {
-                    resolve(anHttpRequest.responseText);
-                } else {
-                    reject(new Error('HTTP_GET failed: ' + anHttpRequest.status));
-                }
-            }
-        };
-
-        anHttpRequest.open('GET', aUrl, true);
-        anHttpRequest.send(null);
-    });
-}
-function HTTP_GET2(aUrl) {
-    // Promise version.
-    return new Promise(function (resolve, reject) {
-        var anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function () {
-            if (anHttpRequest.readyState == 4) {
-                if (anHttpRequest.status == 200) {
-                    resolve(anHttpRequest.responseText);
-                } else {
-                    reject(new Error('HTTP_GET failed: ' + anHttpRequest.status));
-                }
-            }
-        };
-
-        anHttpRequest.open('GET', aUrl, true);
-        anHttpRequest.send(null);
-    });
-}
-
-self.onmessage = function(e) {
-    query = e.data;
-    jb(jieba_dict);
-}
-
-
-// settings & vars
-
-var query = "";
-var jieba = {};
-const MULTIKW_MAX_SPACE = 4;
