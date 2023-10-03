@@ -457,7 +457,7 @@ self.onmessage = async function (e) {
         html.push(`
             <div class="result">
                 <h2><a href="/${r[0]}">${r[0]}</a></h2>
-                <p>${r[1]}</p>
+                <p>${r[1].replaceAll(/[\uffff]+/g, '<br>')}</p>
             </div>
             `)
     })

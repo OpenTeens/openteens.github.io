@@ -19,7 +19,7 @@ def fetch_all():
     browser = webdriver.Edge()
     try:
         for filename in os.listdir():
-            if (os.path.isdir(filename) or filename == 'search.html'):
+            if (os.path.isdir(filename) or filename in ['search.html', '404.html.html']):
                 continue
 
             curr_dir = os.getcwd().replace("\\", "/")
@@ -29,8 +29,8 @@ def fetch_all():
             content = browser.execute_script("return document.body.innerText")
 
             content = replace_punctuations(content) # Remove punctuations
-            content = re.sub(r'[\n]+', '\n', s)
-            content = content.strip().replace('\n', ' <br> ') # Remove leading and trailing spaces and newlines
+            content = re.sub(r'\s{0,10}\n\s{0,10}', '\uffff', content)   # Remove multiple newlines
+            content = content.strip() # Remove leading and trailing spaces and newlines
             content = re.sub(r'\s+', ' ', content)  # Remove extra spaces
 
             with open(f"{curr_dir}/../search/text/{filename}.txt", 'w') as f:

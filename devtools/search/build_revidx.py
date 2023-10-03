@@ -33,18 +33,12 @@ def build_index(directory):
                     """
                     local_index = dict()
                     for line_num, line in enumerate(f):
-                        line  = replace_punctuations(line.strip())    # replace punctuations
+                        line = replace_punctuations(
+                            line.strip())    # replace punctuations
                         # cut up the line into words
-                        words = line.strip().split()
-                        i = 0
-                        while i < len(words):
-                            if contains_chinese(words[i]):
-                                wlist = list(jieba.cut_for_search(words[i]))   # use jeiba
-                                if len(wlist) > 1:
-                                    words.pop(i)
-                                    words.extend(wlist)
-                                    i -= 1
-                            i += 1
+                        words = jieba.cut_for_search(line.strip())
+                        # delete space
+                        words = [word for word in words if word != ' ']
                         # add each word to the local_index
                         for word in words:
                             if word not in local_index:

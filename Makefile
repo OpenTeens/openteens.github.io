@@ -13,8 +13,14 @@ revidx.extract:
 	python devtools/search/extract_text.py
 
 .PHONY: revidx.build
-revidx.build:
+revidx.build: revidx.build.index revidx.build.js
+
+.PHONY: revidx.build.index
+revidx.build.index:
 	python devtools/search/build_revidx.py
 	python devtools/search/gen_json.py
+
+.PHONY: revidx.build.js
+revidx.build.js:
 	python devtools/search/build_jieba.py
 
