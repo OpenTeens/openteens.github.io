@@ -29,7 +29,8 @@ def fetch_all():
             content = browser.execute_script("return document.body.innerText")
 
             content = replace_punctuations(content) # Remove punctuations
-            content = content.strip().replace('\n', ' ') # Remove leading and trailing spaces and newlines
+            content = re.sub(r'[\n]+', '\n', s)
+            content = content.strip().replace('\n', ' <br> ') # Remove leading and trailing spaces and newlines
             content = re.sub(r'\s+', ' ', content)  # Remove extra spaces
 
             with open(f"{curr_dir}/../search/text/{filename}.txt", 'w') as f:
