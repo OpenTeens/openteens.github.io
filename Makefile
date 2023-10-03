@@ -24,3 +24,8 @@ revidx.build.index:
 revidx.build.js:
 	python devtools/search/build_jieba.py
 
+.PHONY: revidx.commit
+revidx.commit:
+	git add search/*
+	git commit -m "[build] /revidx: update"
+
