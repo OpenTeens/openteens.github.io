@@ -294,6 +294,116 @@ div.p {
 	border-radius: 6px;
 }
 
+#peoples>.home-p {
+	--local-width: min(350px, 45vw);
+	--local-height: min(350px, 45vh);
+	--local-smallest: min(var(--local-width), var(--local-height));
+
+	position: relative;
+	box-sizing: border-box;
+	transition: background-color, border-color 0.2s;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: black;
+	margin: 15px;
+
+	padding: 5px;
+    background: #fff5;
+    backdrop-filter: blur(16px);
+    border-radius: .75rem;
+
+	width: var(--local-smallest);
+	height: var(--local-smallest);
+
+	overflow: hidden;
+	height: auto;
+	padding: 0;
+
+	&>*{
+		position: relative;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border-radius: .75rem;
+	}
+
+	&>img {
+		position: relative;
+		display: block;
+		width: 100%;
+		opacity: 0;
+		aspect-ratio: 1/1;
+	}
+
+	&>.avatar-border {
+		position: absolute;
+		
+		background-image: linear-gradient(166deg, #ff507a, #7d51df 33%, #2265de 66%, #0bc786);
+		transition: transform 1.2s cubic-bezier(.45, .13, .1, 1);
+		transform: scale(.96);
+
+		width: var(--local-smallest);
+		height: var(--local-smallest);
+	}
+
+	&:hover>.avatar-border {
+		transition-duration: 1.5s;
+		transform: scale(1);
+	}
+
+	&>.avatar {
+		position: absolute;
+
+		background-image: var(--img-url);
+		filter: grayscale(1) brightness(1);
+		transition-duration: .4s;
+		transform: scale(1);
+		background-size: cover;
+		background-blend-mode: overlay;
+		transition: filter 0s linear,transform .5s cubic-bezier(.45,.13,.1,1);
+
+		width: var(--local-smallest);
+		height: var(--local-smallest);
+	}
+
+	&:hover>.avatar {
+		filter: grayscale(0) brightness(1.25);
+		background-image: var(--img-url), linear-gradient(166deg, #ff507a 0%, #7d51df 33%, #2265de 66%, #0bc786 100%);
+		transform: scale(.96);
+	}
+
+	&:nth-child(odd) {
+		margin-bottom: calc(0.3 * var(--local-height));
+		display: inline-block;
+	}
+
+	&:nth-child(even) {
+		margin-top: calc(0.3 * var(--local-height));
+		display: inline-block;
+		clear: both;
+	}
+
+	&>.name {
+		margin-top: 1rem;
+		margin-bottom: 0.25rem;
+		font-weight: 600;
+		font-size: 1.25rem;
+		line-height: 1.3;
+
+		float: left;
+		clear: both;
+	}
+
+	&>.title {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		color: #8a939e;
+
+		float: left;
+		clear: both;
+	}
+}
+
 footer {
 	position: relative;
 	bottom: -20px;
@@ -338,7 +448,7 @@ iframe.bg {
 }
 
 footer {
-    font-family: "Segoe UI";
+	font-family: "Segoe UI";
 }
 
 
