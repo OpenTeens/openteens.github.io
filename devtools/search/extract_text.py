@@ -9,7 +9,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 def replace_punctuations(s):
     # Replace all Non-character and Non-number characters and Non-chinese with space
-    s = re.sub(r'[^,\.\/\?<>;:\'\"\\\|\[\]\{\}\(\)!@\#\$%\^\&\*~`\-_—=\+，。！？；：‘’“”【】《》〈〉、\w\s\u4e00-\u9fff]+', ' ', s)
+    s = re.sub(
+        r'[^,\.\/\?<>;:\'\"/\|\[\]\{\}\(\)!@\#\$%\^\&\*~`\-_—=\+，。！？；：‘’“”【】《》〈〉、\w\s\u4e00-\u9fff]+', ' ', s)
     return s
 
 
@@ -22,15 +23,15 @@ def fetch_all():
             if (os.path.isdir(filename) or filename in ['search.html', '404.html.html']):
                 continue
 
-            curr_dir = os.getcwd().replace("\\", "/")
+            curr_dir = os.getcwd()
             url = f"file://{curr_dir}/{filename}"
             print(f"  - Fetching {url} ... ", end='')
             browser.get(url)
             content = browser.execute_script("return document.body.innerText")
 
-            content = replace_punctuations(content) # Remove punctuations
-            content = re.sub(r'\s{0,10}\n\s{0,10}', '\uffff', content)   # Remove multiple newlines
-            content = content.strip() # Remove leading and trailing spaces and newlines
+            content = replace_punctuations(content)  # Remove punctuations
+            content = re.sub(r'\s{0,10}\n\s{0,10}', '\uffff', content)  # Remove multiple newlines
+            content = content.strip()  # Remove leading and trailing spaces and newlines
             content = re.sub(r'\s+', ' ', content)  # Remove extra spaces
 
             with open(f"{curr_dir}/../search/text/{filename}.txt", 'w') as f:

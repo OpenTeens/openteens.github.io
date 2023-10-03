@@ -13,18 +13,18 @@ def get_info(word):
 def main():
     print(" [*] Building jieba dict ...")
     jieba_dict = []
-    with open("search\\index.txt") as f:
+    with open("search/index.txt") as f:
         for line in f:
             word = line.split(':')[0].strip()
             word, freq, pos = get_info(word)
             jieba_dict.append([word, freq, pos])
 
-    with open("search\\search.js", "w") as f:
+    with open("search/search.js", "w") as f:
         f.write("var jieba_dict = [")
         for word, freq, pos in jieba_dict:
             f.write(f"['{word}',{freq},'{pos}'],")
         f.write("];\n")
-        with open("devtools\\search\\search.js.template.js") as template:
+        with open("devtools/search/search.js.template.js") as template:
             for line in template.readlines():
                 f.write(line)
 

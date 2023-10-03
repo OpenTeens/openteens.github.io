@@ -60,8 +60,8 @@ def build_index(directory):
 
 if __name__ == '__main__':
     print(" [*] Building reverse index ... ")
-    index = build_index("search\\text")
-    with open("search\\index.txt", "w") as f:
+    index = build_index("search/text")
+    with open("search/index.txt", "w") as f:
         for word in sorted(index.keys()):
             print(index[word])
             f.write(f"{word}: {index[word]}\n")
