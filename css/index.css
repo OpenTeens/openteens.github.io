@@ -337,6 +337,10 @@ iframe.bg {
 	transition: color 0.3s;
 }
 
+footer {
+    font-family: "Segoe UI";
+}
+
 
 /* ===== Mobile Style ===== */
 
