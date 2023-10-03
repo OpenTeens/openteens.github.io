@@ -1,9 +1,13 @@
 .PHONY: help
 help:
-	@echo help            - show this help
-	@echo revidx          - build revidx
-	@echo revidx.extract  - extract text from wiki pages
-	@echo revidx.build    - build revidx from extracted text
+	@echo help                 - show this help
+	@echo revidx               - build revidx
+	@echo revidx.extract       - extract text from wiki pages
+	@echo revidx.build         - build revidx from extracted text
+	@echo revidx.build.index   - build reverse index only
+	@echo revidx.build.js      - build js search script only
+	@echo revidx.build.commit  - build and commit
+	@echo revidx.commit        - commit the builds
 
 .PHONY: revidx
 revidx: revidx.extract revidx.build
@@ -23,6 +27,9 @@ revidx.build.index:
 .PHONY: revidx.build.js
 revidx.build.js:
 	python devtools/search/build_jieba.py
+
+.PHONY: revidx.build.commit
+revidx.build.commit: revidx.build revidx.commit
 
 .PHONY: revidx.commit
 revidx.commit:
