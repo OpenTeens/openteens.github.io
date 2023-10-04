@@ -35,41 +35,43 @@
             </div>
         </div>
         <div id="peoples">
-            <div class="home-p">
-                <img src="/img/bernie.jpg">
-                <span class="name">Bernie Huang</span>
-                <span class="title">Co-Founder</span>
-                <div class="avatar-border"></div>
-                <div class="avatar" style="--img-url: url('/img/bernie.jpg')"></div>
+            <div class="p">
+                <div class="home-p">
+                    <div class="avatar-div">
+                        <div class="avatar-border"></div>
+                        <div class="avatar" style="--img-url: url('/img/bernie.jpg')"></div>
+                    </div>
+                    <div class="text">
+                        <div class="name">Bernie Huang</div>
+                        <div class="title">Co-Founder</div>
+                    </div>
+                </div>
             </div>
-            <div class="home-p">
-                <img src="/img/nathan.png">
-                <span class="name">Nathan Chen</span>
-                <span class="title">Co-Founder</span>
-                <div class="avatar-border"></div>
-                <div class="avatar" style="--img-url: url('/img/nathan.png')"></div>
-            </div>
-            <div class="home-p">
-                <img src="/img/carmen.png">
-                <span class="name">Carmen Zhang</span>
-                <span class="title">Co-Founder</span>
-                <div class="avatar-border"></div>
-                <div class="avatar" style="--img-url: url('/img/carmen.png')"></div>
-            </div>
-            <div class="home-p">
-                <img src="/img/richard.png">
-                <span class="name">Richard Zhu</span>
-                <span class="title">Co-Founder</span>
-                <div class="avatar-border"></div>
-                <div class="avatar" style="--img-url: url('/img/richard.png')"></div>
-            </div>
-            <div class="home-p">
-                <img src="/img/leo.png">
-                <span class="name">Leo Yang</span>
-                <span class="title">Co-Founder</span>
-                <div class="avatar-border"></div>
-                <div class="avatar" style="--img-url: url('/img/leo.png')"></div>
-            </div>
+            <script>
+
+                [
+                    ['nathan', 'Nathan Chen', 'Co-Founder'],
+                    ['carmen', 'Carmen Zhang', 'Co-Founder'],
+                    ['richard', 'Richard Zhu', 'Co-Founder'],
+                    ['leo', 'Leo Yang', 'Co-Founder'],
+                ].forEach(pe => {
+                    html = `
+                    <div class="p">
+                        <div class="home-p">
+                            <div class="avatar-div">
+                                <div class="avatar-border"></div>
+                                <div class="avatar" style="--img-url: url('/img/${pe[0]}.jpg')"></div>
+                            </div>
+                            <div class="text">
+                                <div class="name">${pe[1]}</div>
+                                <div class="title">${pe[2]}</div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    $("#peoples").innerHTML += html;
+                })
+            </script>
         </div>
         <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">
             <div id="headline" class="headline">

@@ -294,32 +294,113 @@ div.p {
 	border-radius: 6px;
 }
 
-#peoples>.home-p {
-	--local-width: min(350px, 45vw);
-	--local-height: min(350px, 45vh);
-	--local-smallest: min(var(--local-width), var(--local-height));
+#peoples>.p {
+	display: inline-block;
+	margin: 0;
+	margin-left: 15px;
+	margin-right: 15px;
+
+	width: max-content;
+	height: max-content;
+}
+
+#peoples>.p>.home-p {
+	&>.avatar-div {
+		position: relative;
+		display: block;
+		width: 100%;
+		aspect-ratio: 1/1;
+
+		border-radius: .75rem;
+		overflow: hidden;
+
+		--local-width: min(350px, 30vw);
+		--local-height: min(350px, 30vh);
+		--local-smallest: min(var(--local-width), var(--local-height));
+	}
+
+	& img {
+		position: relative;
+		display: block;
+		width: 100%;
+		opacity: 0;
+		aspect-ratio: 1/1;
+	}
+
+	& .avatar-border {
+		position: absolute;
+
+		background-image: linear-gradient(166deg, #ff507a, #7d51df 33%, #2265de 66%, #0bc786);
+		border-radius: .75rem;
+		transition: transform 1s cubic-bezier(.45, .13, .1, 1);
+		transform: scale(.96);
+
+		width: 100%;
+		height: 100%;
+	}
+
+	&:hover .avatar-border {
+		transition-duration: 1s;
+		transform: scale(1);
+	}
+
+	& .avatar {
+		position: absolute;
+		border-radius: .75rem;
+
+		background-image: var(--img-url);
+		filter: grayscale(1) brightness(1);
+		transition-duration: .4s;
+		transform: scale(1);
+		background-size: cover;
+		background-blend-mode: overlay;
+		transition: filter .2s linear, transform .5s cubic-bezier(.45, .13, .1, 1);
+
+		width: 100%;
+		height: 100%;
+	}
+
+	&:hover .avatar {
+		filter: grayscale(0) brightness(1.25);
+		background-image: var(--img-url), linear-gradient(166deg, #ff507a 0%, #7d51df 33%, #2265de 66%, #0bc786 100%);
+		transform: scale(.96);
+	}
+}
+
+
+#peoples>.p:nth-child(odd)>.home-p {
+	padding-bottom: var(--padding-diff);
+}
+
+#peoples>.p:nth-child(even)>.home-p {
+	padding-top: var(--padding-diff);
+	clear: both;
+}
+
+#peoples>.p>.home-p {
+	user-select: none;
+
+	--padding-diff: 60px;
 
 	position: relative;
 	box-sizing: border-box;
 	transition: background-color, border-color 0.2s;
 	text-decoration: none;
 	cursor: pointer;
-	background-color: black;
-	margin: 15px;
 
 	padding: 5px;
-    background: #fff5;
-    backdrop-filter: blur(16px);
-    border-radius: .75rem;
-
-	width: var(--local-smallest);
-	height: var(--local-smallest);
+	border-radius: .75rem;
+	text-indent: 0;
 
 	overflow: hidden;
-	height: auto;
 	padding: 0;
 
-	&>*{
+	width: calc(25vw - 100px);
+	@media screen and (max-width: 768px) {
+		width: calc(50vw - 50px);
+	}
+
+	&>* {
 		position: relative;
 		top: 0;
 		right: 0;
@@ -328,63 +409,8 @@ div.p {
 		border-radius: .75rem;
 	}
 
-	&>img {
-		position: relative;
-		display: block;
-		width: 100%;
-		opacity: 0;
-		aspect-ratio: 1/1;
-	}
-
-	&>.avatar-border {
-		position: absolute;
-		
-		background-image: linear-gradient(166deg, #ff507a, #7d51df 33%, #2265de 66%, #0bc786);
-		transition: transform 1.2s cubic-bezier(.45, .13, .1, 1);
-		transform: scale(.96);
-
-		width: var(--local-smallest);
-		height: var(--local-smallest);
-	}
-
-	&:hover>.avatar-border {
-		transition-duration: 1.5s;
-		transform: scale(1);
-	}
-
-	&>.avatar {
-		position: absolute;
-
-		background-image: var(--img-url);
-		filter: grayscale(1) brightness(1);
-		transition-duration: .4s;
-		transform: scale(1);
-		background-size: cover;
-		background-blend-mode: overlay;
-		transition: filter 0s linear,transform .5s cubic-bezier(.45,.13,.1,1);
-
-		width: var(--local-smallest);
-		height: var(--local-smallest);
-	}
-
-	&:hover>.avatar {
-		filter: grayscale(0) brightness(1.25);
-		background-image: var(--img-url), linear-gradient(166deg, #ff507a 0%, #7d51df 33%, #2265de 66%, #0bc786 100%);
-		transform: scale(.96);
-	}
-
-	&:nth-child(odd) {
-		margin-bottom: calc(0.3 * var(--local-height));
-		display: inline-block;
-	}
-
-	&:nth-child(even) {
-		margin-top: calc(0.3 * var(--local-height));
-		display: inline-block;
-		clear: both;
-	}
-
-	&>.name {
+	& .name {
+		margin: 7px;
 		margin-top: 1rem;
 		margin-bottom: 0.25rem;
 		font-weight: 600;
@@ -395,7 +421,8 @@ div.p {
 		clear: both;
 	}
 
-	&>.title {
+	& .title {
+		margin: 7px;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		color: #8a939e;
 
