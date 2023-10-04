@@ -23,7 +23,7 @@ def fetch_all():
             if (os.path.isdir(filename) or filename in ['search.html', '404.html.html']):
                 continue
 
-            curr_dir = os.getcwd()
+            curr_dir = os.getcwd().replace('\\', '/')
             url = f"file://{curr_dir}/{filename}"
             print(f"  - Fetching {url} ... ", end='')
             browser.get(url)
