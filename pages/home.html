@@ -44,8 +44,8 @@
                     <div class="text">
                         <div class="name">Bernie Huang</div>
                         <div class="title">
-                            Co-Founder<br>
-                            Contributor of SearXNG<br>
+                            <span>Co-Founder</span>
+                            <span>Contributor of SearXNG</span>
                         </div>
                     </div>
                 </div>
@@ -53,10 +53,10 @@
             <script>
 
                 [
-                    ['nathan', 'Nathan Chen', 'Co-Founder'],
-                    ['carmen', 'Carmen Zhang', 'Co-Founder'],
-                    ['richard', 'Richard Zhu', 'Co-Founder'],
-                    ['leo', 'Leo Yang', 'Co-Founder'],
+                    ['nathan', 'Nathan Chen', ['Co-Founder']],
+                    ['carmen', 'Carmen Zhang', ['Co-Founder']],
+                    ['richard', 'Richard Zhu', ['Co-Founder']],
+                    ['leo', 'Leo Yang', ['Co-Founder']],
                 ].forEach(pe => {
                     html = `
                     <div class="p">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="text">
                                 <div class="name">${pe[1]}</div>
-                                <div class="title">${pe[2]}</div>
+                                <div class="title"><span>${pe[2].join('</span><span>')}</span></div>
                             </div>
                         </div>
                     </div>
