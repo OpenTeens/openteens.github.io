@@ -48,6 +48,7 @@ body {
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
+	background-color: black;
 
 	--content-max-width: 64rem;
 }
@@ -378,6 +379,11 @@ div.p {
 	clear: both;
 }
 
+#peoples>.p>.home-p.show{
+	opacity: 1;
+	transform: translateY(0);
+}
+
 #peoples>.p>.home-p {
 	user-select: none;
 
@@ -389,12 +395,14 @@ div.p {
 	text-decoration: none;
 	cursor: pointer;
 
-	padding: 5px;
+	padding: 0;
 	border-radius: .75rem;
 	text-indent: 0;
-
 	overflow: hidden;
-	padding: 0;
+
+	opacity: 0;
+	transform: translateY(30px);
+	transition: all .6s cubic-bezier(0.16,1,0.3,1);
 
 	--content-width: min(var(--content-max-width), 90vw);
 

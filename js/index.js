@@ -32,3 +32,24 @@ function btn_redirect(e) {
 	var name = e.target.innerText.trim().toLowerCase();
 	redirect(name);
 }
+
+/* Auto Display */
+window.loaders.push(function () {
+	function checkBoxes() {
+		var triggerBottom = window.innerHeight * 5 / 6;
+
+		var boxes = document.querySelectorAll('#peoples>.p>.home-p');
+		boxes.forEach(box => {
+			var boxTop = box.children[0].getBoundingClientRect().top;
+
+			if (boxTop < triggerBottom)
+				box.classList.add('show');
+			else
+				box.classList.remove('show');
+		})
+	}
+
+	console.log(document.body.innerHTML)
+	window.addEventListener('scroll', checkBoxes);
+	checkBoxes();
+});
