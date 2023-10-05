@@ -7,7 +7,7 @@
     users = {
         "黄锦源": {
             name: ["黄锦源", "Bernie J. Huang"],
-            title: "OpenTeens Co-founder",
+            title: "Co-founder",
             cate: ["cofounder"],
             img: "img/bernie.jpg",
             desc: "开源项目SearXNG贡献者\n哈佛大学cs50/ddb50.vsix贡献者",
@@ -17,7 +17,7 @@
         },
         "陈广宇": {
             name: ["陈广宇", "Nathan Chen"],
-            title: "OpenTeens Co-founder",
+            title: "Co-founder",
             cate: ["cofounder"],
             img: "img/nathan.jpg",
             desc: "",
@@ -27,7 +27,7 @@
         },
         "Carmen": {
             name: ["Carmen", "Carmen Zhang"],
-            title: "OpenTeens Co-founder",
+            title: "Co-founder",
             cate: ["cofounder"],
             img: "img/carmen.jpg",
             desc: "",
@@ -37,7 +37,7 @@
         },
         "Richard": {
             name: ["Richard", "Richard"],
-            title: "OpenTeens Co-founder",
+            title: "Co-founder",
             cate: ["cofounder"],
             img: "img/richard.jpg",
             desc: "",
@@ -47,7 +47,7 @@
         },
         "杨臻": {
             name: ["杨臻", "Leo Yang"],
-            title: "OpenTeens Co-founder",
+            title: "Co-founder",
             cate: ["cofounder"],
             img: "img/leo.jpg",
             desc: "",
@@ -55,9 +55,17 @@
                 "&#xF09b;": "//github.com/Potato1145141919810",  // github
             }
         },
+        "卢思江": {
+            name: ["卢思江", "Jack Lu"],
+            title: "Member",
+            cate: ["member"],
+            img: "img/jack.jpg",
+            desc: "",
+            links: {}
+        },
     }
 
-    var categories = ["cofounder"];
+    var categories = ["cofounder", "member"];
     var sorted_by_cate = {};
     for (user_name in users) {
         var u = users[user_name];
@@ -203,6 +211,10 @@
         &>.social-media-links {
             margin: 10px;
             display: inline-block;
+        }
+
+        &>p {
+            text-align: left;
         }
     }
 
