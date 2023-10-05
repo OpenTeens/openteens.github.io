@@ -49,7 +49,6 @@ window.loaders.push(function () {
 		})
 	}
 
-	console.log(document.body.innerHTML)
 	window.addEventListener('scroll', checkBoxes);
 	checkBoxes();
 });
