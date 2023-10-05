@@ -10,7 +10,7 @@
             title: "Co-founder",
             cate: ["cofounder"],
             img: "img/bernie.jpg",
-            desc: "开源项目SearXNG贡献者\n哈佛大学cs50/ddb50.vsix贡献者",
+            desc: " - 开源项目 SearXNG 贡献者\n - 哈佛大学 cs50/ddb50.vsix 贡献者",
             links: {
                 "&#xF09b;": "//github.com/BernieHuang2008",  // github
             }
@@ -61,7 +61,6 @@
             cate: ["member"],
             img: "img/jack.jpg",
             desc: "",
-            links: {}
         },
     }
 
@@ -113,16 +112,19 @@
             user_div.appendChild(profile);
             // role
             var role = document.createElement("p");
+            role.classList.add("role");
             role.innerText = u.title;
             user_div.appendChild(role);
             // desc
             var desc = document.createElement("p");
+            desc.classList.add("desc");
             desc.innerText = u.desc;
             user_div.appendChild(desc);
             // append the user
             div.appendChild(user_div);
         })
         document.querySelector(".content").appendChild(div);
+        document.querySelector(".content").appendChild(document.createElement("hr"));
     })
 </script>
 
@@ -191,6 +193,23 @@
         }
     }
 
+    .user-card {
+        &>.role {
+            text-align: center;
+            margin: 7px;
+            margin-top: 0;
+            color: #8a939e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            font-weight: 450;
+            line-height: 1.5;
+        }
+
+        &>.desc {
+            text-align: left;
+        }
+    }
+
     .user-card>.profile {
         user-select: none;
         text-align: center;
@@ -211,10 +230,6 @@
         &>.social-media-links {
             margin: 10px;
             display: inline-block;
-        }
-
-        &>p {
-            text-align: left;
         }
     }
 
