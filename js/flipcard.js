@@ -9,7 +9,10 @@ $$(".flipcard-container").forEach(ele => {
     ele.firstElementChild.nextElementSibling.classList.add("follow");
 
     // listener
-    ele.addEventListener("click", () => {
+    ele.addEventListener("click", (e) => {
+        if (e.target.parentElement.tagName == 'A')
+            return;
+
         curr_front = ele.querySelector(".front");
         curr_follow = ele.querySelector(".follow");
         curr_fall = ele.querySelector(".fall");
