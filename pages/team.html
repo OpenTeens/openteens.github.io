@@ -2,6 +2,9 @@
     <div class="content"></div>
 </center>
 
+<link rel="stylesheet" href="/css/flipcard.css">
+<script src="/js/flipcard.js" data-last-load></script>
+
 <!-- Generate user cards -->
 <script>
     users = {
@@ -79,10 +82,13 @@
 
     categories.forEach(c => {
         var div = document.createElement("div");
+        div.classList.add("team-category");
+        div.classList.add("flipcard-container");
         div.setAttribute("data-user-type", c);
         sorted_by_cate[c].forEach(u => {
             var user_div = document.createElement("div");
             user_div.classList.add("user-card");
+            user_div.classList.add("flipcard");
             // profile
             var profile = document.createElement("div");
             profile.classList.add("profile");
@@ -128,46 +134,6 @@
     })
 </script>
 
-<!-- Auto display -->
-<script>
-    window.addEventListener('DOMContentLoaded', function () {
-        checkVisibility();
-    });
-
-    window.addEventListener('scroll', function () {
-        checkVisibility();
-    });
-
-    function checkVisibility() {
-        var scrollTop = document.documentElement.scrollTop;
-        var windowHeight = window.innerHeight;
-        var founders = document.querySelectorAll('.founder');
-
-        founders.forEach(function (founder) {
-            var top = founder.getBoundingClientRect().top;
-            if (scrollTop + windowHeight - top >= 100) {
-                founder.style.opacity = '1';
-            }
-        });
-    }
-
-    var boxes = document.querySelectorAll('.user-card');
-    window.addEventListener('scroll', checkBoxes);
-    checkBoxes();
-    function checkBoxes() {
-        var triggerBottom = window.innerHeight * 5 / 6;
-
-        boxes.forEach(box => {
-            var boxTop = box.getBoundingClientRect().top;
-
-            if (boxTop < triggerBottom)
-                box.classList.add('show');
-            else
-                box.classList.remove('show');
-        })
-    }
-</script>
-
 <style>
     .content {
         margin-top: 60px;
@@ -176,21 +142,27 @@
 
     .user-card {
         max-width: 64rem;
+        width: max(max-content, 64rem, 90%);
         margin: 20px;
         padding: 20px;
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 40px;
+        padding-right: 40px;
         border-radius: 6px;
+        margin-left: 0;
+    margin-right: 0;
+    }
 
-        color: white;
-        background-color: rgba(128, 128, 128, 0.5);
-
-        opacity: 0;
-        transition: opacity .6s ease;
-
-        &.show {
-            opacity: 1;
-        }
+    .user-card:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: #ff5f57;
+        box-shadow: 18px 0 0 #ffbd2b, 36px 0 0 #2ecc71;
     }
 
     .user-card {

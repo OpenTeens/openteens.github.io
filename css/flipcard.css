@@ -1,0 +1,66 @@
+.flipcard-container {
+    position: relative;
+    user-select: none;
+    color: white;
+    max-height: 100vh;
+    position: relative;
+    width: 40%;
+
+    height: 430px;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.flipcard {
+    background: #2a2a32;
+    border-radius: 10px;
+    box-shadow: 4px 4px 20px 5px rgba(0,0,0,.3);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+    min-height: 360px;
+    opacity: 0;
+    padding: 15px 13px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    -webkit-transform: rotate(6deg);
+    transform: rotate(6deg);
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+    transition: all .5s ease-in-out;
+    width: 90%;
+    z-index: 1;
+    margin-top: 50px !important;
+}
+
+.flipcard.front {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    z-index: 10;
+}
+
+.flipcard.follow {
+    box-shadow: none;
+    opacity: .3;
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+    z-index: 8;
+}
+
+.flipcard.fall {
+    -webkit-animation: falldown 1s ease-in-out;
+    animation: falldown 1s ease-in-out;
+    box-shadow: none;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom rights;
+    z-index: 12;
+}

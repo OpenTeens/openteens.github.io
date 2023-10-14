@@ -46,9 +46,9 @@
 				return "";
 			});
 
-			// extract js files
+			// [extract js files] general
 			res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
-				HTTP_GET(match, s => eval(s));
+				HTTP_GET(match, s=>eval(s));
 				return "";
 			});
 
@@ -57,6 +57,12 @@
 
 			// run scripts
 			eval(scripts);
+
+			// [extract js files] last-load
+			res = res.replaceAll(/<script src="(.+?)" data-last-load><\/script>/g, function (_, match) {
+				HTTP_GET(match, s=>eval(s));
+				return "";
+			})
 
 			if (backup_loader_length < window.loaders.length) {
 				// have custom loader
