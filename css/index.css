@@ -480,9 +480,15 @@ iframe.bg {
 	z-index: -2;
 }
 
-.social-media-links {
+.sponsor {
 	text-align: center;
 	margin-bottom: 20px;
+	user-select: none;
+}
+
+.social-media-links {
+	text-align: center;
+	margin-bottom: 15px;
 	user-select: none;
 }
 
