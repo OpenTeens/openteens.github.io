@@ -9,7 +9,7 @@
 
 <script>
 	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
-	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search"];
+	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search", "schedule"];
 	var i = pages.indexOf(pageName);
 
 	if (i == -1) { // not found
@@ -29,6 +29,7 @@
 		"bernie": "Bernie Huang",
 		"signup": "Signup",
 		"search": `"${query}" - OpenTeens Search`,
+		"schedule": "OpenTeens's Schedule"
 	}
 	document.querySelector("title").innerText = page_title[pages[i]];
 
@@ -125,6 +126,9 @@
 				<!-- <li>
 					<button>Signup</button>
 				</li> -->
+				<li>
+					<button>Schedule</button>
+				</li>
 			</ul>
 		</nav>
 	</div>
