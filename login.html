@@ -1,81 +1,86 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>OpenTeens</title>
-		<link rel="stylesheet" href="css/login.css" />
-	</head>
-	<body>
-		<div id="welcome">
-			<div id="terminal">
-				<h2 id="slogan" ia-group="welcome"></h2>
-				
-				<div id="typing-welcome" ia-group="welcome"
-					active="typing_effect($('#typing-welcome'), 'Greetings from the Community! \n Let us know who you are ...')">
-				</div>
-				
-				<div ia-group="welcome" active="$('#login-username').focus()">
-					<br>
-					<span class="formtitle">Enter your email</span>
-					<br>
-					<span class="inputhint">→</span><input id="login-username" class="login">
-					<button id="username-submit" class="login" disabled_ onclick="if(!this.disabled) interactive('welcome')">Continue</button>
-				</div>
-				
-				<div ia-group="welcome" active="$('#login-pwd').focus()">
-					<br>
-					<span class="formtitle">Create a password</span>
-					<br>
-					<span class="inputhint">→</span><input id="login-pwd" class="login" type="password">
-					<button id="username-submit" class="login" disabled_ onclick="if(!this.disabled) interactive('welcome')">Continue</button>
-				</div>
+
+<head>
+	<meta charset="utf-8" />
+	<title>OpenTeens</title>
+	<link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+	<div id="welcome">
+		<div id="terminal">
+			<h2 id="slogan" ia-group="welcome"></h2>
+
+			<div id="typing-welcome" ia-group="welcome"
+				active="typing_effect($('#typing-welcome'), 'Greetings from the Community! \n Let us know who you are ...')">
+			</div>
+
+			<div ia-group="welcome" active="$('#login-username').focus()">
+				<br>
+				<span class="formtitle">Enter your email</span>
+				<br>
+				<span class="inputhint">→</span><input id="login-username" class="login">
+				<button id="username-submit" class="login" disabled_
+					onclick="if(!this.disabled) interactive('welcome')">Continue</button>
+			</div>
+
+			<div ia-group="welcome" active="$('#login-pwd').focus()">
+				<br>
+				<span class="formtitle">Create a password</span>
+				<br>
+				<span class="inputhint">→</span><input id="login-pwd" class="login" type="password">
+				<button id="username-submit" class="login" disabled_
+					onclick="if(!this.disabled) interactive('welcome')">Continue</button>
 			</div>
 		</div>
-	</body>
-	<script src="js/sel.js"></script>
+	</div>
+</body>
+<script src="js/sel.js"></script>
 
-	<script>
-		function interactive(group, index) {
-			if (index == undefined) {
-				// unspecified item
-				items = $$(`[ia-group="${group}"]`);
-				for (var i = 0; i < items.length; i++) {
-					item = items[i];
-					if (item.style.display != "block") {
-						item.style.display = "block";
-						eval(item.getAttribute("active"));
-						return;
-					}
+<script>
+	function interactive(group, index) {
+		if (index == undefined) {
+			// unspecified item
+			items = $$(`[ia-group="${group}"]`);
+			for (var i = 0; i < items.length; i++) {
+				item = items[i];
+				if (item.style.display != "block") {
+					item.style.display = "block";
+					eval(item.getAttribute("active"));
+					return;
 				}
-			} else {
-				// specified item
-				var item = $$(`[ia-group="${group}"]`)[index];
-				item.style.display = "block";
-				eval(item.getAttribute("active"));
 			}
+		} else {
+			// specified item
+			var item = $$(`[ia-group="${group}"]`)[index];
+			item.style.display = "block";
+			eval(item.getAttribute("active"));
 		}
+	}
 
-		function typing_effect(div, text) {
-			function helper(i) {
-				if (i >= text.length) {
-					interactive(div.getAttribute('ia-group'));
-					return "Completed.";
-				}
-
-				if (text[i - 1] == ' ')
-					div.innerText += ' ' + text[i];
-				else
-					div.innerText += text[i];
-
-				setTimeout(helper, 50, i + 1);
+	function typing_effect(div, text) {
+		function helper(i) {
+			if (i >= text.length) {
+				interactive(div.getAttribute('ia-group'));
+				return "Completed.";
 			}
 
-			helper(0);
+			if (text[i - 1] == ' ')
+				div.innerText += ' ' + text[i];
+			else
+				div.innerText += text[i];
+
+			setTimeout(helper, 50, i + 1);
 		}
 
-		window.onload = function() {
-			interactive("welcome", 0);
-			typing_effect($("#slogan"), "Empower Teenagers Through Open Source.")
-		}
-	</script>
+		helper(0);
+	}
+
+	window.onload = function () {
+		interactive("welcome", 0);
+		typing_effect($("#slogan"), "Empower Teenagers Through Open Source.")
+	}
+</script>
+
 </html>
