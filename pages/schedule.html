@@ -12,15 +12,27 @@
         
         <!-- Event 1 to 3: Left Side -->
         <div class="event left">
-            <div class="dot"></div>
+            <div class="dot">
+                <div class="date-label">
+                    <div class="date-frame">
+                        <span class="date-text">10/28/2023</span>
+                    </div>
+                </div>
+            </div>
             <div class="event-frame">
                 <h3>COSCon'23</h3>
-                <p>yyy</p>
-                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">abc.com</a>
+                <p>我们将出席2023成都开源年会，举办收个青少年分论坛！</p>
+                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">kaiyuanshe.cn/activity/recVnSz8ru</a>
             </div>
         </div>
         <div class="event">
-            <div class="dot"></div>
+            <div class="dot">
+                <div class="date-label">
+                    <div class="date-frame">
+                        <span class="date-text">10/28/2023</span>
+                    </div>
+                </div>
+            </div>
             <div class="event-frame">
                 <h3>xxx</h3>
                 <p>yyy</p>
@@ -28,7 +40,13 @@
             </div>
         </div>
         <div class="event">
-            <div class="dot"></div>
+            <div class="dot">
+                <div class="date-label">
+                    <div class="date-frame">
+                        <span class="date-text">10/28/2023</span>
+                    </div>
+                </div>
+            </div>
             <div class="event-frame">
                 <h3>xxx</h3>
                 <p>yyy</p>
@@ -86,7 +104,7 @@
         left: 20%;
         width: 5px;
         height: 100%;
-        background-color: transparent;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
         border-left: 2px solid rgba(255, 255, 255, 0.5);
         border-right: 2px solid rgba(255, 255, 255, 0.5);
         transition: left 0.5s ease-out;
@@ -101,6 +119,27 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    .date-label {
+        position: absolute;
+        left: -450%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .date-frame {
+        border: 1px solid white;
+        padding: 4px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .date-text {
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
     }
 
     .event {
