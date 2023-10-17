@@ -482,6 +482,7 @@ iframe.bg {
 
 .sponsor {
 	text-align: center;
+	filter: brightness(50%);
 	margin-bottom: 20px;
 	user-select: none;
 }
