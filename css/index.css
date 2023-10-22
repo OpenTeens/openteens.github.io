@@ -589,3 +589,22 @@ footer {
 		text-align: left;
 	}
 }
+
+a.teens-camp-button {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	color: #9ca3af;
+	text-align: center;
+}
+
+a.teens-camp-button-before {
+	display: none;
+}
+
+a.teens-camp-button>li>button:hover {
+	color: var(--menu-text-hv);
+	background-color: var(--menu-hv-color);
+}
