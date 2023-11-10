@@ -49,7 +49,7 @@
             <div class="event-frame">
                 <h3>Simple Git Workshop</h3>
                 <p>我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！</p>
-                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">具体链接尚未生成。</a>
+                <a href="#">具体链接尚未生成。</a>
             </div>
         </div>
         <div class="event">
@@ -102,6 +102,10 @@
 
 <style>
     body {
+        --color-grey-dark: #4d4d4d;
+        --color-grey-mid: #606060;
+        --color-grey-light: #929292;
+
         background-color: black;
         color: white;
         font-family: Arial, sans-serif;
@@ -122,9 +126,12 @@
         left: 20%;
         width: 5px;
         height: 100%;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
-        border-left: 2px solid rgba(255, 255, 255, 0.5);
-        border-right: 2px solid rgba(255, 255, 255, 0.5);
+        background: linear-gradient(to bottom, var(--color-grey-light) 0%, #0000 100%);
+
+        --timeline-border-style: 2px solid var(--color-grey-dark);
+        border-left: var(--timeline-border-style);
+        border-right: var(--timeline-border-style);
+
         transition: left 0.5s ease-out;
         z-index: 1;
         backdrop-filter: blur(3px);
@@ -134,7 +141,7 @@
         width: 20px;
         height: 20px;
         border: 2px solid white;
-        background-color: rgba(255, 255, 255, 0.5);  /* semi-transparent white */
+        background-color: var(--color-grey-light);  /* semi-transparent white */
         border-radius: 50%;
         position: absolute;
         left: 50%;
@@ -153,7 +160,7 @@
         border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, 0.3);
+        background: var(--color-grey-mid);
         backdrop-filter: blur(3px);
     }
 
@@ -175,7 +182,7 @@
         border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, 0.3);
+        background: var(--color-grey-mid);
         backdrop-filter: blur(3px);
     }
 
