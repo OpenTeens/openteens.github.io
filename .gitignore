@@ -1,0 +1,6 @@
+.ignor
+.ignor/
+.ignor/*
+.vscode/*
+.htaccess
+nginx.htaccess
