@@ -467,7 +467,9 @@ footer {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	color: gray
+	color: gray;
+	cursor: pointer;
+	user-select: none;
 }
 
 iframe.bg {
