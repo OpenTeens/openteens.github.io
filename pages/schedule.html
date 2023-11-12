@@ -17,7 +17,7 @@
             <div class="dot">
                 <div class="date-label">
                     <div class="date-frame">
-                        <span class="date-text">10/28/2023</span>
+                        <span class="date-text">10 / 28 / 2023</span>
                     </div>
                 </div>
                 <div class="location-label">
@@ -29,7 +29,7 @@
             <div class="event-frame">
                 <h3>COSCon'23</h3>
                 <p>我们将出席2023成都开源年会，举办首个青少年分论坛！</p>
-                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">kaiyuanshe.cn/activity/recVnSz8ru</a>
+                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">kaiyuanshe.cn</a>
             </div>
             </a>
         </div>
@@ -37,7 +37,7 @@
             <div class="dot">
                 <div class="date-label">
                     <div class="date-frame">
-                        <span class="date-text">11/28/2023</span>
+                        <span class="date-text">11 / 28 / 2023</span>
                     </div>
                 </div>
                 <div class="location-label">
@@ -151,13 +151,13 @@
     
     .date-label {
         position: absolute;
-        left: -450%;
+        left: -527%;
         top: 50%;
         transform: translateY(-50%);
     }
 
     .date-frame {
-        border: 1px solid white;
+        border: 1px solid rgba(255, 255, 255, 0.206);
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -179,7 +179,7 @@
     }
 
     .location-frame {
-        border: 1px solid white;
+        border: 1px solid rgba(255, 255, 255, 0.206);
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -204,7 +204,7 @@
         width: 60%;
         background-color: rgba(255, 255, 255, 0.206);
         padding: 20px;
-        border: 2px solid white;
+        border: 2px solid rgba(255, 255, 255, 0.206);
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         margin-left: calc(50% + 15px);
         border-radius: 10px;
@@ -212,13 +212,20 @@
     }
 
     .event-frame h3 {
-        margin-top: 0;
+        margin-top: 7px;
+        font-size: 1.4rem;
+    }
+    
+    .event-frame p {
+        margin-top: 7px;
+        font-size: 1.05rem;
     }
 
     .event-frame a {
-        color: cyan;
+        color: rgb(0, 149, 255);
         text-decoration: none;
-        transition: color 0.3s;
+        text-decoration: underline;
+        transition: color .2s;
     }
 
     .event-frame a:hover {

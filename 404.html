@@ -256,6 +256,7 @@
 		async function getDailyTricksFromLocalstorage(){
 			var tricks = localStorage.getItem("daily-tricks");
 			var time = localStorage.getItem("daily-tricks-time");
+
 			if (tricks == null || time == null || time > tricks.length){
 				// re fetch
 				tricks = await getDailyTricksFromNetwork();
