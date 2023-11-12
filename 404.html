@@ -226,10 +226,6 @@
 		async function updateDailyTricks() {
 			try {
 				var tricks = getDailyTricksFromLocalstorage();
-				if (tricks === null){
-					tricks = await getDailyTricksFromNetwork();
-					storeIntoLocalstorage(tricks);
-				}
 				const trick_id = Math.floor(Math.random() * tricks.length) || 1; // 0 is the example.
 				const trick = tricks[trick_id];
 				document.getElementById("daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
@@ -250,7 +246,8 @@
 
 		function storeIntoLocalstorage(data){
 			// 设置daily-tricks-time为0，主要是为了统计读取localstorage的次数
-			// 如果time>20表示有可能已经过期，需要重新抓取，节省资源
+			// 如果 time>tricks.length 表示有可能已经过期，需要重新抓取，节省资源
+			// 注意：time是次数的意思，不是时间
 			localStorage.setItem("daily-tricks", JSON.stringify(data));
 			localStorage.setItem("daily-tricks-time", 0);
 		}
@@ -259,11 +256,11 @@
 		function getDailyTricksFromLocalstorage(){
 			var tricks = localStorage.getItem("daily-tricks");
 			var time = localStorage.getItem("daily-tricks-time");
-			if (tricks == null || time == null){
-				return null;
-			}
-			if (time > 20){
-				return null;
+			if (tricks == null || time == null || time > tricks.length){
+				// re fetch
+				tricks = await getDailyTricksFromNetwork();
+				storeIntoLocalstorage(tricks);
+				time = 0;
 			}
 			localStorage.setItem("daily-tricks-time", parseInt(time) + 1);
 			return JSON.parse(tricks);
