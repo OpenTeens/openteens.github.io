@@ -258,8 +258,10 @@
 			var time = localStorage.getItem("daily-tricks-time");
 			if (tricks == null || time == null || time > tricks.length){
 				// re fetch
-				tricks = await getDailyTricksFromNetwork();
-				storeIntoLocalstorage(tricks);
+				(async () => {
+					tricks = await getDailyTricksFromNetwork();
+					storeIntoLocalstorage(tricks);
+				})();
 				time = 0;
 			}
 			localStorage.setItem("daily-tricks-time", parseInt(time) + 1);
