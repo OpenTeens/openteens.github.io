@@ -225,7 +225,7 @@
 		$("#daily-tricks").innerText = "Daily Tricks ...";
 		async function updateDailyTricks() {
 			try {
-				var tricks = getDailyTricksFromLocalstorage();
+				var tricks = await getDailyTricksFromLocalstorage();
 				const trick_id = Math.floor(Math.random() * tricks.length) || 1; // 0 is the example.
 				const trick = tricks[trick_id];
 				document.getElementById("daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
@@ -253,7 +253,7 @@
 		}
 
 		// 从localstorage中读取daily-tricks
-		function getDailyTricksFromLocalstorage(){
+		async function getDailyTricksFromLocalstorage(){
 			var tricks = localStorage.getItem("daily-tricks");
 			var time = localStorage.getItem("daily-tricks-time");
 			if (tricks == null || time == null || time > tricks.length){
