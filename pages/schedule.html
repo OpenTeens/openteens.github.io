@@ -9,96 +9,112 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="timeline-container">
+    <div class="timeline-container" id="timeline-container">
         <div class="timeline-line"></div>
-        
-        <!-- Event 1 to 3: Left Side -->
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">10 / 28 / 2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">成都</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>COSCon'23</h3>
-                <p>我们将出席2023成都开源年会，举办首个青少年分论坛！</p>
-                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">kaiyuanshe.cn</a>
-            </div>
-            </a>
-        </div>
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">11 / 28 / 2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">深圳</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>Simple Git Workshop</h3>
-                <p>我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！</p>
-                <a href="#">具体链接尚未生成。</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">11/xx/2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">线上</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
     </div>
+
+    <div class="future-events">
+        <h2>Future Events</h2>
+        <div class="event" id="future-event"></div>
+    </div>
+
+    <div class="past-events">
+        <h2>Past Events</h2>
+        <button id="toggle-past-events">Show Past Events</button>
+        <div class="past-events-content" id="past-events-content"></div>
+    </div>
+
+    <script>
+        const events = [
+            {
+                date: "10/28/2023",
+                location: "成都",
+                title: "COSCon'23",
+                description: "我们将出席2023成都开源年会，举办首个青少年分论坛！",
+                link: "https://kaiyuanshe.cn/activity/recVnSz8ru"
+            },
+            {
+                date: "11/28/2023",
+                location: "深圳",
+                title: "Simple Git Workshop",
+                description: "我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！",
+                link: "#"
+            }
+        ];
+
+        events.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
+        });
+
+        const futureEventDiv = document.getElementById('future-event');
+        const pastEventsContent = document.getElementById('past-events-content');
+        const togglePastEventsButton = document.getElementById('toggle-past-events');
+
+        const futureEvents = [];
+        const pastEvents = [];
+
+        events.forEach(event => {
+            const eventDate = new Date(event.date);
+            if (eventDate > new Date()) {
+                futureEvents.push(event);
+            } else {
+                pastEvents.push(event);
+            }
+        });
+
+        futureEvents.forEach(event => {
+            const eventDiv = createEventElement(event);
+            futureEventDiv.appendChild(eventDiv);
+        });
+
+        togglePastEventsButton.addEventListener('click', () => {
+            if (pastEventsContent.style.display === 'none' || pastEventsContent.style.display === '') {
+                pastEventsContent.style.display = 'block';
+                togglePastEventsButton.textContent = 'Hide Past Events';
+            } else {
+                pastEventsContent.style.display = 'none';
+                togglePastEventsButton.textContent = 'Show Past Events';
+            }
+        });
+
+        pastEvents.forEach(event => {
+            const eventDiv = createEventElement(event);
+            pastEventsContent.appendChild(eventDiv);
+        });
+
+        function createEventElement(event) {
+            const eventDiv = document.createElement('div');
+            eventDiv.classList.add('event');
+
+            eventDiv.innerHTML = `
+                <div class="dot">
+                    <div class="date-label">
+                        <div class="date-frame">
+                            <span class="date-text">${event.date}</span>
+                        </div>
+                    </div>
+                    <div class="location-label">
+                        <div class="location-frame">
+                            <span class="location-text">${event.location}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-frame">
+                    <h3>${event.title}</h3>
+                    <p>${event.description}</p>
+                    <a href="${event.link}">${event.link}</a>
+                </div>
+            `;
+
+            return eventDiv;
+        }
+    </script>
 </body>
 </html>
+
+
 
 <style>
     body {
@@ -111,30 +127,6 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-    }
-
-    .timeline-container {
-        position: relative;
-        width: 80%;
-        max-width: 1000px;
-        margin: 50px auto;
-    }
-
-    .timeline-line {
-        position: absolute;
-        top: 0;
-        left: 20%;
-        width: 5px;
-        height: 100%;
-        background: linear-gradient(to bottom, var(--color-grey-light) 0%, #0000 100%);
-
-        --timeline-border-style: 2px solid var(--color-grey-dark);
-        border-left: var(--timeline-border-style);
-        border-right: var(--timeline-border-style);
-
-        transition: left 0.5s ease-out;
-        z-index: 1;
-        backdrop-filter: blur(3px);
     }
 
     .dot {
@@ -151,13 +143,13 @@
     
     .date-label {
         position: absolute;
-        left: -527%;
+        left: -450%;
         top: 50%;
         transform: translateY(-50%);
     }
 
     .date-frame {
-        border: 1px solid rgba(255, 255, 255, 0.206);
+        border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -179,7 +171,7 @@
     }
 
     .location-frame {
-        border: 1px solid rgba(255, 255, 255, 0.206);
+        border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -204,7 +196,7 @@
         width: 60%;
         background-color: rgba(255, 255, 255, 0.206);
         padding: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.206);
+        border: 2px solid white;
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         margin-left: calc(50% + 15px);
         border-radius: 10px;
@@ -212,23 +204,63 @@
     }
 
     .event-frame h3 {
-        margin-top: 7px;
-        font-size: 1.4rem;
-    }
-    
-    .event-frame p {
-        margin-top: 7px;
-        font-size: 1.05rem;
+        margin-top: 0;
     }
 
     .event-frame a {
-        color: rgb(0, 149, 255);
+        color: cyan;
         text-decoration: none;
-        text-decoration: underline;
-        transition: color .2s;
+        transition: color 0.3s;
     }
 
     .event-frame a:hover {
         color: white;
+    }
+    .future-events {
+        position: relative;
+        top: 4rem;
+        text-align: center;
+        margin: 20px 0; 
+    }
+
+    .future-events .event {
+        left: -14.8%; 
+        position: relative;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 20px 0;
+    }
+    .future-events h2 {
+        color: white;
+    }
+
+    .past-events {
+        position: relative;
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .past-events h2 {
+        color: white;
+    }
+
+    #toggle-past-events {
+        background-color: var(--color-grey-mid);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    #toggle-past-events:hover {
+        background-color: var(--color-grey-light);
+    }
+    .past-events-content {
+        display: none;
+        margin-top: 20px;
     }
 </style>
