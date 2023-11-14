@@ -14,12 +14,12 @@
     </div>
 
     <div class="future-events">
-        <h2>Future Events</h2>
+        <h2><span class="event-heading">Future Events</span></h2>
         <div class="event" id="future-event"></div>
     </div>
 
     <div class="past-events">
-        <h2>Past Events</h2>
+        <h2></h2>
         <button id="toggle-past-events">Show Past Events</button>
         <div class="past-events-content" id="past-events-content"></div>
     </div>
@@ -33,6 +33,13 @@
                 title: "COSCon'23",
                 description: "我们将出席2023成都开源年会，举办首个青少年分论坛！",
                 link: "https://kaiyuanshe.cn/activity/recVnSz8ru"
+            },
+            {
+                date: "11/28/2023",
+                location: "深圳",
+                title: "Simple Git Workshop",
+                description: "我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！",
+                link: "#"
             },
             {
                 date: "11/28/2023",
@@ -137,23 +144,52 @@
         padding: 0;
     }
 
+    .timeline-container {
+        position: relative;
+        width: 80%;
+        max-width: 1000px;
+        margin: 50px auto;
+    }
+
+    .timeline-line {
+        position: absolute;
+        top: 0;
+        left: 20%;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--color-grey-light) 0%, #0000 100%);
+
+        --timeline-border-style: 2px solid var(--color-grey-dark);
+        border-left: var(--timeline-border-style);
+        border-right: var(--timeline-border-style);
+
+        transition: left 0.5s ease-out;
+        z-index: 1;
+        backdrop-filter: blur(3px);
+    }
+
     .dot {
         width: 20px;
         height: 20px;
         border: 2px solid white;
-        background-color: var(--color-grey-light);  /* semi-transparent white */
+        background-color: var(--color-grey-light);  
         border-radius: 50%;
         position: absolute;
-        left: 50%;
+        left: 49.7%;
         transform: translateX(-50%);
         z-index: 2;
     }
     
-    .date-label {
+    .date-label{
         position: absolute;
-        left: -450%;
         top: 50%;
+        left: -500%;
         transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2); 
+        border: 1px solid white;
+        padding: 4px;
+        border-radius: 5px;
+        backdrop-filter: blur(3px);
     }
 
     .date-frame {
@@ -173,9 +209,14 @@
 
     .location-label {
         position: absolute;
-        left: -240%;
-        top: 250%;
+        left: -290%;
+        top: 330%;
         transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2); 
+        border: 1px solid white;
+        padding: 4px;
+        border-radius: 5px;
+        backdrop-filter: blur(3px);
     }
 
     .location-frame {
@@ -194,14 +235,14 @@
     }
 
     .event {
-        left: -29.5%;
+        left: -25%;
         position: relative;
         width: 100%;
         padding: 20px 0;
     }
 
     .event-frame {
-        width: 60%;
+        width: 45%;
         background-color: rgba(255, 255, 255, 0.206);
         padding: 20px;
         border: 2px solid white;
@@ -232,12 +273,20 @@
     }
 
     .future-events .event {
-        left: -14.8%; 
+        left: -12.5%; 
         position: relative;
         width: 100%;
         padding-top: 10px;
         padding-bottom: 20px 0;
     }
+
+    .event-heading {
+        border: 2px solid white; 
+        padding: 5px 10px;
+        border-radius: 5px; 
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
     .future-events h2 {
         color: white;
     }
