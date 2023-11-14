@@ -3,102 +3,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timeline</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="timeline-container">
+    <div class="timeline-container" id="timeline-container">
         <div class="timeline-line"></div>
-        
-        <!-- Event 1 to 3: Left Side -->
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">10 / 28 / 2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">成都</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>COSCon'23</h3>
-                <p>我们将出席2023成都开源年会，举办首个青少年分论坛！</p>
-                <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">kaiyuanshe.cn</a>
-            </div>
-            </a>
-        </div>
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">11 / 28 / 2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">深圳</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>Simple Git Workshop</h3>
-                <p>我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！</p>
-                <a href="#">具体链接尚未生成。</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot">
-                <div class="date-label">
-                    <div class="date-frame">
-                        <span class="date-text">11/xx/2023</span>
-                    </div>
-                </div>
-                <div class="location-label">
-                    <div class="location-frame">
-                        <span class="location-text">线上</span>
-                    </div>
-                </div>
-            </div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="dot"></div>
-            <div class="event-frame">
-                <h3>xxx</h3>
-                <p>yyy</p>
-                <a href="http://abc.com">abc.com</a>
-            </div>
-        </div>
     </div>
+
+    <div class="future-events">
+        <h2><span class="event-heading">Future Events</span></h2>
+        <div class="event" id="future-event"></div>
+    </div>
+
+    <div class="past-events">
+        <h2></h2>
+        <button id="toggle-past-events">Show Past Events</button>
+        <div class="past-events-content" id="past-events-content"></div>
+    </div>
+
+    <script>
+        // Events
+        const events = [
+            {
+                date: "10/28/2023",
+                location: "成都",
+                title: "COSCon'23",
+                description: "我们将出席2023成都开源年会，举办首个青少年分论坛！",
+                link: "https://kaiyuanshe.cn/activity/recVnSz8ru"
+            },
+            {
+                date: "11/28/2023",
+                location: "深圳",
+                title: "Simple Git Workshop",
+                description: "我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！",
+                link: "#"
+            },
+            {
+                date: "11/28/2023",
+                location: "深圳",
+                title: "Simple Git Workshop",
+                description: "我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！",
+                link: "#"
+            }
+            // Add more events here
+        ];
+
+        // Sort events in reverse chronological order
+        events.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
+        });
+
+        const futureEventDiv = document.getElementById('future-event');
+        const pastEventsContent = document.getElementById('past-events-content');
+        const togglePastEventsButton = document.getElementById('toggle-past-events');
+
+        // Separate future and past events
+        const futureEvents = [];
+        const pastEvents = [];
+
+        events.forEach(event => {
+            const eventDate = new Date(event.date);
+            if (eventDate > new Date()) {
+                futureEvents.push(event);
+            } else {
+                pastEvents.push(event);
+            }
+        });
+
+        // Create and append future event elements
+        futureEvents.forEach(event => {
+            const eventDiv = createEventElement(event);
+            futureEventDiv.appendChild(eventDiv);
+        });
+
+        // Toggle past events visibility
+        togglePastEventsButton.addEventListener('click', () => {
+            if (pastEventsContent.style.display === 'none' || pastEventsContent.style.display === '') {
+                pastEventsContent.style.display = 'block';
+                togglePastEventsButton.textContent = 'Hide Past Events';
+            } else {
+                pastEventsContent.style.display = 'none';
+                togglePastEventsButton.textContent = 'Show Past Events';
+            }
+        });
+
+        // Create and append past event elements
+        pastEvents.forEach(event => {
+            const eventDiv = createEventElement(event);
+            pastEventsContent.appendChild(eventDiv);
+        });
+
+        // Helper function to create event elements
+        function createEventElement(event) {
+            const eventDiv = document.createElement('div');
+            eventDiv.classList.add('event');
+
+            eventDiv.innerHTML = `
+                <div class="dot">
+                    <i class="fa fa-gear fa-spin" style="font-size:24px"></i>
+                    <div class="date-label">
+                        <div class="date-frame">
+                            <span class="date-text">${event.date}</span>
+                        </div>
+                    </div>
+                    <div class="location-label">
+                        <div class="location-frame">
+                            <span class="location-text">${event.location}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-frame">
+                    <h3>${event.title}</h3>
+                    <p>${event.description}</p>
+                    <a href="${event.link}">${event.link=='#'?"链接暂未生成":event.link}</a>
+                </div>
+            `;
+
+            return eventDiv;
+        }
+    </script>
 </body>
 </html>
+
 
 <style>
     body {
@@ -140,24 +172,31 @@
     .dot {
         width: 20px;
         height: 20px;
-        border: 2px solid white;
-        background-color: var(--color-grey-light);  /* semi-transparent white */
-        border-radius: 50%;
         position: absolute;
-        left: 50%;
+        left: 49.7%;
         transform: translateX(-50%);
         z-index: 2;
     }
+
+    .dot i.fa-gear {
+        font-size: 20px; /* Adjust the size of the gear icon */
+        color: white; /* Set the color of the gear icon */
+    }
     
-    .date-label {
+    .date-label{
         position: absolute;
-        left: -527%;
         top: 50%;
+        left: -500%;
         transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2); 
+        border: 1px solid white;
+        padding: 4px;
+        border-radius: 5px;
+        backdrop-filter: blur(3px);
     }
 
     .date-frame {
-        border: 1px solid rgba(255, 255, 255, 0.206);
+        border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -173,13 +212,18 @@
 
     .location-label {
         position: absolute;
-        left: -240%;
-        top: 250%;
+        left: -290%;
+        top: 330%;
         transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2); 
+        border: 1px solid white;
+        padding: 4px;
+        border-radius: 5px;
+        backdrop-filter: blur(3px);
     }
 
     .location-frame {
-        border: 1px solid rgba(255, 255, 255, 0.206);
+        border: 1px solid white;
         padding: 4px;
         border-radius: 5px;
         background: var(--color-grey-mid);
@@ -194,17 +238,17 @@
     }
 
     .event {
-        left: -29.5%;
+        left: -25%;
         position: relative;
         width: 100%;
         padding: 20px 0;
     }
 
     .event-frame {
-        width: 60%;
+        width: 45%;
         background-color: rgba(255, 255, 255, 0.206);
         padding: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.206);
+        border: 2px solid white;
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         margin-left: calc(50% + 15px);
         border-radius: 10px;
@@ -212,23 +256,71 @@
     }
 
     .event-frame h3 {
-        margin-top: 7px;
-        font-size: 1.4rem;
-    }
-    
-    .event-frame p {
-        margin-top: 7px;
-        font-size: 1.05rem;
+        margin-top: 0;
     }
 
     .event-frame a {
-        color: rgb(0, 149, 255);
+        color: cyan;
         text-decoration: none;
-        text-decoration: underline;
-        transition: color .2s;
+        transition: color 0.3s;
     }
 
     .event-frame a:hover {
         color: white;
+    }
+    .future-events {
+        position: relative;
+        top: 4rem;
+        text-align: center;
+        margin: 20px 0; 
+    }
+
+    .future-events .event {
+        left: -12.5%; 
+        position: relative;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 20px 0;
+    }
+
+    .event-heading {
+        border: 2px solid white; 
+        padding: 5px 10px;
+        border-radius: 5px; 
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .future-events h2 {
+        color: white;
+    }
+
+    .past-events {
+        position: relative;
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .past-events h2 {
+        color: white;
+    }
+
+    #toggle-past-events {
+        background-color: var(--color-grey-mid);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    #toggle-past-events:hover {
+        background-color: var(#92929297);
+    }
+    .past-events-content {
+        display: none;
+        margin-top: 20px;
     }
 </style>
