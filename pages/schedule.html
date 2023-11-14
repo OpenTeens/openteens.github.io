@@ -25,6 +25,7 @@
     </div>
 
     <script>
+        // Events
         const events = [
             {
                 date: "10/28/2023",
@@ -40,8 +41,10 @@
                 description: "我们将通过浅显易懂的语言讲述Git中最核心的功能——分支和rebase操作。这一线下workshop也将面向所有人，无论你是否拥有编程基础，我们都欢迎你参加！",
                 link: "#"
             }
+            // Add more events here
         ];
 
+        // Sort events in reverse chronological order
         events.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
@@ -52,6 +55,7 @@
         const pastEventsContent = document.getElementById('past-events-content');
         const togglePastEventsButton = document.getElementById('toggle-past-events');
 
+        // Separate future and past events
         const futureEvents = [];
         const pastEvents = [];
 
@@ -64,11 +68,13 @@
             }
         });
 
+        // Create and append future event elements
         futureEvents.forEach(event => {
             const eventDiv = createEventElement(event);
             futureEventDiv.appendChild(eventDiv);
         });
 
+        // Toggle past events visibility
         togglePastEventsButton.addEventListener('click', () => {
             if (pastEventsContent.style.display === 'none' || pastEventsContent.style.display === '') {
                 pastEventsContent.style.display = 'block';
@@ -79,11 +85,13 @@
             }
         });
 
+        // Create and append past event elements
         pastEvents.forEach(event => {
             const eventDiv = createEventElement(event);
             pastEventsContent.appendChild(eventDiv);
         });
 
+        // Helper function to create event elements
         function createEventElement(event) {
             const eventDiv = document.createElement('div');
             eventDiv.classList.add('event');
