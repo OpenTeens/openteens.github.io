@@ -40,29 +40,16 @@
             </div>
         </div>
         <div id="peoples">
-            <div class="p">
-                <div class="home-p">
-                    <div class="avatar-div">
-                        <div class="avatar-border"></div>
-                        <div class="avatar" style="--img-url: url('/img/bernie.jpg')"></div>
-                    </div>
-                    <div class="text">
-                        <div class="name">Bernie Huang</div>
-                        <div class="title">
-                            <span>Co-Founder</span>
-                            <span>Contributor of SearXNG</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <script>
-
                 [
-                    ['nathan', 'Nathan Chen', ['Co-Founder']],
-                    ['carmen', 'Carmen Zhang', ['Co-Founder']],
-                    ['richard', 'Richard Zhu', ['Co-Founder']],
-                    ['leo', 'Leo Yang', ['Co-Founder']],
-                    ['jack', 'Jack Lu', ['Member']],
+                    ['nathan', 'Nathan Chen'],
+                    ['bernie', 'Bernie Huang'],
+                    ['leo_huo', 'Leo Huo'],
+                    ['jack', 'Jack Lu'],
+                    ['xu', 'George Xu'],
+                    ['carmen', 'Carmen Zhang'],
+                    ['richard', 'Richard Zhu'],
+                    ['leo_yang', 'Leo Yang'],
                 ].forEach(pe => {
                     html = `
                     <div class="p">
@@ -73,7 +60,6 @@
                             </div>
                             <div class="text">
                                 <div class="name">${pe[1]}</div>
-                                <div class="title"><span>${pe[2].join('</span><span>')}</span></div>
                             </div>
                         </div>
                     </div>
