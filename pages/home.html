@@ -56,7 +56,7 @@
                 ['leo_yang', 'Leo Yang']
             ]
             function showPeople(lst, title) {
-                $("#peoples").innerHTML += `<h3>{title}</h3>`;
+                $("#peoples").innerHTML += `<div class="p"><h3>${title}</h3></div>`;
                 lst.forEach(pe => {
                     html = `
                     <div class="p">
