@@ -97,6 +97,17 @@
         })
     }
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    shuffleArray(sorted_by_cate["cof"]);
+    shuffleArray(sorted_by_cate["core"]);
+    shuffleArray(sorted_by_cate["member"]);
+
     categories.forEach(c => {
         var div = document.createElement("div");
         div.classList.add("team-category");
