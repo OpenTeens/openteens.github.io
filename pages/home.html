@@ -41,17 +41,22 @@
         </div>
         <div id="peoples">
             <script>
-                [
-
-                    ['bernie', 'Bernie Huang'],
-                    ['nathan', 'Nathan Chen'],
-                    ['leo_huo', 'Leo Huo'],
-                    ['xu', 'George Xu'],
-                    // ['jack', 'Jack Lu'],
-                    // ['carmen', 'Carmen Zhang'],
-                    // ['richard', 'Richard Zhu'],
-                    // ['leo_yang', 'Leo Yang'],
-                ].forEach(pe => {
+            showPeople([
+                ['bernie', 'Bernie Huang'],
+                ['nathan', 'Nathan Chen']
+            ].sort(() => Math.random-0.5));
+            showPeople([
+                ['leo_huo', 'Leo Huo'],
+                ['xu', 'George Xu']
+            ]);
+            [
+                ['jack', 'Jack Lu'],
+                ['carmen', 'Carmen Zhang'],
+                ['richard', 'Richard Zhu'],
+                ['leo_yang', 'Leo Yang']
+            ]
+            function showPeople(lst) {
+                lst.forEach(pe => {
                     html = `
                     <div class="p">
                         <div class="home-p">
@@ -67,6 +72,7 @@
                     `
                     $("#peoples").innerHTML += html;
                 })
+            }
             </script>
         </div>
         <a href="https://kaiyuanshe.cn/activity/recVnSz8ru">
