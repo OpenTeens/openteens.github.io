@@ -610,3 +610,8 @@ a.teens-camp-button>li>button:hover {
 	color: var(--menu-text-hv);
 	background-color: var(--menu-hv-color);
 }
+
+a.navv{
+	text-decoration: none;
+	color:#9ca3af;
+}
