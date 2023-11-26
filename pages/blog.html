@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .blog-post {
+            background-color: #444; 
+            border-radius: 10px; 
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 50%;
+            box-sizing: border-box;
+            text-decoration: none; 
+            color: white; 
+        }
+
+        .blog-post img {
+            float: left;
+            margin-right: 15px;
+            border-radius: 5px;
+            width: 10%;
+        }
+
+        .blog-post h2 {
+            margin-top: 0;
+        }
+
+        .blog-post p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="blog-container"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var blogs = [
+                { title: "Blog1", description: "Description1", imageUrl: "/img/Blogpg/1.jpg", date: "2023-11-25", link: "https://www.youtube.com/" },
+                { title: "Blog2", description: "Description2", imageUrl: "/img/Blogpg/2.jpg", date: "2023-11-20", link: "page2.html" }
+            ];
+
+            blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            blogs.forEach(function(blog, index) {
+                var blogPost = document.createElement("a");
+                blogPost.className = "blog-post";
+                blogPost.href = blog.link; 
+                blogPost.innerHTML = `
+                    <img src="${blog.imageUrl}" alt="${blog.title}">
+                    <h2>${blog.title}</h2>
+                    <p>${blog.description}</p>
+                    <p><small>${blog.date}</small></p>
+                `;
+                document.getElementById("blog-container").appendChild(blogPost);
+            });
+        });
+    </script>
+</body>
+</html>
