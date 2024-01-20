@@ -12,7 +12,7 @@
             name: ["黄锦源", "Bernie J. Huang"],
             title: "Co-founder",
             cate: ["core", "cof"],
-            img: "img/bernie.jpg",
+            img: "bernie.jpg",
             desc: " - 开源项目 SearXNG 贡献者\n - 哈佛大学 cs50/ddb50.vsix 贡献者",
             links: {
                 "&#xF09b;": "//github.com/BernieHuang2008",  // github
@@ -21,8 +21,8 @@
         "陈广宇": {
             name: ["陈广宇", "Nathan Chen"],
             title: "Co-founder",
-            cate: ["core","cof"],
-            img: "img/nathan.jpg",
+            cate: ["core", "cof"],
+            img: "nathan.jpg",
             desc: "",
             links: {
                 "&#xF09b;": "//github.com/Nathancgy",  // github
@@ -32,7 +32,7 @@
             name: ["Carmen", "Carmen Zhang"],
             title: "Co-founder",
             cate: ["cof"],
-            img: "img/carmen.jpg",
+            img: "carmen.jpg",
             desc: "",
             links: {
                 "&#xF09b;": "//github.com/CJWZhang",  // github
@@ -42,7 +42,7 @@
             name: ["霍梓烨", "Leo Huo"],
             title: "Core Member",
             cate: ["core"],
-            img: "img/leo_huo.jpg",
+            img: "leo_huo.jpg",
             desc: "",
             links: {
                 "&#xF09b;": "https://github.com/lanbinshijie",  // github
@@ -52,21 +52,21 @@
             name: ["卢思江", "Jack Lu"],
             title: "Core Member",
             cate: ["member"],
-            img: "img/jack.jpg",
+            img: "jack.jpg",
             desc: "",
         },
         "许焕桦": {
             name: ["许焕桦", "George Xu"],
             title: "Core Member",
             cate: ["core"],
-            img: "img/xu.jpg",
+            img: "xu.jpg",
             desc: "",
         },
         "杨臻": {
             name: ["杨臻", "Leo Yang"],
             title: "Co-founder",
             cate: ["cof"],
-            img: "img/leo_yang.jpg",
+            img: "leo_yang.jpg",
             desc: "",
             links: {
                 "&#xF09b;": "//github.com/Potato1145141919810",  // github
@@ -76,7 +76,7 @@
             name: ["Richard", "Richard"],
             title: "Co-founder",
             cate: ["cof"],
-            img: "img/richard.jpg",
+            img: "richard.jpg",
             desc: "",
             links: {
                 "&#xF09b;": "//github.com/Richard-31415",  // github
@@ -122,7 +122,7 @@
             profile.classList.add("profile");
             // profile img
             var img = document.createElement("img");
-            img.setAttribute("src", u.img);
+            img.setAttribute("src", "/img/p/" + u.img);
             profile.appendChild(img);
             profile.appendChild(document.createElement("br"));
             // profile name
@@ -177,7 +177,7 @@
         padding-right: 40px;
         border-radius: 6px;
         margin-left: 0;
-    margin-right: 0;
+        margin-right: 0;
     }
 
     .user-card:before {
