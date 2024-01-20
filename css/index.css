@@ -241,6 +241,10 @@ hr {
 	}
 }
 
+.logo {
+	user-select: none;
+}
+
 .logo.big {
 	max-width: 70vw;
 	max-height: 70vh;
