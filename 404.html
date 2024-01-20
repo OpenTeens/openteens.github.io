@@ -8,7 +8,12 @@
 </head>
 
 <script>
-	var pageName = window.location.href.split('/')[3].trim().toLowerCase();
+	var pageName = window.location.href
+		.split('/')[3]
+		.split('#')[0]
+		.split('?')[0]
+		.trim()
+		.toLowerCase();
 	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search", "schedule"];
 	var i = pages.indexOf(pageName);
 
@@ -20,16 +25,16 @@
 	}
 
 	const page_title = {
-		"about": "About OpenTeens",
+		"about": "About Us",
 		"404.html": "404 - Page Not Found",
 		"home": "OpenTeens",
-		"museum": "OpenTeens Museum",
-		"projects": "OpenTeens Projects",
-		"team": "About Our Team",
+		"museum": "Museum",
+		"projects": "Projects",
+		"team": "Our Team",
 		"bernie": "Bernie Huang",
 		"signup": "Signup",
-		"search": `"${query}" - OpenTeens Search`,
-		"schedule": "OpenTeens's Schedule"
+		"search": `${query} - Search Results`,
+		"schedule": "Schedule"
 	}
 	document.querySelector("title").innerText = page_title[pages[i]] + " | OpenTeens";
 
@@ -49,7 +54,7 @@
 
 			// [extract js files] general
 			res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
-				HTTP_GET(match, s=>eval(s));
+				HTTP_GET(match, s => eval(s));
 				return "";
 			});
 
@@ -61,7 +66,7 @@
 
 			// [extract js files] last-load
 			res = res.replaceAll(/<script src="(.+?)" data-last-load><\/script>/g, function (_, match) {
-				HTTP_GET(match, s=>eval(s));
+				HTTP_GET(match, s => eval(s));
 				return "";
 			})
 
@@ -124,7 +129,8 @@
 					<button>Projects</button>
 				</li>
 				<li>
-					<button><a href="/schedule" class="teens-camp-button">Teens Camp</a></li></button>
+					<button><a href="/schedule" class="teens-camp-button">Teens Camp</a>
+				</li></button>
 				</li>
 			</ul>
 		</nav>
@@ -212,8 +218,9 @@
 	</div>
 	<div class="sponsor">
 		Sponsors
-    <br>
-		<a href="//culiu-tech.com"><img src="https://culiu-tech.com/assets/img/logo-transparent-mini.png" style="max-height: 2rem;"></a>
+		<br>
+		<a href="//culiu-tech.com"><img src="https://culiu-tech.com/assets/img/logo-transparent-mini.png"
+				style="max-height: 2rem;"></a>
 	</div>
 
 	<hr>
@@ -244,7 +251,7 @@
 			return tricks;
 		}
 
-		function storeIntoLocalstorage(data){
+		function storeIntoLocalstorage(data) {
 			// 设置daily-tricks-time为0，主要是为了统计读取localstorage的次数
 			// 如果 time>tricks.length 表示有可能已经过期，需要重新抓取，节省资源
 			// 注意：time是次数的意思，不是时间
@@ -253,11 +260,11 @@
 		}
 
 		// 从localstorage中读取daily-tricks
-		async function getDailyTricksFromLocalstorage(){
+		async function getDailyTricksFromLocalstorage() {
 			var tricks = localStorage.getItem("daily-tricks");
 			var time = localStorage.getItem("daily-tricks-time");
 
-			if (tricks == null || time == null || time > tricks.length){
+			if (tricks == null || time == null || time > tricks.length) {
 				// re fetch
 				tricks = await getDailyTricksFromNetwork();
 				storeIntoLocalstorage(tricks);
