@@ -241,6 +241,11 @@ hr {
 	}
 }
 
+.logo.big {
+	max-width: 70vw;
+	max-height: 70vh;
+}
+
 .headline {
 	width: calc(100% - 50px);
 	min-height: 400px;
