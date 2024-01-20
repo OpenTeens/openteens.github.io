@@ -8,6 +8,7 @@ help:
 	@echo revidx.build.js      - build js search script only
 	@echo revidx.build.commit  - build and commit
 	@echo revidx.commit        - commit the builds
+	@echo logo.build		   - build logo
 
 .PHONY: revidx
 revidx: revidx.extract revidx.build
@@ -36,3 +37,5 @@ revidx.commit:
 	git add search/*
 	git commit -m "[build] /revidx: update"
 
+logo.build: img/logo/build/*
+	python img/logo/build.py

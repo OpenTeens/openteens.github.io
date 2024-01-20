@@ -10,9 +10,10 @@ SOURCE = "2024.png"
 
 TEMPLATES = [
     # ["template name", [(x0, y0), (x1, y1)]]
+    ["circle.png", [(0, 0), (677, 677)]],
     ["full_white.png", [(200, 50), (840, 710)]],
     ["with_text.png", [(42, 20), (540, 526)]],
-    ["circle_white.png", [(0, -7), (677, 670)]],
+    ["circle_white.png", [(0, 0), (677, 677)]],
 ]
 
 ## ================ END CONFIGS ================ ##
@@ -26,7 +27,7 @@ for template in TEMPLATES:
     # read template
     template_img = Image.open(os.path.join(cwd, "templates", name))
     template_img = template_img.convert("RGBA")
-    
+
     if coords is not None:
         # get coords
         p0, p1 = coords
