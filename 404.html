@@ -5,8 +5,8 @@
 	</head>
 	<body>
 		<script>
-		var aka=window.location.href.substring(window.location.href.indexOf("?")+1,window.location.href.length)
-		var name=aka.substring(0,aka.indexOf('?')==-1?aka.length:aka.indexOf('?')).toLowerCase();
+		var aka=window.location.href.substring(window.location.href.lastIndexOf("/")+1,window.location.href.length)
+		var name=aka.substring(0,aka.indexOf('?')==-1?aka.length:aka.indexOf('?')).toLowerCase().trim();
 		if(name=="tc2.meetinglink")			hf="https://meeting.tencent.com/dw/MWYcn1zdCEwt";
 
 		if(!hf)   document.write("Redirect Failed: invalid URI");
