@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Redirecting ...</title>
+	</head>
+	<body>
+		<script>
+		var aka=window.location.href.substring(window.location.href.indexOf("?")+1,window.location.href.length)
+		var name=aka.substring(0,aka.indexOf('?')==-1?aka.length:aka.indexOf('?')).toLowerCase();
+		if(name=="tc2.meetinglink")			hf="https://meeting.tencent.com/dw/MWYcn1zdCEwt";
+
+		if(!hf)   document.write("Redirect Failed: invalid URI");
+    else
+		  window.location.href=hf+(aka.indexOf('?')==-1?'':aka.substring(aka.indexOf('?'),aka.length));
+		</script>
+	
+
+</body></html>
