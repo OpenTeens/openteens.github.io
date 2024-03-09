@@ -633,3 +633,14 @@ a.teens-camp-button>li>button:hover {
 	color: var(--menu-text-hv);
 	background-color: var(--menu-hv-color);
 }
+
+.announcement {
+    background-color: rgba(255, 0, 0, 0.5); /* Half-transparent red background */
+    color: white; /* White text */
+    text-align: center; /* Center the text */
+    padding: 10px 0; /* Some padding for better readability */
+    font-weight: bold; /* Make the text bold */
+    position: relative; /* Ensure it's positioned correctly */
+    z-index: 100; /* Make sure it's above other content if needed */
+    width: 100%; /* Full width */
+}
