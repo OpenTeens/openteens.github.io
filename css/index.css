@@ -342,7 +342,7 @@ div.p {
 	& .avatar-border {
 		position: absolute;
 
-		background-image: linear-gradient(166deg, #ff0000 0%, #de6222ad 50%, #c1c70b 100%);
+		background-image: linear-gradient(166deg, #ff507a, #7d51df 33%, #2265de 66%, #0bc786);
 		border-radius: .75rem;
 		transition: transform 1s cubic-bezier(.45, .13, .1, 1);
 		transform: scale(.96);
@@ -360,7 +360,7 @@ div.p {
 		position: absolute;
 		border-radius: .75rem;
 
-		background-image: var(--img-url), linear-gradient(166deg, #95203c 0%, #df515161 33%, #de6222ad 66%, #c70b0bc9 100%);
+		background-image: var(--img-url), linear-gradient(166deg, #ff507a 0%, #7d51df 33%, #2265de 66%, #0bc786 100%);
 		filter: grayscale(1) brightness(1);
 		transition-duration: .4s;
 		transform: scale(1);
