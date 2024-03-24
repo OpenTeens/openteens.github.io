@@ -1,17 +1,17 @@
 body {
-	--bg-color: #271811;
-	--toolbar-bg-color: #271911aa;
-	--toolbar-bd-color: #fbfaf90f;
-	--menu-hv-color: #513d37;
-	--menu-hv-outline: #95270e;
+	--bg-color: #111827;
+	--toolbar-bg-color: #111827AA;
+	--toolbar-bd-color: #f9fafb0f;
+	--menu-hv-color: #374151;
+	--menu-hv-outline: #3b82f6;
 	--menu-text-color: #9ca3af;
 	--menu-text-hv: #9ca3af;
-	--bd-color: #95270e41;
+	--bd-color: #374151;
 	--text-color: white;
-	--a-color: #d94a16;
-	--a-hv-color: #e37b55;
-	--btn-bd-color: #674242;
-	--bg2-color: #1b0303;
+	--a-color: #4b9de0;
+	--a-hv-color: #7dbae9;
+	--btn-bd-color: #30363d;
+	--bg2-color: #010409;
 	--btn-bd-hv-color: #ffffff88;
 	--hr-side-color: transparent;
 	--hr-center-color: #909090;
