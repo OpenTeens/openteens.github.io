@@ -241,13 +241,6 @@ hr {
 	}
 }
 
-h1 {
-	background: linear-gradient(#f9d689 0%, #c3a96d 100%);
-	background-clip: text;
-	color: transparent;
-	line-height: 1;
-}
-
 .logo {
 	user-select: none;
 }
@@ -311,12 +304,6 @@ div.p {
 	max-height: max(100vh, 400px);
 	background-color: var(--bd-color);
 	border-radius: 6px;
-}
-
-#peoples>h3 {
-	color: #c3a96d;
-	border-top: 1px solid #c3a96d;
-	border-bottom: 1px solid #c3a96d;
 }
 
 #peoples>.p {
@@ -443,7 +430,6 @@ div.p {
 	}
 
 	& .name {
-		color: white;
 		margin: 7px;
 		margin-top: 1rem;
 		margin-bottom: 0.25rem;
