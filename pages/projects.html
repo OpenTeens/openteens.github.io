@@ -81,6 +81,10 @@
     .completed {
         --state-color: #cfac74;
     }
+
+    .recruiting{
+        --state-color: #fffeda;
+    }
 </style>
 
 <div id="content">
@@ -107,7 +111,12 @@
 
 
     window.loadProjects = function () {
-
+        addProj("https://github.com/OpenTeens/Ideas", "recruiting", `
+        We are recruiting new projects! If you have any ideas, please contact us on <a href="https://openteens.org/img/qrcode.jpg">WeChat Official Account</a>!
+        `)
+        addProj("https://github.com/Nathancgy/Shrimp_food_detection", "completed", `
+        This project aims to optimize feeding practices in shrimp farming by automating the detection and visualization of leftover food in shrimp ponds using advanced computer vision techniques, which will greatly make shrimp farmer's daily work more convenient. It is developed together by OpenTeens members in BIPH.
+        `)
         addProj("https://github.com/BernieHuang2008/mini-search", "developing", `
         This is a mini search engine that use the same way to search as google and other engines, but very tiny. You can even used it on your OWN website!
 
