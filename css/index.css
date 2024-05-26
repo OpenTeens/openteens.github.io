@@ -1,17 +1,17 @@
 body {
-	--bg-color: #271811;
-	--toolbar-bg-color: #271911aa;
-	--toolbar-bd-color: #fbfaf90f;
-	--menu-hv-color: #513d37;
-	--menu-hv-outline: #95270e;
+	--bg-color: #111827;
+	--toolbar-bg-color: #111827AA;
+	--toolbar-bd-color: #f9fafb0f;
+	--menu-hv-color: #374151;
+	--menu-hv-outline: #3b82f6;
 	--menu-text-color: #9ca3af;
 	--menu-text-hv: #9ca3af;
-	--bd-color: #95270e41;
+	--bd-color: #374151;
 	--text-color: white;
-	--a-color: #d94a16;
-	--a-hv-color: #e37b55;
-	--btn-bd-color: #674242;
-	--bg2-color: #1b0303;
+	--a-color: #4b9de0;
+	--a-hv-color: #7dbae9;
+	--btn-bd-color: #30363d;
+	--bg2-color: #010409;
 	--btn-bd-hv-color: #ffffff88;
 	--hr-side-color: transparent;
 	--hr-center-color: #909090;
@@ -241,13 +241,6 @@ hr {
 	}
 }
 
-h1 {
-	background: linear-gradient(#f9d689 0%, #c3a96d 100%);
-	background-clip: text;
-	color: transparent;
-	line-height: 1;
-}
-
 .logo {
 	user-select: none;
 }
@@ -263,7 +256,7 @@ h1 {
 	margin-bottom: 50px;
 	padding: 20px;
 
-	background-color: #ff9d8733;
+	background-color: #fff3;
 	backdrop-filter: blur(10px);
 	border-radius: 6px;
 }
@@ -313,12 +306,6 @@ div.p {
 	border-radius: 6px;
 }
 
-#peoples>h3 {
-	color: #c3a96d;
-	border-top: 1px solid #c3a96d;
-	border-bottom: 1px solid #c3a96d;
-}
-
 #peoples>.p {
 	display: inline-block;
 	margin: 0;
@@ -355,7 +342,7 @@ div.p {
 	& .avatar-border {
 		position: absolute;
 
-		background-image: linear-gradient(166deg, #ff0000 0%, #de6222ad 50%, #c1c70b 100%);
+		background-image: linear-gradient(166deg, #ff507a, #7d51df 33%, #2265de 66%, #0bc786);
 		border-radius: .75rem;
 		transition: transform 1s cubic-bezier(.45, .13, .1, 1);
 		transform: scale(.96);
@@ -373,7 +360,7 @@ div.p {
 		position: absolute;
 		border-radius: .75rem;
 
-		background-image: var(--img-url), linear-gradient(166deg, #95203c 0%, #df515161 33%, #de6222ad 66%, #c70b0bc9 100%);
+		background-image: var(--img-url), linear-gradient(166deg, #ff507a 0%, #7d51df 33%, #2265de 66%, #0bc786 100%);
 		filter: grayscale(1) brightness(1);
 		transition-duration: .4s;
 		transform: scale(1);
@@ -443,7 +430,6 @@ div.p {
 	}
 
 	& .name {
-		color: white;
 		margin: 7px;
 		margin-top: 1rem;
 		margin-bottom: 0.25rem;
