@@ -6,7 +6,7 @@ cwd = os.path.join(os.getcwd(), "img", "logo")
 
 ## ================== CONFIGS ================== ##
 
-SOURCE = "2024.png"
+SOURCE = "v1.1.png"
 
 TEMPLATES = [
     # ["template name", [(x0, y0), (x1, y1)]]
