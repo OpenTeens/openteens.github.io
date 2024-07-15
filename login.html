@@ -132,6 +132,7 @@
 				if (response.code == 0) {
 					// Login successful
 					document.cookie = `ot_auth_token=${response.token}; expires=${new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toUTCString()}`;
+					document.cookie = `ot_username=${username}; expires=${new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toUTCString()}`;
 					window.location.href = "/";
 				} else {
 					// Login failed
