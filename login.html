@@ -145,7 +145,7 @@
 
 		// Send login request
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "https://api.openteens.org:5000/auth/login", true);
+		xhr.open("POST", "https://api.openteens.org/auth/login", true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
