@@ -13,7 +13,7 @@ TEMPLATES = [
     ["circle.png", [(0, 0), (677, 677)]],
     ["full_white.png", [(200, 50), (840, 710)]],
     ["with_text.png", [(42, 20), (540, 526)]],
-    ["circle_white.png", [(0, 0), (677, 677)]],
+    ["circle_white.png", [(2, -4), (679, 671)]],
     ["circle-1080.png", [(0, 0), (1080, 1080)]],
 ]
 
