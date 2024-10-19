@@ -8,6 +8,7 @@
 </head>
 
 <script>
+	if (window.location.pathname == "/") window.location.pathname = "/home"; 
 	var pageName = window.location.href
 		.split('/')[3]
 		.split('#')[0]
