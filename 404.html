@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Loading ... | OpenTeens</title>
+</head>
+
+<script>
+	if (window.location.pathname == "/") window.location.pathname = "/home"; 
+	var pageName = window.location.href
+		.split('/')[3]
+		.split('#')[0]
+		.split('?')[0]
+		.trim()
+		.toLowerCase();
+	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search", "schedule"];
+	var i = pages.indexOf(pageName);
+
+	if (i == -1) { // not found
+		i = 0;	// 404
+	}
+	if (pageName == "search") {
+		var query = decodeURI(window.location.href.split('/')[4].trim().toLowerCase());
+	}
+
+	const page_title = {
+		"about": "About Us",
+		"404.html": "404 - Page Not Found",
+		"home": "OpenTeens",
+		"museum": "Museum",
+		"projects": "Projects",
+		"team": "Our Team",
+		"bernie": "Bernie Huang",
+		"signup": "Signup",
+		"search": `${query} - Search Results`,
+		"schedule": "Schedule"
+	}
+	document.querySelector("title").innerText = page_title[pages[i]] + " | OpenTeens";
+
+	// load.
+	window.loaders = [];
+	window.loaders.push(function () {
+		var source_name = "/pages/" + pages[i] + ".html";
+		HTTP_GET(source_name, res => {
+			var backup_loader_length = window.loaders.length;
+
+			// extract scripts
+			var scripts = "";
+			res = res.replaceAll(/<script>([\s\S]+?)<\/script>/g, function (_, match) {
+				scripts += "\n" + match;
+				return "";
+			});
+
+			// [extract js files] general
+			res = res.replaceAll(/<script src="(.+?)"><\/script>/g, function (_, match) {
+				HTTP_GET(match, s => eval(s));
+				return "";
+			});
+
+			// load page
+			$("#container").innerHTML = res;
+
+			// run scripts
+			eval(scripts);
+
+			// [extract js files] last-load
+			res = res.replaceAll(/<script src="(.+?)" data-last-load><\/script>/g, function (_, match) {
+				HTTP_GET(match, s => eval(s));
+				return "";
+			})
+
+			if (backup_loader_length < window.loaders.length) {
+				// have custom loader
+				for (var i = backup_loader_length; i < window.loaders.length; i++) {
+					window.loaders[i]();
+				}
+			}
+		});
+	})
+</script>
+
+<!-- Main HTML -->
+
+<link rel="stylesheet" href="/css/index.css" />
+
+<body>
+	<div id="toolbar">
+		<nav id="navigator">
+			<a href="/" style="display: flex;align-items: center"><img src="/img/logo/build/with_text.png" class="logo"
+					height="28"></a>
+
+			<div id="search">
+				<input placeholder="Search ...">
+				<svg fill="rgb(209 213 219)" viewBox="0 0 512 512" height="18" width="18" onclick="search()">
+					<path
+						d="M443.5 420.2L336.7 312.4c20.9-26.2 33.5-59.4 33.5-95.5 0-84.5-68.5-153-153.1-153S64 132.5 64 217s68.5 153 153.1 153c36.6 0 70.1-12.8 96.5-34.2l106.1 107.1c3.2 3.4 7.6 5.1 11.9 5.1 4.1 0 8.2-1.5 11.3-4.5 6.6-6.3 6.8-16.7.6-23.3zm-226.4-83.1c-32.1 0-62.3-12.5-85-35.2-22.7-22.7-35.2-52.9-35.2-84.9 0-32.1 12.5-62.3 35.2-84.9 22.7-22.7 52.9-35.2 85-35.2s62.3 12.5 85 35.2c22.7 22.7 35.2 52.9 35.2 84.9 0 32.1-12.5 62.3-35.2 84.9-22.7 22.7-52.9 35.2-85 35.2z">
+					</path>
+				</svg>
+			</div>
+
+			<div class="menu-before">
+				<!-- build for mobile -->
+				<svg class="menu-open" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+					data-view-component="true" fill="#7d8590" style="margin: 7px;">
+					<path
+						d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z">
+					</path>
+				</svg>
+				<svg class="menu-close" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+					data-view-component="true" fill="#7d8590" style="margin: 7px; display: none;">
+					<path
+						d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z">
+					</path>
+				</svg>
+			</div>
+			<ul class="menu">
+				<li class="menu2">
+					<button>About</button>
+					<ul>
+						<li><a href="/about">About OpenTeens</a></li>
+						<li><a href="/team">Our Team</a></li>
+					</ul>
+				</li>
+				<li>
+					<button>Museum</button>
+				</li>
+				<li>
+					<button>Projects</button>
+				</li>
+				<li>
+					<button><a href="/schedule" class="teens-camp-button">Teens Camp</a>
+				</li></button>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div id="container"></div>
+
+
+	<!-- Script -->
+	<script src="/js/sel.js"></script>
+	<script src="/js/http.js"></script>
+	<script src="/js/index.js"></script>
+	<script>
+		$("#search>input").onkeydown = function (e) {
+			if (e.key == 'Enter')
+				search();
+		}
+
+		window.onload = function () {
+			// custom loaders.
+			for (var i = 0; i < window.loaders.length; i++) {
+				window.loaders[i]();
+			}
+
+			// fit nav bar
+			var navwidth = 0;
+			for (var i = 0; i < document.getElementById('navigator').children.length; i++) {
+				x = document.getElementById('navigator').children[i];
+				navwidth += x.clientWidth;
+			}
+			if (navwidth > window.innerWidth) {
+				// switch to mobile version: fold menu
+				document.body.classList.add("mobile");
+				function show_menu() {
+					$('.menu-before').onclick = hide_menu;
+					$('ul.menu').style.display = 'block';
+					$('.menu-open').style.display = 'none';
+					$('.menu-close').style.display = 'block';
+				}
+				function hide_menu() {
+					$('.menu-before').onclick = show_menu;
+					$('ul.menu').style.display = 'none';
+					$('.menu-open').style.display = 'block';
+					$('.menu-close').style.display = 'none';
+				}
+				$('.menu-before').onclick = show_menu;
+			}
+
+			// highlight nav bar
+			$("#navigator").querySelectorAll("li").forEach(li => {
+				if (li.classList.contains("menu2"))
+					return;
+				var btn = li.children[0];
+				btn.onclick = btn_redirect;
+				if (btn.innerText.toLowerCase() == pageName) {
+					li.classList.add("focus");
+				}
+			})
+		}
+	</script>
+
+	<!-- bg -->
+	<!-- <iframe src="/pages/spec/lightline.html" class="bg"></iframe> -->
+</body>
+
+<!-- Footer -->
+<footer>
+	<link rel="stylesheet" href="/css/lib/font-awesome.css">
+
+	<!-- Social Media -->
+	<div class="social-media-links">
+		Follow us on:
+		<a href="https://github.com/OpenTeens">
+			<span class="fa">&#xF09b;</span>
+		</a>
+		<a href="https://www.instagram.com/openteens_community/">
+			<span class="fa">&#xF16D;</span>
+		</a>
+		<a href="https://twitter.com/openteens_org">
+			<span class="fa">&#xF099;</span>
+		</a>
+		<a href="https://www.facebook.com/profile.php?id=61551359345685">
+			<span class="fa">&#xF09a;</span>
+		</a>
+		<a href="https://mp.weixin.qq.com/s/F0gn6i4DNxN-9AamZb7QZA">
+			<span class="fa">&#xf1d7;</span>
+		</a>
+	</div>
+	<div class="sponsor">
+		Sponsors
+		<br>
+		<a href="//culiu-tech.com"><img src="https://i.postimg.cc/cLL8XmTV/Wechat-IMG4.jpg"
+				style="max-height: 2rem;"></a>
+	</div>
+
+	<hr>
+	<div class="contact-info">
+		<p>Contact us at: <a href="mailto:official@openteens.org">official@openteens.org</a></p>
+	</div>
+	<center>
+		<p id="daily-tricks" onclick="updateDailyTricks()"></p>
+		<p>© 2024 Openteens. All rights reserved.</p>
+	</center>
+	<script>
+		$("#daily-tricks").innerText = "Daily Tricks ...";
+		async function updateDailyTricks() {
+			try {
+				var tricks = await getDailyTricksFromLocalstorage();
+				const trick_id = Math.floor(Math.random() * tricks.length) || 1; // 0 is the example.
+				const trick = tricks[trick_id];
+				document.getElementById("daily-tricks").innerText = trick.trans.cn + " —— " + trick.author;
+			} catch (error) {
+				console.error('There has been a problem with your fetch operation:', error);
+			}
+		}
+
+		async function getDailyTricksFromNetwork() {
+			const response = await fetch("https://berniehuang2008.github.io/daily-trick/tricks.json");
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const data = await response.json();
+			const tricks = data.tricks;
+			return tricks;
+		}
+
+		function storeIntoLocalstorage(data) {
+			// 设置daily-tricks-time为0，主要是为了统计读取localstorage的次数
+			// 如果 time>tricks.length 表示有可能已经过期，需要重新抓取，节省资源
+			// 注意：time是次数的意思，不是时间
+			localStorage.setItem("daily-tricks", JSON.stringify(data));
+			localStorage.setItem("daily-tricks-time", 0);
+		}
+
+		// 从localstorage中读取daily-tricks
+		async function getDailyTricksFromLocalstorage() {
+			var tricks = localStorage.getItem("daily-tricks");
+			var time = localStorage.getItem("daily-tricks-time");
+
+			if (tricks == null || time == null || time > tricks.length) {
+				// re fetch
+				tricks = await getDailyTricksFromNetwork();
+				storeIntoLocalstorage(tricks);
+				time = 0;
+			}
+			localStorage.setItem("daily-tricks-time", parseInt(time) + 1);
+			return JSON.parse(tricks);
+		}
+
+		updateDailyTricks();
+	</script>
+</footer>
+
+</html>
