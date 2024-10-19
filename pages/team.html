@@ -3,15 +3,19 @@
 </center>
 
 <link rel="stylesheet" href="/css/flipcard.css">
-<script src="/js/flipcard.js" data-last-load></script>
 
 <!-- Generate user cards -->
 <script>
+    cates = {
+        "cof": "Co-funders",
+        "core": "Core Members",
+        "mem": "Members",
+    }
     users = {
         "黄锦源": {
             name: ["黄锦源", "Bernie J. Huang"],
-            title: "Co-founder",
-            cate: ["core", "cof"],
+            title: "Co-funder",
+            cate: ["core", "cof", "mem"],
             img: "bernie.jpg",
             desc: " - 开源项目 SearXNG 贡献者\n - 哈佛大学 cs50/ddb50.vsix 贡献者",
             links: {
@@ -20,8 +24,8 @@
         },
         "陈广宇": {
             name: ["陈广宇", "Nathan Chen"],
-            title: "Co-founder",
-            cate: ["core", "cof"],
+            title: "Co-funder",
+            cate: ["core", "cof", "mem"],
             img: "nathan.jpg",
             desc: "",
             links: {
@@ -30,8 +34,8 @@
         },
         "Carmen": {
             name: ["Carmen", "Carmen Zhang"],
-            title: "Co-founder",
-            cate: ["cof"],
+            title: "Co-funder",
+            cate: ["cof", "mem"],
             img: "carmen.jpg",
             desc: "",
             links: {
@@ -41,7 +45,7 @@
         "霍梓烨": {
             name: ["霍梓烨", "Leo Huo"],
             title: "Core Member",
-            cate: ["core"],
+            cate: ["core", "mem"],
             img: "leo_huo.jpg",
             desc: "",
             links: {
@@ -51,21 +55,21 @@
         "卢思江": {
             name: ["卢思江", "Jack Lu"],
             title: "Core Member",
-            cate: ["member"],
+            cate: ["core", "mem"],
             img: "jack.jpg",
             desc: "",
         },
         "许焕桦": {
             name: ["许焕桦", "George Xu"],
             title: "Core Member",
-            cate: ["core"],
+            cate: ["core", "mem"],
             img: "xu.jpg",
             desc: "",
         },
         "杨臻": {
             name: ["杨臻", "Leo Yang"],
-            title: "Co-founder",
-            cate: ["cof"],
+            title: "Co-funder",
+            cate: ["cof", "mem"],
             img: "leo_yang.jpg",
             desc: "",
             links: {
@@ -74,8 +78,8 @@
         },
         "Richard": {
             name: ["Richard", "Richard"],
-            title: "Co-founder",
-            cate: ["cof"],
+            title: "Co-funder",
+            cate: ["cof", "mem"],
             img: "richard.jpg",
             desc: "",
             links: {
@@ -84,7 +88,7 @@
         },
     }
 
-    var categories = ["core", "cof", "member"];
+    var categories = ["core", "cof", "mem"];
     var sorted_by_cate = {};
     for (user_name in users) {
         var u = users[user_name];
@@ -97,39 +101,40 @@
         })
     }
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    }
+    // function shuffleArray(array) {
+    //     for (let i = array.length - 1; i > 0; i--) {
+    //         const j = Math.floor(Math.random() * (i + 1));
+    //         [array[i], array[j]] = [array[j], array[i]];
+    //     }
+    // }
 
-    shuffleArray(sorted_by_cate["cof"]);
-    shuffleArray(sorted_by_cate["core"]);
-    shuffleArray(sorted_by_cate["member"]);
+    // shuffleArray(sorted_by_cate["Co-funder"]);
+    // shuffleArray(sorted_by_cate["core"]);
+    // shuffleArray(sorted_by_cate["member"]);
 
     categories.forEach(c => {
         var div = document.createElement("div");
         div.classList.add("team-category");
         div.classList.add("flipcard-container");
         div.setAttribute("data-user-type", c);
+        // category title
+        var title = document.createElement("h2");
+        title.innerText = cates[c];
+        div.appendChild(title);
+        // users
         sorted_by_cate[c].forEach(u => {
+            // most parent div
             var user_div = document.createElement("div");
             user_div.classList.add("user-card");
-            user_div.classList.add("flipcard");
             // profile
             var profile = document.createElement("div");
             profile.classList.add("profile");
             // profile img
-            var img = document.createElement("img");
-            img.setAttribute("src", "/img/p/" + u.img);
-            profile.appendChild(img);
-            profile.appendChild(document.createElement("br"));
+            user_div.style.backgroundImage = `url('/img/p/${u.img}')`;
             // profile name
             var name = document.createElement("h3");
             name.innerText = u.name[0];
             profile.appendChild(name);
-            profile.appendChild(document.createElement("br"));
             // profile social-link
             if (u.links) {
                 var social_link = document.createElement("div");
@@ -168,6 +173,20 @@
         max-width: 800px;
     }
 
+    .team-category {
+        &>h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin: 20px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-align: center;
+
+            width: 100%;
+            border: solid 1px 0px white;
+        }
+    }
+
     .user-card {
         max-width: 64rem;
         width: min(64rem, calc(100% - 80px));
@@ -176,24 +195,26 @@
         padding-left: 40px;
         padding-right: 40px;
         border-radius: 6px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .user-card:before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background-color: #ff5f57;
-        box-shadow: 18px 0 0 #ffbd2b, 36px 0 0 #2ecc71;
+        margin-left: 10px;
+        margin-right: 10px;
+        flex-shrink: 0;
     }
 
     .user-card {
+        background-size: cover;
+        transition: all 0.3s;
+        position: relative;
+        height: 140px;
+        width: 100px;
+        overflow: hidden;
+
+        & * {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
         &>.role {
             text-align: center;
             margin: 7px;
@@ -208,6 +229,29 @@
         &>.desc {
             text-align: left;
         }
+    }
+
+    .user-card:hover {
+        & * {
+            opacity: 1;
+        }
+    }
+
+    .user-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+        opacity: 0;
+        transition: opacity .3s;
+        z-index: 0;
+    }
+
+    .user-card:hover::before {
+        opacity: 1;
     }
 
     .user-card>.profile {
