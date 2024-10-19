@@ -212,7 +212,7 @@ nav#navigator {
 	padding: 10px;
 }
 
-#content {
+#content, .content-box {
 	margin: auto;
 	margin-top: 5rem;
 	color: var(--text-color);
