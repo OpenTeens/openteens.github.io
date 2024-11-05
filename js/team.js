@@ -1,67 +1,121 @@
 cates = {
-    "cof": "Co-funders",
-    "core": "Core Members",
     "mem": "Members",
 }
 users = {
-    "黄锦源": {
-        name: ["黄锦源", "Bernie J. Huang"],
-        title: "Co-funder",
-        cate: ["core", "cof", "mem"],
-        img: "bernie.jpg",
-        desc: " - 开源项目 SearXNG 贡献者\n - 哈佛大学 cs50/ddb50.vsix 贡献者",
-        links: {
-            "&#xF09b;": "//github.com/BernieHuang2008",  // github
-        }
-    },
-    "陈广宇": {
-        name: ["陈广宇", "Nathan Chen"],
-        title: "Co-funder",
-        cate: ["core", "cof", "mem"],
+    "Nathan Chen": {
+        name: ["Nathan Chen", "陈广宇"],
+        title: "Initiator & Co-Founder",
+        cate: ["mem"],
         img: "nathan.jpg",
         desc: "",
         links: {
             "&#xF09b;": "//github.com/Nathancgy",  // github
         }
     },
-    "Carmen": {
-        name: ["Carmen", "Carmen Zhang"],
-        title: "Co-funder",
-        cate: ["cof", "mem"],
-        img: "carmen.jpg",
+    "许焕桦": {
+        name: ["George Xu", "许焕桦"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "xu.jpg",
         desc: "",
         links: {
-            "&#xF09b;": "//github.com/CJWZhang",  // github
+            "&#xF09b;": "",  // github
         }
     },
-    "霍梓烨": {
-        name: ["霍梓烨", "Leo Huo"],
+    "Leo Huo": {
+        name: ["Leo Huo", "霍梓烨"],
         title: "Core Member",
-        cate: ["core", "mem"],
+        cate: ["mem"],
         img: "leo_huo.jpg",
         desc: "",
         links: {
             "&#xF09b;": "https://github.com/lanbinshijie",  // github
         }
     },
+    "Polaris": {
+        name: ["Polaris", "苏昭德"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "su.png",
+        desc: "",
+        links: {
+            "&#xF09b;": "",  // github
+        }
+    },
+    "Selina": {
+        name: ["Selina", "麦湘盈"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "selina.png",
+        desc: "",
+        links: {
+            "&#xF09b;": "",  // github
+        }
+    },
+    "Bernie": {
+        name: ["Bernie Huang", "黄锦源"],
+        title: "Co-Founder",
+        cate: ["mem"],
+        img: "bernie.jpg",
+        desc: " - 开源项目 SearXNG 贡献者\n - 哈佛大学 cs50/ddb50.vsix 贡献者",
+        links: {
+            "&#xF09b;": "//github.com/BernieHuang2008",  // github
+        }
+    },
+    "Thomas": {
+        name: ["Thomas Wang", "老王"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "thomas.png",
+        desc: "",
+        links: {
+            "&#xF09b;": "//https://github.com/cxzlw",  // github
+        }
+    },
+    "Michelle": {
+        name: ["Michelle Meng", "孟思言"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "michelle.png",
+        desc: "",
+        links: {
+            "&#xF09b;": "",  // github
+        }
+    },
+    "Acbox": {
+        name: ["Acbox", "刘陈阳"],
+        title: "Core Member",
+        cate: ["mem"],
+        img: "acbox.png",
+        desc: "",
+        links: {
+            "&#xF09b;": "//https://github.com/sheepbox8646",  // github
+        }
+    },
+    "Carmen": {
+        name: ["Carmen", "Carmen Zhang"],
+        title: "Co-Founder",
+        cate: ["mem"],
+        img: "carmen.jpg",
+        desc: "",
+        links: {
+            "&#xF09b;": "//github.com/CJWZhang",  // github
+        }
+    },
     "卢思江": {
         name: ["卢思江", "Jack Lu"],
-        title: "Core Member",
-        cate: ["core", "mem"],
+        title: "Member",
+        cate: ["mem"],
         img: "jack.jpg",
         desc: "",
-    },
-    "许焕桦": {
-        name: ["许焕桦", "George Xu"],
-        title: "Core Member",
-        cate: ["core", "mem"],
-        img: "xu.jpg",
-        desc: "",
+        links: {
+            "&#xF09b;": "",  // github
+        }
     },
     "杨臻": {
         name: ["杨臻", "Leo Yang"],
-        title: "Co-funder",
-        cate: ["cof", "mem"],
+        title: "Co-Founder",
+        cate: ["mem"],
         img: "leo_yang.jpg",
         desc: "",
         links: {
@@ -70,17 +124,26 @@ users = {
     },
     "Richard": {
         name: ["Richard", "Richard"],
-        title: "Co-funder",
-        cate: ["cof", "mem"],
+        title: "Co-Founder",
+        cate: ["mem"],
         img: "richard.jpg",
         desc: "",
         links: {
             "&#xF09b;": "//github.com/Richard-31415",  // github
         }
     },
+    "wang": {
+        name: ["王靖元"],
+        title: "Member",
+        cate: ["mem"],
+        img: "wang.png",
+        desc: "",
+        links: {
+        }
+    }
 }
 
-var categories = ["core", "cof", "mem"];
+var categories = ["mem"];
 var sorted_by_cate = {};
 for (user_name in users) {
     var u = users[user_name];
@@ -93,27 +156,67 @@ for (user_name in users) {
     })
 }
 
-// function shuffleArray(array) {
-//     for (let i = array.length - 1; i > 0; i--) {
-//         const j = Math.floor(Math.random() * (i + 1));
-//         [array[i], array[j]] = [array[j], array[i]];
-//     }
-// }
+function showMemberModal(member) {
+    const modal = document.querySelector('.member-modal');
+    const content = modal.querySelector('.modal-content');
+    
+    content.querySelector('.modal-profile-img').src = `/img/p/${member.img}`;
+    content.querySelector('.modal-name').textContent = member.name.join(' / ');
+    content.querySelector('.modal-title').textContent = member.title;
+    content.querySelector('.modal-desc').textContent = member.desc || 'No description available';
+    
+    const socialDiv = content.querySelector('.modal-social');
+    socialDiv.innerHTML = '';
+    if (member.links) {
+        for (let link in member.links) {
+            const a = document.createElement('a');
+            a.href = member.links[link];
+            a.innerHTML = `<i class="fa">${link}</i>`;
+            a.target = '_blank';
+            socialDiv.appendChild(a);
+        }
+    }
+    
+    requestAnimationFrame(() => {
+        modal.style.display = 'flex';
+        requestAnimationFrame(() => {
+            modal.classList.add('active');
+        });
+    });
+    document.body.style.overflow = 'hidden';
+}
 
-// shuffleArray(sorted_by_cate["Co-funder"]);
-// shuffleArray(sorted_by_cate["core"]);
-// shuffleArray(sorted_by_cate["member"]);
+// Update modal close function
+function closeModal() {
+    const modal = document.querySelector('.member-modal');
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+document.querySelector('.modal-close').addEventListener('click', closeModal);
+
+document.querySelector('.member-modal').addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.member-modal')) {
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.querySelector('.member-modal').style.display === 'flex') {
+        closeModal();
+    }
+});
 
 categories.forEach(c => {
     var div = document.createElement("div");
     div.classList.add("team-category");
     div.classList.add("flipcard-container");
     div.setAttribute("data-user-type", c);
-    // category title
     var title = document.createElement("h2");
     title.innerText = cates[c];
-    div.appendChild(title);
-    // users
     sorted_by_cate[c].forEach(u => {
         // most parent div
         var user_div = document.createElement("div");
@@ -151,6 +254,8 @@ categories.forEach(c => {
         desc.classList.add("desc");
         desc.innerText = u.desc;
         user_div.appendChild(desc);
+        // Add click event
+        user_div.addEventListener('click', () => showMemberModal(u));
         // append the user
         div.appendChild(user_div);
     })
