@@ -1,5 +1,0 @@
-# SMTP Server
-sudo apt-get install mailutils
-【CHOOSE：Internet Site】
-【INPUT：openteens.org】
-
