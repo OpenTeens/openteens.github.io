@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import AppHeader from "../components/AppHeader.vue";
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
