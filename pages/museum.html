@@ -23,6 +23,47 @@
 		padding-bottom: 20px;
 		height: max-content;
 		--bg-color: black;
+		transition: all 0.4s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.collection:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+	}
+
+	.collection img {
+		transition: all 0.4s ease;
+		filter: brightness(0.9);
+	}
+
+	.collection:hover img {
+		transform: scale(1.02);
+		filter: brightness(1.1);
+	}
+
+	.collection::after {
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		background: linear-gradient(45deg, #00ff00, #008000);
+		border-radius: 50%;
+		top: 1.5rem;
+		opacity: 0;
+		transition: all 0.3s ease;
+	}
+
+	.collection:hover::after {
+		opacity: 1;
+	}
+
+	.collection.left::after {
+		left: -65px;
+	}
+
+	.collection.right::after {
+		right: -65px;
 	}
 
 	.collection.light {
@@ -78,6 +119,8 @@
 		background: linear-gradient(to bottom, var(--c1), var(--c2));
 		height: calc(2 * var(--trans-ratius));
 		padding: 0;
+		position: relative;
+		overflow: hidden;
 
 		&::before {
 			content: "";
@@ -124,6 +167,26 @@
 			border-left: 3px solid green;
 			border-top-left-radius: var(--trans-ratius);
 		}
+	}
+
+	.collection.transition::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(45deg,
+			transparent 0%,
+			rgba(255,255,255,0.1) 50%,
+			transparent 100%
+		);
+		animation: shine 2s infinite linear;
+	}
+
+	@keyframes shine {
+		from { transform: translateX(-100%); }
+		to { transform: translateX(100%); }
 	}
 
 	.collection.tothefuture {

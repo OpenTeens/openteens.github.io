@@ -57,6 +57,7 @@
     width: calc(var(--scale) * 100px);
     overflow: hidden;
     cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 @media screen and (max-width: 420px) {
@@ -93,8 +94,8 @@
     & * {
         opacity: 1;
     }
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
 
@@ -174,6 +175,18 @@
     color: white;
     transform: translateY(-20px);
     transition: transform 0.3s ease;
+    animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .member-modal.active .modal-content {
@@ -232,7 +245,7 @@
     color: #fff;
     font-size: 24px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -243,7 +256,7 @@
 }
 
 .modal-social a:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) rotate(360deg);
     background: #3498db;
     color: white;
 }

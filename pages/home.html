@@ -1,5 +1,94 @@
 <iframe src="/pages/spec/starbg.html" class="sky bg"></iframe>
 
+<style>
+/* 改进Logo动画 */
+.logo.big {
+    animation: logoAppear 1s ease-out;
+}
+
+@keyframes logoAppear {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 改进标语动画 */
+#slogan {
+    background: linear-gradient(120deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 改进关于我们部分 */
+.headline {
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all 0.3s ease;
+}
+
+.headline:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(31,38,135,0.5);
+}
+
+/* 改进成员卡片 */
+#peoples .home-p {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#peoples .home-p:hover {
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-10px);
+}
+</style>
+
+<!-- 添加背景动画 -->
+<div class="bg-animation">
+    <div class="star-field"></div>
+</div>
+
+<style>
+/* 背景动画样式 */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: starRotate 100s linear infinite;
+}
+
+@keyframes starRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+
 <div id="content">
     <center>
         <img class="logo big" src="/img/logo/build/circle.png" alt="OpenTeens Logo">
@@ -34,7 +123,7 @@
                     </ul>
                     <h3>为什么选择开源？</h3>
                     <p>
-                        开源不仅仅是关于代码，它还涉及到合作、创造力和为更大的目标贡献自己的一部分。加入OpenTeens，你不仅可以提高自己的技能，还可以对周围的世界产生积极的影响。
+                        开源不仅仅是关于代码，它还涉及到合作、创造力和为更大的目标贡献自己的一���分。加入OpenTeens，你不仅可以提高自己的技能，还可以对周围的世界产生积极的影响。
                     </p>
                     <h3>加入我们的行列：</h3>
                     <p>

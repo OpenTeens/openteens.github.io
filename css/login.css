@@ -22,6 +22,21 @@ body {
 	border-radius: 6px;
 	background-color: #0c162d;
 	transition: .3s;
+    background: linear-gradient(135deg, #1a1e2c, #0c162d);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: terminalAppear 0.8s ease-out;
+}
+
+@keyframes terminalAppear {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 #welcome>#terminal>* {
@@ -40,6 +55,13 @@ body {
 	color: #8193b2;
 	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
 	line-height: 1.5;
+    border-right: 2px solid #4CAF50;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #4CAF50; }
 }
 
 input.login {
@@ -50,17 +72,27 @@ input.login {
 	color: white;
 	box-sizing: border-box;
 	width: calc(100% - 130px);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
 }
 
 input.login:focus {
 	outline: none;
 	border: solid 1px #0969da;
+    border-color: #3498db;
+    box-shadow: 0 0 15px rgba(52,152,219,0.3);
+    background: rgba(255,255,255,0.1);
 }
 
 button.login[disabled] {
 	color: #627597;
 	background: none;
 	border-color: #627597;
+    background: #2c3e50;
+    cursor: not-allowed;
 }
 
 button.login {
@@ -76,6 +108,18 @@ button.login {
 	border: 1px solid #1f883d;
 	border-radius: 6px;
 	transition: .1s;
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+button.login:not([disabled]):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46,204,113,0.3);
 }
 
 span.formtitle {

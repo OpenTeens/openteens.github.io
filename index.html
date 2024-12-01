@@ -15,7 +15,7 @@
 		.split('?')[0]
 		.trim()
 		.toLowerCase();
-	const pages = ["404.html", "about", "home", "museum", "projects", "bernie", "team", "signup", "search", "schedule"];
+	const pages = ["404", "about", "home", "museum", "projects", "bernie", "team", "signup", "search", "schedule"];
 	var i = pages.indexOf(pageName);
 
 	if (i == -1) { // not found
@@ -27,7 +27,7 @@
 
 	const page_title = {
 		"about": "About Us",
-		"404.html": "404 - Page Not Found",
+		"404": "404 - Page Not Found",
 		"home": "OpenTeens",
 		"museum": "Museum",
 		"projects": "Projects",
@@ -84,6 +84,33 @@
 <!-- Main HTML -->
 
 <link rel="stylesheet" href="/css/index.css" />
+
+<style>
+/* 添加导航栏动画 */
+.menu > li > button {
+    transition: all 0.3s ease;
+}
+
+.menu > li > button:hover {
+    transform: translateY(-2px);
+}
+
+/* 优化footer样式 */
+footer {
+    background: linear-gradient(to top, #000000, transparent);
+    padding: 3rem 1rem 1rem;
+}
+
+.social-media-links a {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.social-media-links a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+</style>
 
 <body>
 	<div id="toolbar">
