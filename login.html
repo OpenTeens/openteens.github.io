@@ -20,6 +20,64 @@
 		html {
 			background-color: #252526;
 		}
+
+		/* 改进终端效果 */
+		#terminal {
+			animation: terminalAppear 0.5s ease-out;
+			box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+			border: 1px solid rgba(0, 255, 0, 0.2);
+		}
+
+		@keyframes terminalAppear {
+			from {
+				transform: translateY(20px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		/* 改进输入框样式 */
+		input.login {
+			transition: all 0.3s ease;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		input.login:focus {
+			border-color: #0969da;
+			box-shadow: 0 0 15px rgba(9, 105, 218, 0.3);
+		}
+
+		/* 改进按钮样式 */
+		button.login {
+			position: relative;
+			overflow: hidden;
+		}
+
+		button.login::after {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+			transform: rotate(45deg);
+			animation: buttonShine 2s infinite;
+		}
+
+		@keyframes buttonShine {
+			from {
+				transform: translateX(-100%) rotate(45deg);
+			}
+
+			to {
+				transform: translateX(100%) rotate(45deg);
+			}
+		}
 	</style>
 </head>
 

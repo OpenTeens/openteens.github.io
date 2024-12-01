@@ -70,6 +70,18 @@
         border-radius: 15px;
         margin-bottom: 40px;
         overflow: hidden;
+        animation: heroScale 1s ease-out;
+    }
+
+    @keyframes heroScale {
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
     }
 
     .hero-overlay {
@@ -84,6 +96,25 @@
         padding: 60px 20px;
         text-align: center;
         color: white;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        background: linear-gradient(120deg, #fff, #aaa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .content-grid {
@@ -107,6 +138,23 @@
         background: #fff1;
         border-radius: 15px;
         margin: 40px 0;
+        overflow: hidden;
+    }
+
+    .join-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
 
     .opensource-grid {
@@ -125,6 +173,14 @@
         padding: 30px;
         border-radius: 15px;
         backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .os-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255,255,255,0.3);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     .os-icon {
@@ -133,6 +189,7 @@
         margin-bottom: 20px;
         background-size: contain;
         background-repeat: no-repeat;
+        transition: all 0.3s ease;
     }
 
     .os-icon-1 {
@@ -141,6 +198,10 @@
 
     .os-icon-2 {
         background-image: url('/img/logo/v1.1.png');
+    }
+
+    .os-card:hover .os-icon {
+        transform: scale(1.1) rotate(5deg);
     }
 
     @media (max-width: 768px) {

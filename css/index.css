@@ -259,6 +259,12 @@ hr {
 	background-color: #fff3;
 	backdrop-filter: blur(10px);
 	border-radius: 6px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headline:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 #headline {
@@ -370,11 +376,13 @@ div.p {
 
 		width: 100%;
 		height: 100%;
+		transition: all 0.3s ease;
 	}
 
 	&:hover .avatar {
 		filter: grayscale(0) brightness(1.25);
 		transform: scale(.96);
+		transform: scale(1.05);
 	}
 }
 
@@ -618,4 +626,29 @@ a.teens-camp-button-before {
 a.teens-camp-button>li>button:hover {
 	color: var(--menu-text-hv);
 	background-color: var(--menu-hv-color);
+}
+
+/* 改进按钮样式 */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 优化头像效果 */
+.avatar {
+    transition: all 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+/* 改进文本间距 */
+p {
+    line-height: 1.8;
+    margin-bottom: 1.5em;
 }
