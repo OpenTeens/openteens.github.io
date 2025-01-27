@@ -138,6 +138,20 @@
 		}
 	}
 
+	/* branch forks */
+	.collection.transition[left-to-right]{
+		border-right: 3px solid green;
+		&::after {
+			transform: translateX(3px);
+		}
+	}
+	.collection.transition[right-to-left]{
+		border-left: 3px solid green;
+		&::after {
+			transform: translateX(-3px);
+		}
+	}
+
 	.collection.tothefuture {
 		height: 30px;
 		border-left: solid 3px green;
