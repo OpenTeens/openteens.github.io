@@ -1,18 +1,16 @@
-# openteenscore.github.io
+# openteens.github.io
+
 OpenTeens Website: openteens.org
 
-# how to build in vscode
+# how to build in VSCode
 
-这个网站我用了一个很hackish的方法——404 redirect。所以它可能没办法用传统方法build/调试。
+这个网站使用了 SPA （单页面应用）技术，因此开发流程需要配置 Live Server，这里对应的配置已经在仓库内完成。你只需要信任该存储库并安装 Live Server 插件即可进行开发。
 
+1. Clone 这个仓库到本地并用 VSCode 打开后，你会看到图中的提示，请信任本仓库。
+   ![Do you trust the authors of the files in this folder?](img/image.png)
 
-1、下载一个插件，叫做live server
-![mmexport1699751761314](https://github.com/OpenTeensCore/openteenscore.github.io/assets/88757735/252f562b-1736-4747-a1a6-bdbf7cff01ad)
+2. 下载一个插件，叫做 live server。
+   ![mmexport1699751761314](https://github.com/OpenTeensCore/openteenscore.github.io/assets/88757735/252f562b-1736-4747-a1a6-bdbf7cff01ad)
 
-
-2、搜索他的设置，将默认404页面改为`/404.html`
-![mmexport1699751775916](https://github.com/OpenTeensCore/openteenscore.github.io/assets/88757735/ba9e5f0b-7f44-44ac-8714-8fcdc4d012ec)
-
-
-3、你可能需要重启vscode，然后开启live server，就可以了。
-
+3. 你可能需要重启 VSCode，然后点击下方状态栏中的 Go Live，就可以进行开发了。
+   ![Go Live](img/image-1.png)
