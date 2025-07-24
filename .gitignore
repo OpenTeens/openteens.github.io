@@ -1,6 +1,15 @@
-.ignor
-.ignor/
-.ignor/*
-.vscode/*
+# htaccess 
+# 为什么？
+
 .htaccess
 nginx.htaccess
+
+# .ignor
+.ignor/*
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
